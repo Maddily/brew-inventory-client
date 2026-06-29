@@ -1,0 +1,5 @@
+.nav-btn {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--nav-link);
+}
