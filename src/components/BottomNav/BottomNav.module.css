@@ -1,0 +1,12 @@
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  border-top: 0.5px solid var(--nav-border);
+  padding: 5px 0px;
+}
+
+@media (min-width: 500px) {
+  .bottom-nav {
+    display: none;
+  }
+}
