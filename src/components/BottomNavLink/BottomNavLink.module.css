@@ -1,0 +1,15 @@
+.icon, .text {
+  color: var(--nav-link);
+}
+
+.text {
+  font-size: 10px;
+}
+
+.bottom-nav-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
