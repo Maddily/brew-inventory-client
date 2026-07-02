@@ -10,8 +10,8 @@ function NavBar() {
     <nav className={styles["nav"]} aria-label="Primary navigation">
       <img className={styles["logo"]} src={logo} alt="Brew Inventory" />
       <div className={styles["middle-nav-btns-container"]}>
-        <NavLink value="Categories" path="/" />
-        <NavLink value="All products" path="/products" />
+        <NavLink value="Categories" path="/" id={0} />
+        <NavLink value="All products" path="/products" id={1} />
       </div>
       <Link className={styles["add-product-link"]} to="/products/new">
         <Icon
