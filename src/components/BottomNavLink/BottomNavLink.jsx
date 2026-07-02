@@ -14,7 +14,7 @@ function BottomNavLink({ value, path, iconPath, id }) {
         active === id ? styles["active"] : ""
       }`}
       to={path}
-      onClick={() => id && setActive(id)}
+      onClick={() => setActive(id)}
     >
       <Icon className={styles["icon"]} path={iconPath} size={0.7} />
       <span className={styles["text"]}>{value}</span>

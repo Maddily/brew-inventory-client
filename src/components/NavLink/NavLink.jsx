@@ -13,7 +13,7 @@ function NavButton({ value, path, id }) {
         active === id ? styles["active"] : ""
       }`}
       to={path}
-      onClick={() => id && setActive(id)}
+      onClick={() => setActive(id)}
     >
       {value}
     </Link>
