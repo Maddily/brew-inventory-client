@@ -1,5 +1,6 @@
-.icon, .text {
-  color: var(--nav-link);
+.icon,
+.text {
+  color: var(--secondary-color);
 }
 
 .text {
@@ -12,4 +13,9 @@
   flex-direction: column;
   align-items: center;
   gap: 2px;
+}
+
+.active .icon,
+.active .text {
+  color: var(--primary-color);
 }
