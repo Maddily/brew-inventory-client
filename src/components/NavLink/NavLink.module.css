@@ -1,5 +1,9 @@
-.nav-btn {
+.nav-link {
   font-size: 14px;
   text-decoration: none;
-  color: var(--nav-link);
+  color: var(--secondary-color);
+}
+
+.active.nav-link {
+  color: var(--primary-color);
 }
