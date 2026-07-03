@@ -1,7 +1,7 @@
 .nav-link {
   font-size: 14px;
   text-decoration: none;
-  color: var(--secondary-color);
+  color: #9a8f88;
 }
 
 .active.nav-link {
