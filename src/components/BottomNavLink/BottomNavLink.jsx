@@ -1,20 +1,17 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { Icon } from "@mdi/react";
-import { ActiveLinkContext } from "../../contexts";
 import styles from "./BottomNavLink.module.css";
-import { useContext } from "react";
 
-function BottomNavLink({ value, path, iconPath, id }) {
-  const { active, setActive } = useContext(ActiveLinkContext);
+function BottomNavLink({ value, path, iconPath }) {
+  const location = useLocation();
 
   return (
     <Link
       className={`${styles["bottom-nav-link"]} ${
-        active === id ? styles["active"] : ""
+        location.pathname === path ? styles["active"] : ""
       }`}
       to={path}
-      onClick={() => setActive(id)}
     >
       <Icon className={styles["icon"]} path={iconPath} size={0.8} />
       <span className={styles["text"]}>{value}</span>
@@ -26,7 +23,6 @@ BottomNavLink.propTypes = {
   value: PropTypes.string,
   path: PropTypes.string,
   iconPath: PropTypes.any,
-  id: PropTypes.number,
 };
 
 export default BottomNavLink;
