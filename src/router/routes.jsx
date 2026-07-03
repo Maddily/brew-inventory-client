@@ -15,6 +15,10 @@ const routes = [
         path: "/products",
         element: <Products />,
       },
+      {
+        path: "/categories/:category_id",
+        element: <Products />,
+      },
     ],
   },
 ];
