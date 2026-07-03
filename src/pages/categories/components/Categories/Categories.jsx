@@ -62,10 +62,10 @@ function Categories() {
 
   return (
     <main className={styles["main"]}>
-      <div className={styles["categories-header"]}>
+      <header className={styles["categories-header"]}>
         <h1 className={styles["heading"]}>Categories</h1>
         <p className={styles["description"]}>Browse inventory by category</p>
-      </div>
+      </header>
       <div className={styles["categories-container"]}>
         {categories.map((category) => (
           <Category
