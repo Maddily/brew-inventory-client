@@ -5,17 +5,11 @@ import styles from "./BottomNav.module.css";
 function BottomNav() {
   return (
     <nav className={styles["bottom-nav"]} aria-label="Bottom navigation">
-      <BottomNavLink
-        value="Categories"
-        path="/"
-        iconPath={mdiDotsGrid}
-        id={0}
-      />
+      <BottomNavLink value="Categories" path="/" iconPath={mdiDotsGrid} />
       <BottomNavLink
         value="All products"
         path="/products"
         iconPath={mdiPackageVariantClosed}
-        id={1}
       />
       <BottomNavLink value="Add" path="/products/new" iconPath={mdiPlus} />
     </nav>
