@@ -1,0 +1,55 @@
+import { Link } from "react-router";
+import { IconChevronRight } from "@tabler/icons-react";
+import PropTypes from "prop-types";
+import styles from "./Product.module.css";
+
+function Product({ name, price, stockQuantity, category, path }) {
+  return (
+    <Link className={styles["product"]} to={path}>
+      <div className={styles["left"]}>
+        <p className={styles["name"]}>{name}</p>
+        <p className={styles["category"]}>{category}</p>
+        <div className={styles["meta"]}>
+          <div className={styles["meta-item"]}>
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(price)}
+          </div>
+          <div className={styles["meta-item"]}>
+            <span>Qty</span>
+            {stockQuantity}
+          </div>
+        </div>
+      </div>
+      <div className={styles["right"]}>
+        <p
+          className={`${styles["availability"]} ${
+            stockQuantity > 10
+              ? styles["in-stock"]
+              : stockQuantity > 0
+              ? styles["low-stock"]
+              : styles["out-of-stock"]
+          }`}
+        >
+          {stockQuantity > 10
+            ? "In stock"
+            : stockQuantity > 0
+            ? "Low stock"
+            : "Out of stock"}
+        </p>
+        <IconChevronRight className={styles["chevron"]} />
+      </div>
+    </Link>
+  );
+}
+
+Product.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.string,
+  stockQuantity: PropTypes.string,
+  category: PropTypes.string,
+  path: PropTypes.string,
+};
+
+export default Product;
