@@ -1,0 +1,15 @@
+.sheet-chip {
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  border: 0.5px solid #e8e3de;
+  color: #6b5e57;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.sheet-chip.selected {
+  background: #2f2118;
+  color: #ffffff;
+  border-color: #2f2118;
+}
