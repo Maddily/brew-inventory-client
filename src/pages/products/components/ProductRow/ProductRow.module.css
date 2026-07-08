@@ -1,0 +1,75 @@
+.product-row {
+  padding: 0 1.25rem;
+  height: 56px;
+  transition: background-color 0.1s;
+  cursor: pointer;
+}
+
+.product-row:hover {
+  background: #faf8f6;
+}
+
+.product-row td {
+  font-size: 14px;
+  color: #1a1412;
+  border-bottom: 0.5px solid #f0ebe6;
+}
+
+.product-row td:first-child {
+  padding-left: 1.25rem;
+}
+
+.product-row td:last-child {
+  padding-right: 1.25rem;
+}
+
+.name {
+  color: #1a1412;
+  font-size: 14px;
+}
+
+.category {
+  font-size: 12px;
+  color: #a0918a;
+  margin-top: 1px;
+}
+
+.price,
+.quantity {
+  font-variant-numeric: tabular-nums;
+}
+
+.product-row p {
+  margin: 0;
+}
+
+.availability span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.availability.in-stock span {
+  background: #e8f2e8;
+  color: #2d7a2d;
+}
+
+.availability.low-stock span {
+  background: #fef3e2;
+  color: #a05c00;
+}
+
+.availability.out-of-stock span {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.in-stock-icon,
+.low-stock-icon,
+.out-of-stock-icon {
+  width: 12px;
+  height: 12px;
+}
