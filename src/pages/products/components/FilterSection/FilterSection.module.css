@@ -16,9 +16,3 @@
   flex-wrap: wrap;
   gap: 6px;
 }
-
-.filter-divider {
-  height: 0.5px;
-  background: #f0ebe6;
-  margin: 1rem 0;
-}
