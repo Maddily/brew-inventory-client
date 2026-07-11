@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 import { IconWifiOff, IconRefresh } from "@tabler/icons-react";
 import styles from "./ErrorState.module.css";
 
-function ErrorState({ setRetryCount }) {
+function ErrorState({ setRetryCount, data }) {
   return (
     <main className={styles["main"]}>
       <div className={styles["error-icon-container"]}>
         <IconWifiOff className={styles["error-icon"]} stroke={2} />
       </div>
-      <p className={styles["error-title"]}>Couldn't load categories</p>
+      <p className={styles["error-title"]}>Couldn't load {data}</p>
       <p className={styles["error-msg"]}>
         Something went wrong while fetching data.
         <br />
@@ -27,6 +27,7 @@ function ErrorState({ setRetryCount }) {
 
 ErrorState.propTypes = {
   setRetryCount: PropTypes.func,
+  data: PropTypes.string,
 };
 
 export default ErrorState;
