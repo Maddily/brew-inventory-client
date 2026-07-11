@@ -57,7 +57,8 @@ function Categories() {
     return () => (componentIsMounted = false);
   }, [retryCount]);
 
-  if (error) return <ErrorState setRetryCount={setRetryCount} />;
+  if (error)
+    return <ErrorState setRetryCount={setRetryCount} entity="categories" />;
   if (loading) return <SkeletonCategories />;
 
   return (
