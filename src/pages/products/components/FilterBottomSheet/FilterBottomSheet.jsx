@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import styles from "./FilterBottomSheet.module.css";
 import FilterSection from "../FilterSection/FilterSection";
 import { SelectedChipsContext } from "../../../../contexts";
-import { filtersUnchanged } from "../../../../utils/filterUtils";
+import { filtersChanged } from "../../../../utils/filterUtils";
 
 function FilterBottomSheet({
   filterBottomSheetRef,
@@ -39,11 +39,11 @@ function FilterBottomSheet({
       );
     }
 
-    if (filtersUnchanged(params, searchParams)) {
-      filterBottomSheetRef.current.close();
-    } else {
+    if (filtersChanged(params, searchParams)) {
       setSearchParams(params);
     }
+
+    filterBottomSheetRef.current.close();
   }
 
   return (
