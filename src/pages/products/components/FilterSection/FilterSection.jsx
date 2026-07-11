@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import styles from "./FilterSection.module.css";
 import SheetChip from "../SheetChip/SheetChip";
 
-function FilterSection({ sections, section, index, numberOfSections }) {
+function FilterSection({ sections, section }) {
   return (
     <>
       <div className={styles["sheet-section"]}>
@@ -13,18 +13,13 @@ function FilterSection({ sections, section, index, numberOfSections }) {
           ))}
         </div>
       </div>
-      {index !== numberOfSections - 1 && (
-        <div className={styles["filter-divider"]}></div>
-      )}
     </>
   );
 }
 
 FilterSection.propTypes = {
-  sections: PropTypes.object,
+  sections: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
   section: PropTypes.string,
-  index: PropTypes.number,
-  numberOfSections: PropTypes.number,
 };
 
 export default FilterSection;
