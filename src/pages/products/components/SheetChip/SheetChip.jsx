@@ -6,19 +6,16 @@ import PropTypes from "prop-types";
 function SheetChip({ section, value }) {
   const [selectedChips, setSelectedChips] = useContext(SelectedChipsContext);
 
+  // If the clicked chip exists, unselect it. Otherwise, select it.
   function handleChipSelection() {
-    // Update selected chips in the given section. If the clicked chip exists, remove it. Otherwise, add it.
     const selectedChipsInSection = selectedChips[section];
-    const index = selectedChipsInSection.indexOf(value);
-    if (index !== -1) {
-      selectedChipsInSection.splice(index, 1);
-    } else {
-      selectedChipsInSection.push(value);
-    }
+    const chipIsSelected = selectedChipsInSection.includes(value);
 
     setSelectedChips({
       ...selectedChips,
-      [section]: [...selectedChipsInSection],
+      [section]: chipIsSelected
+        ? selectedChipsInSection.filter((chip) => chip !== value)
+        : [...selectedChipsInSection, value],
     });
   }
 
