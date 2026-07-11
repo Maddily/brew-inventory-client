@@ -1,0 +1,79 @@
+.filter-bottom-sheet {
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  padding: 0;
+  border: none;
+  border-top: 0.5px solid #e8e3de;
+}
+
+.sheet-handle-row {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 8px;
+}
+
+.sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: #e8e3de;
+  border-radius: 2px;
+}
+
+.sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem 1rem;
+  border-bottom: 0.5px solid #f0ebe6;
+}
+
+.sheet-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1412;
+}
+
+.sheet-close {
+  width: 20px;
+  height: 20px;
+  color: #a0918a;
+  cursor: pointer;
+}
+
+.sheet-body {
+  padding: 1.25rem;
+}
+
+.filter-divider {
+  height: 0.5px;
+  background: #f0ebe6;
+  margin: 1rem 0;
+}
+
+.sheet-footer {
+  display: flex;
+  gap: 8px;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.sheet-btn-clear {
+  flex: 1;
+  background: #f9f7f5;
+  border: 0.5px solid #e8e3de;
+  color: #6b5e57;
+}
+
+.sheet-btn-apply {
+  flex: 2;
+  background: #2f2118;
+  color: #fff;
+  border: none;
+}
+
+.sheet-btn-clear,
+.sheet-btn-apply {
+  border-radius: 8px;
+  padding: 9px;
+  font-size: 13px;
+  cursor: pointer;
+}
