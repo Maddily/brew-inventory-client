@@ -1,10 +1,10 @@
-export function filtersUnchanged(params, searchParams) {
+export function filtersChanged(params, searchParams) {
   const newCategoryIds = params.getAll("category_id").sort();
   const currentCategoryIds = searchParams.getAll("category_id").sort();
   const newAvailability = params.getAll("availability").sort();
   const currentAvailability = searchParams.getAll("availability").sort();
 
-  return (
+  return !(
     newCategoryIds.length === currentCategoryIds.length &&
     newCategoryIds.every((id, i) => id === currentCategoryIds[i]) &&
     newAvailability.length === currentAvailability.length &&
