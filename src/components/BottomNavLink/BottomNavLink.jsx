@@ -1,15 +1,18 @@
 import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useSearchParams } from "react-router";
 import { Icon } from "@mdi/react";
 import styles from "./BottomNavLink.module.css";
 
 function BottomNavLink({ value, path, iconPath }) {
   const location = useLocation();
+  const [searchParams] = useSearchParams();
 
   return (
     <Link
       className={`${styles["bottom-nav-link"]} ${
-        location.pathname === path ? styles["active"] : ""
+        location.pathname === path && searchParams.size === 0
+          ? styles["active"]
+          : ""
       }`}
       to={path}
     >
