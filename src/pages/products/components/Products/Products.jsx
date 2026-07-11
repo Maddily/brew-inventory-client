@@ -10,17 +10,6 @@ import { SelectedChipsContext } from "../../../../contexts";
 import { populateSelectedChips } from "../../../../utils/filterUtils";
 import SkeletonProducts from "../SkeletonProducts/SkeletonProducts";
 
-const sections = {
-  Category: ["Coffee", "Tea", "Ready-to-Drink", "Accessories"],
-  Availability: ["In stock", "Low stock", "Out of stock"],
-};
-const categoryNameToId = {
-  Coffee: 1,
-  Tea: 2,
-  "Ready-to-Drink": 3,
-  Accessories: 4,
-};
-
 function Products() {
   const [products, setProducts] = useState([]);
   const [selectedChips, setSelectedChips] = useState({
@@ -146,8 +135,6 @@ function Products() {
         <FilterBottomSheet
           filterBottomSheetRef={filterBottomSheetRef}
           resetButtonStyle={resetButtonStyle}
-          sections={sections}
-          categoryNameToId={categoryNameToId}
         />
       </SelectedChipsContext>
     </main>

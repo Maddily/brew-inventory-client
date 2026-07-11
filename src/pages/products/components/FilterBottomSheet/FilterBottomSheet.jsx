@@ -7,12 +7,18 @@ import FilterSection from "../FilterSection/FilterSection";
 import { SelectedChipsContext } from "../../../../contexts";
 import { filtersChanged } from "../../../../utils/filterUtils";
 
-function FilterBottomSheet({
-  filterBottomSheetRef,
-  resetButtonStyle,
-  sections,
-  categoryNameToId,
-}) {
+const sections = {
+  Category: ["Coffee", "Tea", "Ready-to-Drink", "Accessories"],
+  Availability: ["In stock", "Low stock", "Out of stock"],
+};
+const categoryNameToId = {
+  Coffee: 1,
+  Tea: 2,
+  "Ready-to-Drink": 3,
+  Accessories: 4,
+};
+
+function FilterBottomSheet({ filterBottomSheetRef, resetButtonStyle }) {
   const [selectedChips, setSelectedChips] = useContext(SelectedChipsContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const sectionKeys = Object.keys(sections);
@@ -97,8 +103,6 @@ FilterBottomSheet.propTypes = {
     current: PropTypes.instanceOf(Element),
   }),
   resetButtonStyle: PropTypes.func,
-  sections: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
-  categoryNameToId: PropTypes.object,
 };
 
 export default FilterBottomSheet;
