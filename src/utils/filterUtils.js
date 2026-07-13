@@ -1,15 +1,15 @@
 export function filtersChanged(params, searchParams) {
-  const newCategoryIds = params.getAll("category_id").sort();
-  const currentCategoryIds = searchParams.getAll("category_id").sort();
-  const newAvailability = params.getAll("availability").sort();
-  const currentAvailability = searchParams.getAll("availability").sort();
+  const keys = new Set([...params.keys(), ...searchParams.keys()]);
 
-  return !(
-    newCategoryIds.length === currentCategoryIds.length &&
-    newCategoryIds.every((id, i) => id === currentCategoryIds[i]) &&
-    newAvailability.length === currentAvailability.length &&
-    newAvailability.every((v, i) => v === currentAvailability[i])
-  );
+  return [...keys].some((key) => {
+    const newValues = params.getAll(key).sort();
+    const currentValues = searchParams.getAll(key).sort();
+
+    return !(
+      newValues.length === currentValues.length &&
+      newValues.every((v, i) => v === currentValues[i])
+    );
+  });
 }
 
 export function populateSelectedChips(searchParams, setSelectedChips) {
