@@ -119,27 +119,33 @@ function FilterBottomSheet({
           onClick={() => filterBottomSheetRef.current.close()}
         />
       </div>
-      <div className={styles["sheet-body"]}>
-        {sectionKeys.map((section, index) => (
-          <Fragment key={section}>
-            <FilterSection
-              sections={sections}
-              section={section}
-              index={index}
-            />
-            {index !== sectionKeys.length - 1 && (
-              <div className={styles["filter-divider"]}></div>
-            )}
-          </Fragment>
-        ))}
-      </div>
+      {products.length ? (
+        <div className={styles["sheet-body"]}>
+          {sectionKeys.map((section, index) => (
+            <Fragment key={section}>
+              <FilterSection
+                sections={sections}
+                section={section}
+                index={index}
+              />
+              {index !== sectionKeys.length - 1 && (
+                <div className={styles["filter-divider"]}></div>
+              )}
+            </Fragment>
+          ))}
+        </div>
+      ) : (
+        <FilterEmptyState />
+      )}
       <div className={styles["sheet-footer"]}>
         <button className={styles["sheet-btn-clear"]} onClick={clearFilters}>
           Clear all
         </button>
-        <button className={styles["sheet-btn-apply"]} onClick={applyFilters}>
-          Apply filters
-        </button>
+        {products.length ? (
+          <button className={styles["sheet-btn-apply"]} onClick={applyFilters}>
+            Apply filters
+          </button>
+        ) : null}
       </div>
     </dialog>
   );
