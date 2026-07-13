@@ -53,3 +53,15 @@ export function populateSelectedChips(searchParams, setSelectedChips) {
 
   setSelectedChips(newSelectedChips);
 }
+
+// Get all existing values for an attribute
+export function getAttributeValues(products, attribute) {
+  const values = [];
+
+  for (const product of products) {
+    const value = product.attributes[attribute];
+    !values.includes(value) && values.push(value);
+  }
+
+  return values;
+}
