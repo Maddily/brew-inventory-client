@@ -16,7 +16,17 @@ export function populateSelectedChips(searchParams, setSelectedChips) {
   const newSelectedChips = {
     Category: [],
     Availability: [],
+    Origin: [],
+    "Roast Level": [],
+    Format: [],
+    Weight: [],
+    Type: [],
+    "Caffeine Level": [],
+    Base: [],
+    Volume: [],
+    "Compatible With": [],
   };
+
   const idToCategory = {
     1: "Coffee",
     2: "Tea",
@@ -24,15 +34,21 @@ export function populateSelectedChips(searchParams, setSelectedChips) {
     4: "Accessories",
   };
 
-  const categoryIds = searchParams.getAll("category_id");
-  for (const id of categoryIds) {
-    const category = idToCategory[id];
-    newSelectedChips.Category.push(category);
-  }
+  for (const [param, value] of searchParams.entries()) {
+    if (param === "category_id") {
+      const category = idToCategory[value];
+      if (category) newSelectedChips.Category.push(category);
+      continue;
+    }
 
-  const availability = searchParams.getAll("availability");
-  for (const value of availability) {
-    newSelectedChips.Availability.push(value);
+    if (param === "availability") {
+      newSelectedChips.Availability.push(value);
+      continue;
+    }
+
+    if (newSelectedChips[param] !== undefined) {
+      newSelectedChips[param].push(value);
+    }
   }
 
   setSelectedChips(newSelectedChips);
