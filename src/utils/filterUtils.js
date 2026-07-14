@@ -1,3 +1,5 @@
+import { idToCategory } from "../constants";
+
 export function filtersChanged(params, searchParams) {
   const keys = new Set([...params.keys(), ...searchParams.keys()]);
 
@@ -25,13 +27,6 @@ export function populateSelectedChips(searchParams, setSelectedChips) {
     Base: [],
     Volume: [],
     "Compatible With": [],
-  };
-
-  const idToCategory = {
-    1: "Coffee",
-    2: "Tea",
-    3: "Ready-to-Drink",
-    4: "Accessories",
   };
 
   for (const [param, value] of searchParams.entries()) {

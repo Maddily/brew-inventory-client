@@ -13,13 +13,7 @@ import {
 } from "../../../../utils/filterUtils";
 import SkeletonProducts from "../SkeletonProducts/SkeletonProducts";
 import ProductEmptyState from "../ProductEmptyState/ProductEmptyState";
-
-const idToCategory = {
-  1: "Coffee",
-  2: "Tea",
-  3: "Ready-to-Drink",
-  4: "Accessories",
-};
+import { idToCategory } from "../../../../constants";
 
 function Products() {
   const [products, setProducts] = useState([]);
