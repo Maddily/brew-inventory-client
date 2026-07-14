@@ -175,6 +175,35 @@ function Products() {
           </button>
         </div>
       </header>
+      {!products.length &&
+        (searchParams.size ? (
+          <ProductEmptyState
+            title="No products found"
+            subtitle="No products match your current filters. Try adjusting or clearing your filters."
+            action={{
+              label: "Clear filters",
+              onClick: () => clearFilters(setSelectedChips, setSearchParams),
+            }}
+          />
+        ) : categoryId ? (
+          <ProductEmptyState
+            title="No products in this category yet"
+            subtitle="Add the first product to this category to get started."
+            action={{
+              label: "Add product",
+              onClick: () => navigate("/products/new"),
+            }}
+          />
+        ) : (
+          <ProductEmptyState
+            title="No products yet"
+            subtitle="This inventory is empty. Add your first product to get started."
+            action={{
+              label: "Add product",
+              onClick: () => navigate("/products/new"),
+            }}
+          />
+        ))}
       {/* Mobile list */}
       {products.length ? (
         <div className={styles["products-list"]}>
