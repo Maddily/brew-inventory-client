@@ -1,0 +1,64 @@
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 4rem 1rem 2rem;
+}
+
+.empty-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #f5ede8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.empty-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.empty-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1412;
+}
+
+.mob-empty .empty-sub {
+  max-width: 180px;
+  font-size: 12.5px;
+}
+
+.empty-sub {
+  font-size: 13px;
+  color: #a0918a;
+  line-height: 1.6;
+  max-width: 220px;
+  margin-bottom: 1rem;
+}
+
+.add-btn {
+  background: #2f2118;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.5rem;
+}
+
+.add-icon {
+  width: 12px;
+  height: 12px;
+}
