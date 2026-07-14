@@ -38,6 +38,7 @@ function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
   const filterBottomSheetRef = useRef(null);
   const navigate = useNavigate();
+  const hasProducts = products.length > 0;
 
   useEffect(() => {
     let componentIsMounted = true;
@@ -168,7 +169,7 @@ function Products() {
           </button>
         </div>
       </header>
-      {!products.length &&
+      {!hasProducts &&
         (searchParams.size ? (
           <ProductEmptyState
             title="No products found"
@@ -198,7 +199,7 @@ function Products() {
           />
         ))}
       {/* Mobile list */}
-      {products.length ? (
+      {hasProducts ? (
         <div className={styles["products-list"]}>
           {products.map((product) => (
             <Product
@@ -213,7 +214,7 @@ function Products() {
         </div>
       ) : null}
       {/* Desktop table */}
-      {products.length ? (
+      {hasProducts ? (
         <ProductsTable products={products} categoryId={categoryId} />
       ) : null}
       <SelectedChipsContext value={[selectedChips, setSelectedChips]}>
