@@ -12,13 +12,7 @@ import {
   getAttributeValues,
 } from "../../../../utils/filterUtils";
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
-
-const categoryIdToAttributes = {
-  1: ["Origin", "Roast Level", "Format", "Weight"],
-  2: ["Type", "Origin", "Format", "Caffeine Level", "Weight"],
-  3: ["Base", "Volume"],
-  4: ["Type", "Compatible With"],
-};
+import { categoryIdToAttributes } from "../../../../constants";
 
 function FilterBottomSheet({
   filterBottomSheetRef,
