@@ -138,9 +138,9 @@ function FilterBottomSheet({
 FilterBottomSheet.propTypes = {
   filterBottomSheetRef: PropTypes.shape({
     current: PropTypes.instanceOf(Element),
-  }),
-  resetButtonStyle: PropTypes.func,
-  products: PropTypes.array,
+  }).isRequired,
+  resetButtonStyle: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default FilterBottomSheet;
