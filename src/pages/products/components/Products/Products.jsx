@@ -105,6 +105,7 @@ function Products() {
 
         if (componentIsMounted) {
           setProducts(Object.values(productsMap));
+          populateSelectedChips(searchParams, setSelectedChips);
         }
       } catch (error) {
         if (componentIsMounted) {
@@ -118,8 +119,6 @@ function Products() {
     }
 
     fetchProducts();
-
-    populateSelectedChips(searchParams, setSelectedChips);
 
     return () => (componentIsMounted = false);
   }, [categoryId, retryCount, searchParams]);
