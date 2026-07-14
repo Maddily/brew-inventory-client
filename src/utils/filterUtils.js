@@ -83,3 +83,36 @@ export function clearFilters(setSelectedChips, setSearchParams) {
   const params = new URLSearchParams();
   setSearchParams(params);
 }
+
+export function applyFilters(selectedChips, searchParams, setSearchParams) {
+  const categoryNameToId = {
+    Coffee: 1,
+    Tea: 2,
+    "Ready-to-Drink": 3,
+    Accessories: 4,
+  };
+
+  const params = new URLSearchParams();
+
+  for (const section in selectedChips) {
+    if (section === "Category") {
+      selectedChips[section].forEach((category) =>
+        params.append("category_id", categoryNameToId[category])
+      );
+      continue;
+    }
+
+    if (section === "Availability") {
+      selectedChips[section].forEach((a) => params.append("availability", a));
+      continue;
+    }
+
+    selectedChips[section].forEach((value) => {
+      params.append(section, value);
+    });
+  }
+
+  if (filtersChanged(params, searchParams)) {
+    setSearchParams(params);
+  }
+}
