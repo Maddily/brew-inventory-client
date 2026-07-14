@@ -6,17 +6,11 @@ import styles from "./FilterBottomSheet.module.css";
 import FilterSection from "../FilterSection/FilterSection";
 import { SelectedChipsContext } from "../../../../contexts";
 import {
-  filtersChanged,
+  applyFilters,
+  clearFilters,
   getAttributeValues,
 } from "../../../../utils/filterUtils";
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
-
-const categoryNameToId = {
-  Coffee: 1,
-  Tea: 2,
-  "Ready-to-Drink": 3,
-  Accessories: 4,
-};
 
 const categoryIdToAttributes = {
   1: ["Origin", "Roast Level", "Format", "Weight"],
@@ -52,50 +46,13 @@ function FilterBottomSheet({
 
   const sectionKeys = Object.keys(sections);
 
-  function clearFilters() {
-    setSelectedChips({
-      Category: [],
-      Availability: [],
-      Origin: [],
-      "Roast Level": [],
-      Format: [],
-      Weight: [],
-      Type: [],
-      "Caffeine Level": [],
-      Base: [],
-      Volume: [],
-      "Compatible With": [],
-    });
-    const params = new URLSearchParams();
-    setSearchParams(params);
+  function handleClearFilters() {
+    clearFilters(setSelectedChips, setSearchParams);
     filterBottomSheetRef.current.close();
   }
 
-  function applyFilters() {
-    const params = new URLSearchParams();
-
-    for (const section in selectedChips) {
-      if (section === "Category") {
-        selectedChips[section].forEach((category) =>
-          params.append("category_id", categoryNameToId[category])
-        );
-        continue;
-      }
-
-      if (section === "Availability") {
-        selectedChips[section].forEach((a) => params.append("availability", a));
-        continue;
-      }
-
-      selectedChips[section].forEach((value) => {
-        params.append(section, value);
-      });
-    }
-
-    if (filtersChanged(params, searchParams)) {
-      setSearchParams(params);
-    }
-
+  function handleApplyFilters() {
+    applyFilters(selectedChips, searchParams, setSearchParams);
     filterBottomSheetRef.current.close();
   }
 
@@ -138,11 +95,17 @@ function FilterBottomSheet({
         <FilterEmptyState />
       )}
       <div className={styles["sheet-footer"]}>
-        <button className={styles["sheet-btn-clear"]} onClick={clearFilters}>
+        <button
+          className={styles["sheet-btn-clear"]}
+          onClick={handleClearFilters}
+        >
           Clear all
         </button>
         {products.length ? (
-          <button className={styles["sheet-btn-apply"]} onClick={applyFilters}>
+          <button
+            className={styles["sheet-btn-apply"]}
+            onClick={handleApplyFilters}
+          >
             Apply filters
           </button>
         ) : null}
