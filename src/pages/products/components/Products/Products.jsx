@@ -145,8 +145,11 @@ function Products() {
             {categoryId ? idToCategory[categoryId] : "All Products"}
           </h1>
           <p className={styles["header-description"]}>
-            {products.length} products across{" "}
-            {categoryId ? "1 category" : "4 categories"}
+            {searchParams.size
+              ? `${products.length} products match current filters`
+              : `${products.length} products across ${
+                  categoryId ? "1 category" : "4 categories"
+                }`}
           </p>
         </div>
         <div className={styles["search-container"]}>
