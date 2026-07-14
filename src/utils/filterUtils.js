@@ -65,3 +65,21 @@ export function getAttributeValues(products, attribute) {
 
   return values;
 }
+
+export function clearFilters(setSelectedChips, setSearchParams) {
+  setSelectedChips({
+    Category: [],
+    Availability: [],
+    Origin: [],
+    "Roast Level": [],
+    Format: [],
+    Weight: [],
+    Type: [],
+    "Caffeine Level": [],
+    Base: [],
+    Volume: [],
+    "Compatible With": [],
+  });
+  const params = new URLSearchParams();
+  setSearchParams(params);
+}
