@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router";
 import { IconX } from "@tabler/icons-react";
 import PropTypes from "prop-types";
@@ -8,6 +8,7 @@ import { SelectedChipsContext } from "../../../../contexts";
 import {
   applyFilters,
   clearFilters,
+  closeWithAnimation,
   getAttributeValues,
 } from "../../../../utils/filterUtils";
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
@@ -32,6 +33,32 @@ function FilterBottomSheet({
     Availability: ["In stock", "Low stock", "Out of stock"],
   };
 
+  // Handle close button click
+  const handleCloseBtnClick = () => {
+    closeWithAnimation(filterBottomSheetRef.current);
+  };
+
+  useEffect(() => {
+    const dialog = filterBottomSheetRef.current;
+
+    const handleCancel = (e) => {
+      e.preventDefault();
+      closeWithAnimation(dialog);
+    };
+
+    const handleBackdropClick = (e) => {
+      if (e.target === dialog) closeWithAnimation(dialog);
+    };
+
+    dialog.addEventListener("cancel", handleCancel);
+    dialog.addEventListener("click", handleBackdropClick);
+
+    return () => {
+      dialog.removeEventListener("cancel", handleCancel);
+      dialog.removeEventListener("click", handleBackdropClick);
+    };
+  }, [filterBottomSheetRef]);
+
   // Specific attribute sections are added based on the current list of products
   // Category section is removed because the page displays products in one category
   if (categoryId) {
@@ -48,12 +75,12 @@ function FilterBottomSheet({
 
   function handleClearFilters() {
     clearFilters(setSelectedChips, setSearchParams);
-    filterBottomSheetRef.current.close();
+    closeWithAnimation(filterBottomSheetRef.current);
   }
 
   function handleApplyFilters() {
     applyFilters(selectedChips, searchParams, setSearchParams);
-    filterBottomSheetRef.current.close();
+    closeWithAnimation(filterBottomSheetRef.current);
   }
 
   return (
@@ -73,7 +100,7 @@ function FilterBottomSheet({
           className={styles["sheet-close"]}
           aria-label="close filter modal"
           role="button"
-          onClick={() => filterBottomSheetRef.current.close()}
+          onClick={handleCloseBtnClick}
         />
       </div>
       {products.length ? (
