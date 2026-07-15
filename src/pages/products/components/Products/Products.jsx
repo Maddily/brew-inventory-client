@@ -14,6 +14,8 @@ import {
 import SkeletonProducts from "../SkeletonProducts/SkeletonProducts";
 import ProductEmptyState from "../ProductEmptyState/ProductEmptyState";
 import { idToCategory } from "../../../../constants";
+import useIsWide from "../../../../hooks/useIsWide";
+import FilterDropdown from "../FilterDropdown/FilterDropdown";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -36,6 +38,7 @@ function Products() {
   const [retryCount, setRetryCount] = useState(0);
   const { category_id: categoryId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const isWide = useIsWide();
   const filterBottomSheetRef = useRef(null);
   const navigate = useNavigate();
   const hasProducts = products.length > 0;
@@ -124,9 +127,9 @@ function Products() {
     return () => (componentIsMounted = false);
   }, [categoryId, retryCount, searchParams]);
 
-  function showFilterModal() {
-    filterBottomSheetRef.current.showModal();
-    setFilterOpen(true);
+  function showFilter() {
+    !isWide && filterBottomSheetRef.current.showModal();
+    isWide && filterOpen ? resetButtonStyle() : setFilterOpen(true);
   }
 
   function resetButtonStyle() {
@@ -166,7 +169,7 @@ function Products() {
               filterOpen ? styles["open-modal"] : ""
             }`}
             aria-label="filter"
-            onClick={showFilterModal}
+            onClick={showFilter}
           >
             <IconFilter className={styles["filter-icon"]} stroke={2} />
           </button>
@@ -221,11 +224,18 @@ function Products() {
         <ProductsTable products={products} categoryId={categoryId} />
       ) : null}
       <SelectedChipsContext value={[selectedChips, setSelectedChips]}>
-        <FilterBottomSheet
-          filterBottomSheetRef={filterBottomSheetRef}
-          resetButtonStyle={resetButtonStyle}
-          products={products}
-        />
+        {isWide && filterOpen ? (
+          <FilterDropdown
+            products={products}
+            resetButtonStyle={resetButtonStyle}
+          />
+        ) : (
+          <FilterBottomSheet
+            filterBottomSheetRef={filterBottomSheetRef}
+            resetButtonStyle={resetButtonStyle}
+            products={products}
+          />
+        )}
       </SelectedChipsContext>
     </main>
   );
