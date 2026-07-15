@@ -3,6 +3,7 @@
   padding: 1.25rem 1rem 0.75rem;
   background-color: var(--main-background-color);
   overflow-y: auto;
+  position: relative;
 }
 
 .page-header {
