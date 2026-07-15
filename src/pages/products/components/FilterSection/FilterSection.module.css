@@ -3,12 +3,19 @@
 }
 
 .sheet-section-title {
-  font-size: 11px;
   font-weight: 700;
   color: #a0918a;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: 0.6rem;
+}
+
+.sheet-section-title.bottom-sheet {
+  font-size: 11px;
+}
+
+.sheet-section-title.dropdown {
+  font-size: 12px;
 }
 
 .sheet-chips {
