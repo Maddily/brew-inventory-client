@@ -1,0 +1,146 @@
+.filter-dropdown {
+  background: #fff;
+  border: 0.5px solid #e8e3de;
+  border-radius: 12px;
+  padding: 1.25rem;
+  width: 270px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: absolute;
+  top: 5.2rem;
+  right: 0.5rem;
+}
+
+.filter-divider {
+  height: 0.5px;
+  background: #f0ebe6;
+  margin: 1rem 0;
+}
+
+.sheet-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.sheet-btn-clear {
+  background: #f9f7f5;
+  border: 0.5px solid #e8e3de;
+  color: #6b5e57;
+}
+
+.sheet-btn-apply {
+  background: #2f2118;
+  color: #fff;
+  border: none;
+}
+
+.sheet-btn-clear,
+.sheet-btn-apply {
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@media (min-width: 650px) {
+  .filter-dropdown {
+    right: 1rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .filter-dropdown {
+    right: 3rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .filter-dropdown {
+    right: 4.6rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .filter-dropdown {
+    right: 6rem;
+  }
+}
+
+@media (min-width: 850px) {
+  .filter-dropdown {
+    right: 7.6rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .filter-dropdown {
+    right: 2rem;
+  }
+}
+
+@media (min-width: 950px) {
+  .filter-dropdown {
+    right: 3.6rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .filter-dropdown {
+    right: 5rem;
+  }
+}
+
+@media (min-width: 1050px) {
+  .filter-dropdown {
+    right: 6.6rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .filter-dropdown {
+    right: 8rem;
+  }
+}
+
+@media (min-width: 1150px) {
+  .filter-dropdown {
+    right: 9.6rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .filter-dropdown {
+    right: 11rem;
+  }
+}
+
+@media (min-width: 1250px) {
+  .filter-dropdown {
+    right: 12.6rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .filter-dropdown {
+    right: 14rem;
+  }
+}
+
+@media (min-width: 1350px) {
+  .filter-dropdown {
+    right: 15.6rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .filter-dropdown {
+    right: 17rem;
+  }
+}
+
+@media (min-width: 1450px) {
+  .filter-dropdown {
+    right: 19.6rem;
+  }
+}
