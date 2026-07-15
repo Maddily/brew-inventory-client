@@ -9,10 +9,9 @@ import {
   applyFilters,
   clearFilters,
   closeWithAnimation,
-  getAttributeValues,
 } from "../../../../utils/filterUtils";
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
-import { categoryIdToAttributes } from "../../../../constants";
+import useSections from "../../../../hooks/useSections";
 
 function FilterBottomSheet({
   filterBottomSheetRef,
@@ -22,10 +21,8 @@ function FilterBottomSheet({
   const [selectedChips, setSelectedChips] = useContext(SelectedChipsContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { category_id: categoryId } = useParams();
-  const sections = {
-    Category: ["Coffee", "Tea", "Ready-to-Drink", "Accessories"],
-    Availability: ["In stock", "Low stock", "Out of stock"],
-  };
+  const sections = useSections(categoryId, products);
+  const sectionKeys = Object.keys(sections);
 
   // Handle close button click
   const handleCloseBtnClick = () => {
@@ -53,28 +50,14 @@ function FilterBottomSheet({
     };
   }, [filterBottomSheetRef]);
 
-  // Specific attribute sections are added based on the current list of products
-  // Category section is removed because the page displays products in one category
-  if (categoryId) {
-    delete sections.Category;
-
-    // Make a section for each attribute and add its values as chips
-    const attributes = categoryIdToAttributes[categoryId];
-    for (const attribute of attributes) {
-      sections[attribute] = getAttributeValues(products, attribute);
-    }
-  }
-
-  const sectionKeys = Object.keys(sections);
-
   function handleClearFilters() {
     clearFilters(setSelectedChips, setSearchParams);
-    closeWithAnimation(filterBottomSheetRef.current);
+    closeWithAnimation(filterBottomSheetRef.current, resetButtonStyle);
   }
 
   function handleApplyFilters() {
     applyFilters(selectedChips, searchParams, setSearchParams);
-    closeWithAnimation(filterBottomSheetRef.current);
+    closeWithAnimation(filterBottomSheetRef.current, resetButtonStyle);
   }
 
   return (
@@ -104,7 +87,7 @@ function FilterBottomSheet({
               <FilterSection
                 sections={sections}
                 section={section}
-                index={index}
+                type="bottom-sheet"
               />
               {index !== sectionKeys.length - 1 && (
                 <div className={styles["filter-divider"]}></div>
