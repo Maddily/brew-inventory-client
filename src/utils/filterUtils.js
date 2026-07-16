@@ -118,6 +118,6 @@ export const closeWithAnimation = (dialog, resetButtonStyle) => {
     { duration: 300, easing: "ease-in" }
   ).onfinish = () => {
     dialog.close();
-    resetButtonStyle();
+    resetButtonStyle && resetButtonStyle();
   };
 };
