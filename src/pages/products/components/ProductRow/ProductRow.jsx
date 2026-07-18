@@ -9,6 +9,24 @@ import styles from "./ProductRow.module.css";
 
 function ProductRow({ name, price, stockQuantity, category, path, state }) {
   const navigate = useNavigate();
+  const [availability, availabilityClassName, icon] =
+    stockQuantity > 10
+      ? [
+          "In stock",
+          "in-stock",
+          <IconCircleCheck className={styles["in-stock-icon"]} stroke={2} />,
+        ]
+      : stockQuantity > 0
+      ? [
+          "Low stock",
+          "low-stock",
+          <IconAlertTriangle className={styles["low-stock-icon"]} stroke={2} />,
+        ]
+      : [
+          "Out of stock",
+          "out-of-stock",
+          <IconCircleX className={styles["out-of-stock-icon"]} stroke={2} />,
+        ];
 
   return (
     <tr
@@ -27,30 +45,11 @@ function ProductRow({ name, price, stockQuantity, category, path, state }) {
       </td>
       <td className={styles["quantity"]}>{stockQuantity}</td>
       <td
-        className={`${styles["availability"]} ${
-          stockQuantity > 10
-            ? styles["in-stock"]
-            : stockQuantity > 0
-            ? styles["low-stock"]
-            : styles["out-of-stock"]
-        }`}
+        className={`${styles["availability"]} ${styles[availabilityClassName]}`}
       >
         <span>
-          {stockQuantity > 10 ? (
-            <IconCircleCheck className={styles["in-stock-icon"]} stroke={2} />
-          ) : stockQuantity > 0 ? (
-            <IconAlertTriangle
-              className={styles["low-stock-icon"]}
-              stroke={2}
-            />
-          ) : (
-            <IconCircleX className={styles["out-of-stock-icon"]} stroke={2} />
-          )}
-          {stockQuantity > 10
-            ? "In stock"
-            : stockQuantity > 0
-            ? "Low stock"
-            : "Out of stock"}
+          {icon}
+          {availability}
         </span>
       </td>
     </tr>

@@ -4,6 +4,13 @@ import PropTypes from "prop-types";
 import styles from "./Product.module.css";
 
 function Product({ name, price, stockQuantity, category, path, state }) {
+  const [availability, availabilityClassName] =
+    stockQuantity > 10
+      ? ["In stock", "in-stock"]
+      : stockQuantity > 0
+      ? ["Low stock", "low-stock"]
+      : ["Out of stock", "out-of-stock"];
+
   return (
     <Link className={styles["product"]} to={path} state={state}>
       <div className={styles["left"]}>
@@ -24,19 +31,9 @@ function Product({ name, price, stockQuantity, category, path, state }) {
       </div>
       <div className={styles["right"]}>
         <p
-          className={`${styles["availability"]} ${
-            stockQuantity > 10
-              ? styles["in-stock"]
-              : stockQuantity > 0
-              ? styles["low-stock"]
-              : styles["out-of-stock"]
-          }`}
+          className={`${styles["availability"]} ${styles[availabilityClassName]}`}
         >
-          {stockQuantity > 10
-            ? "In stock"
-            : stockQuantity > 0
-            ? "Low stock"
-            : "Out of stock"}
+          {availability}
         </p>
         <IconChevronRight className={styles["chevron"]} />
       </div>
