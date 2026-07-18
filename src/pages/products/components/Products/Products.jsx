@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
-import { IconSearch, IconFilter } from "@tabler/icons-react";
+import { IconFilter } from "@tabler/icons-react";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import styles from "./Products.module.css";
 import Product from "../Product/Product";
@@ -16,6 +16,7 @@ import ProductEmptyState from "../ProductEmptyState/ProductEmptyState";
 import { idToCategory } from "../../../../constants";
 import useIsWide from "../../../../hooks/useIsWide";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
+import SearchBar from "../SearchBar/SearchBar";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -81,6 +82,11 @@ function Products() {
           values.forEach((value) => url.searchParams.append(attribute, value));
         }
 
+        const searchTerm = searchParams.get("search");
+        if (searchTerm) {
+          url.searchParams.set("search", searchTerm);
+        }
+
         const response = await fetch(url.toString());
         if (!response.ok) {
           throw new Error(`HTTP error. Status: ${response.status}`);
@@ -138,7 +144,7 @@ function Products() {
 
   if (error)
     return <ErrorState setRetryCount={setRetryCount} entity="products" />;
-  if (loading) return <SkeletonProducts />;
+  if (loading && !searchParams.get("search")) return <SkeletonProducts />;
 
   return (
     <main className={styles["main"]}>
@@ -156,14 +162,7 @@ function Products() {
           </p>
         </div>
         <div className={styles["search-container"]}>
-          <IconSearch className={styles["search-icon"]} stroke={2} />
-          <input
-            className={styles["search"]}
-            type="search"
-            name="search"
-            id="search"
-            placeholder="Search products…"
-          />
+          <SearchBar setProducts={setProducts} setError={setError} />
           <button
             className={`${styles["filter-button"]} ${
               filterOpen ? styles["open-modal"] : ""
