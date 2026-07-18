@@ -67,9 +67,7 @@
   color: #c0392b;
 }
 
-.in-stock-icon,
-.low-stock-icon,
-.out-of-stock-icon {
+.availability-icon {
   width: 12px;
   height: 12px;
 }
