@@ -1,32 +1,14 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router";
-import {
-  IconCircleCheck,
-  IconAlertTriangle,
-  IconCircleX,
-} from "@tabler/icons-react";
 import styles from "./ProductRow.module.css";
+import useAvailability from "../../../../hooks/useAvailability";
 
 function ProductRow({ name, price, stockQuantity, category, path, state }) {
   const navigate = useNavigate();
-  const [availability, availabilityClassName, icon] =
-    stockQuantity > 10
-      ? [
-          "In stock",
-          "in-stock",
-          <IconCircleCheck className={styles["in-stock-icon"]} stroke={2} />,
-        ]
-      : stockQuantity > 0
-      ? [
-          "Low stock",
-          "low-stock",
-          <IconAlertTriangle className={styles["low-stock-icon"]} stroke={2} />,
-        ]
-      : [
-          "Out of stock",
-          "out-of-stock",
-          <IconCircleX className={styles["out-of-stock-icon"]} stroke={2} />,
-        ];
+  const { availability, availabilityClassName, icon } = useAvailability(
+    stockQuantity,
+    styles["availability-icon"]
+  );
 
   return (
     <tr

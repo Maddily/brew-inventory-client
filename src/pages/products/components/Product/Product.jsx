@@ -2,14 +2,11 @@ import { Link } from "react-router";
 import { IconChevronRight } from "@tabler/icons-react";
 import PropTypes from "prop-types";
 import styles from "./Product.module.css";
+import useAvailability from "../../../../hooks/useAvailability";
 
 function Product({ name, price, stockQuantity, category, path, state }) {
-  const [availability, availabilityClassName] =
-    stockQuantity > 10
-      ? ["In stock", "in-stock"]
-      : stockQuantity > 0
-      ? ["Low stock", "low-stock"]
-      : ["Out of stock", "out-of-stock"];
+  const { availability, availabilityClassName } =
+    useAvailability(stockQuantity);
 
   return (
     <Link className={styles["product"]} to={path} state={state}>
