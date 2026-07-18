@@ -96,10 +96,30 @@ function Product() {
   }).format(product.price);
 
   const categoryIcons = {
-    "1": <IconCoffee stroke={2} className={styles["hero-icon"]} />,
-    "2": <IconLeaf stroke={2} className={styles["hero-icon"]} />,
-    "3": <IconBottle stroke={2} className={styles["hero-icon"]} />,
-    "4": <IconTool stroke={2} className={styles["hero-icon"]} />,
+    1: (
+      <IconCoffee
+        stroke={2}
+        className={`${styles["hero-icon"]} ${styles["coffee"]}`}
+      />
+    ),
+    2: (
+      <IconLeaf
+        stroke={2}
+        className={`${styles["hero-icon"]} ${styles["tea"]}`}
+      />
+    ),
+    3: (
+      <IconBottle
+        stroke={2}
+        className={`${styles["hero-icon"]} ${styles["rtd"]}`}
+      />
+    ),
+    4: (
+      <IconTool
+        stroke={2}
+        className={`${styles["hero-icon"]} ${styles["acc"]}`}
+      />
+    ),
   };
 
   return (
@@ -114,9 +134,19 @@ function Product() {
       </div>
       <div className={styles["product-layout"]}>
         <div className={styles["product-main"]}>
-          <div className={styles["hero"]}>
+          <div
+            className={`${styles["hero"]} ${
+              styles[`hero-${product.category.toLowerCase()}`]
+            }`}
+          >
             {categoryIcons[product.category_id]}
-            <div className={styles["hero-label"]}>{product.category}</div>
+            <div
+              className={`${styles["hero-label"]} ${
+                styles[`${product.category.toLowerCase()}`]
+              }`}
+            >
+              {product.category}
+            </div>
           </div>
           <div className={`${styles["card"]} ${styles["info-card"]}`}>
             <div className={styles["product-name"]}>{product.name}</div>
