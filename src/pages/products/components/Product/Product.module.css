@@ -9,6 +9,10 @@
   text-decoration: none;
 }
 
+.product:hover {
+  background: #faf8f6;
+}
+
 .left {
   flex: 1;
 }
