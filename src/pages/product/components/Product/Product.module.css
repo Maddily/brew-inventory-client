@@ -40,7 +40,6 @@
 }
 
 .hero {
-  background: #ece2da;
   border-radius: 10px;
   height: 100px;
   display: flex;
@@ -48,11 +47,42 @@
   justify-content: center;
 }
 
+.hero-coffee {
+  background: #ece2da;
+}
+
+.hero-tea {
+  background: #eaf0e3;
+}
+
+.hero-ready-to-drink {
+  background: #e3edf2;
+}
+
+.hero-accessories {
+  background: #f0ece6;
+}
+
 .hero-icon {
   width: 36px;
   height: 36px;
-  color: #5c4332;
   opacity: 0.6;
+}
+
+.hero-icon.coffee {
+  color: #5c4332;
+}
+
+.hero-icon.tea {
+  color: #4a6b3a;
+}
+
+.hero-icon.rtd {
+  color: #3a5e6b;
+}
+
+.hero-icon.acc {
+  color: #5c5447;
 }
 
 .hero-label {
@@ -294,8 +324,23 @@
   .hero-label {
     display: block;
     font-size: 12px;
-    color: #8c6e5e;
     letter-spacing: 0.04em;
+  }
+
+  .hero-label.coffee {
+    color: #8c6e5e;
+  }
+
+  .hero-label.tea {
+    color: #6b7d5a;
+  }
+
+  .hero-label.ready-to-drink {
+    color: #5a7a85;
+  }
+
+  .hero-label.accessories {
+    color: #7a7064;
   }
 
   .card {
