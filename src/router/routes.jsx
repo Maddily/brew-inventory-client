@@ -1,5 +1,6 @@
 import App from "../App";
 import Categories from "../pages/categories/components/Categories/Categories";
+import Product from "../pages/product/components/Product/Product";
 import Products from "../pages/products/components/Products/Products";
 
 const routes = [
@@ -18,6 +19,10 @@ const routes = [
       {
         path: "/categories/:category_id",
         element: <Products />,
+      },
+      {
+        path: "/products/:id",
+        element: <Product />,
       },
     ],
   },
