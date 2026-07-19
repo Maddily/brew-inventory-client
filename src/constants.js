@@ -11,3 +11,10 @@ export const categoryIdToAttributes = {
   3: ["Base", "Volume"],
   4: ["Type", "Compatible With"],
 };
+
+export const categoryIdToClassName = {
+  1: "coffee",
+  2: "tea",
+  3: "rtd",
+  4: "acc",
+};
