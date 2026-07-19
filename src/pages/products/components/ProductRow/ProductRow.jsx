@@ -7,11 +7,14 @@ import {
 } from "@tabler/icons-react";
 import styles from "./ProductRow.module.css";
 
-function ProductRow({ name, price, stockQuantity, category, path }) {
+function ProductRow({ name, price, stockQuantity, category, path, state }) {
   const navigate = useNavigate();
 
   return (
-    <tr className={styles["product-row"]} onClick={() => navigate(path)}>
+    <tr
+      className={styles["product-row"]}
+      onClick={() => navigate(path, { state })}
+    >
       <td className={styles["name-and-category"]}>
         <p className={styles["name"]}>{name}</p>
         <p className={styles["category"]}>{category}</p>
@@ -60,6 +63,7 @@ ProductRow.propTypes = {
   stockQuantity: PropTypes.string,
   category: PropTypes.string,
   path: PropTypes.string,
+  state: PropTypes.object,
 };
 
 export default ProductRow;

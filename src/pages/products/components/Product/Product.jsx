@@ -3,9 +3,9 @@ import { IconChevronRight } from "@tabler/icons-react";
 import PropTypes from "prop-types";
 import styles from "./Product.module.css";
 
-function Product({ name, price, stockQuantity, category, path }) {
+function Product({ name, price, stockQuantity, category, path, state }) {
   return (
-    <Link className={styles["product"]} to={path}>
+    <Link className={styles["product"]} to={path} state={state}>
       <div className={styles["left"]}>
         <p className={styles["name"]}>{name}</p>
         <p className={styles["category"]}>{category}</p>
@@ -50,6 +50,7 @@ Product.propTypes = {
   stockQuantity: PropTypes.string,
   category: PropTypes.string,
   path: PropTypes.string,
+  state: PropTypes.object,
 };
 
 export default Product;
