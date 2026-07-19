@@ -15,6 +15,7 @@ import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import useIsWide from "../../../../hooks/useIsWide";
 import SkeletonProduct from "../SkeletonProduct/SkeletonProduct";
 import useAvailability from "../../../../hooks/useAvailability";
+import { categoryIdToClassName } from "../../../../constants";
 
 function Product() {
   const location = useLocation();
@@ -24,7 +25,7 @@ function Product() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
-  const isWide = useIsWide(670);
+  const isWide = useIsWide(740);
 
   useEffect(() => {
     let componentIsMounted = true;
@@ -151,7 +152,13 @@ function Product() {
           <div className={`${styles["card"]} ${styles["info-card"]}`}>
             <div className={styles["product-name"]}>{product.name}</div>
             <div className={styles["meta-row"]}>
-              <span className={styles["cat-tag"]}>{product.category}</span>
+              <span
+                className={`${styles["cat-tag"]} ${
+                  styles[categoryIdToClassName[product.category_id]]
+                }`}
+              >
+                {product.category}
+              </span>
               <span
                 className={`${styles["badge"]} ${styles[availabilityClassName]}`}
               >
