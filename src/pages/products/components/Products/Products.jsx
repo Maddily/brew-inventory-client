@@ -170,7 +170,7 @@ function Products() {
             aria-label="filter"
             onClick={showFilter}
           >
-            <IconFilter className={styles["filter-icon"]} stroke={2} />
+            <IconFilter className={styles["filter-icon"]} stroke={2} /> {isWide && "Filter"}
           </button>
         </div>
       </header>
