@@ -11,10 +11,24 @@ body {
 }
 
 #root {
+  --main-bg-color: #f9f6f3;
   --primary-color: #2f2118;
   --radius: 8px;
-  --nav-link: #797978;
-  --nav-border: #dbdbd3;
+  --border: #e8e0db;
+  --coffee-bg: #ece2da;
+  --tea-bg: #e3ead9;
+  --rtd-bg: #dde9ee;
+  --acc-bg: #ece8e2;
+  --coffee-icon: #5c4332;
+  --tea-icon: #4a6b3a;
+  --rtd-icon: #3a5e6b;
+  --acc-icon: #5c5447;
+  --in-stock-bg: #e8f2e8;
+  --low-stock-bg: #fef3e2;
+  --out-of-stock-bg: #fdecea;
+  --in-stock: #2d7a2d;
+  --low-stock: #a05c00;
+  --out-of-stock: #c0392b;
   height: 100%;
   display: flex;
   flex-direction: column;

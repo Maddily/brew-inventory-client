@@ -2,7 +2,7 @@
   padding: 1rem;
   overflow-y: auto;
   height: 100%;
-  background-color: var(--main-background-color);
+  background-color: var(--main-bg-color);
 }
 
 .breadcrumb {
@@ -48,19 +48,19 @@
 }
 
 .hero-coffee {
-  background: #ece2da;
+  background: var(--coffee-bg);
 }
 
 .hero-tea {
-  background: #eaf0e3;
+  background: var(--tea-bg);
 }
 
 .hero-ready-to-drink {
-  background: #e3edf2;
+  background: var(--rtd-bg);
 }
 
 .hero-accessories {
-  background: #f0ece6;
+  background: var(--acc-bg);
 }
 
 .hero-icon {
@@ -70,19 +70,19 @@
 }
 
 .hero-icon.coffee {
-  color: #5c4332;
+  color: var(--coffee-icon);
 }
 
 .hero-icon.tea {
-  color: #4a6b3a;
+  color: var(--tea-icon);
 }
 
 .hero-icon.rtd {
-  color: #3a5e6b;
+  color: var(--rtd-icon);
 }
 
 .hero-icon.acc {
-  color: #5c5447;
+  color: var(--acc-icon);
 }
 
 .hero-label {
@@ -111,11 +111,29 @@
 }
 
 .cat-tag {
-  background: #f5ede8;
-  color: #5c4332;
   font-size: 11px;
   padding: 2px 8px;
   border-radius: 20px;
+}
+
+.cat-tag.coffee {
+  background: var(--coffee-bg);
+  color: var(--coffee-icon);
+}
+
+.cat-tag.tea {
+  background: var(--tea-bg);
+  color: var(--tea-icon);
+}
+
+.cat-tag.rtd {
+  background: var(--rtd-bg);
+  color: var(--rtd-icon);
+}
+
+.cat-tag.acc {
+  background: var(--acc-bg);
+  color: var(--acc-icon);
 }
 
 .badge {
@@ -126,18 +144,18 @@
 }
 
 .in-stock {
-  background: #e8f2e8;
-  color: #2d7a2d;
+  background: var(--in-stock-bg);
+  color: var(--in-stock);
 }
 
 .low-stock {
-  background: #fef3e2;
-  color: #a05c00;
+  background: var(--low-stock-bg);
+  color: var(--low-stock);
 }
 
 .out-of-stock {
-  background: #fdecea;
-  color: #c0392b;
+  background: var(--out-of-stock-bg);
+  color: var(--out-of-stock);
 }
 
 .availability-icon {
@@ -280,7 +298,7 @@
   }
 }
 
-@media (min-width: 670px) {
+@media (min-width: 740px) {
   .main {
     padding: 2rem 2.5rem;
   }

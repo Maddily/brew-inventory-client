@@ -1,9 +1,9 @@
 .main {
   height: 100%;
   padding: 1.25rem 1rem 0.75rem;
-  background-color: var(--main-background-color);
   overflow-y: auto;
   position: relative;
+  background-color: var(--main-bg-color);
 }
 
 .page-header {
@@ -41,19 +41,32 @@
 
 .filter-button {
   background-color: #fff;
-  border: 0.5px solid #2f2118;
+  border: 0.5px solid hsl(from #0b0b0b h s l / 20%);
   border-radius: 8px;
   padding: 7px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   color: #2f2118;
   cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.15s;
+}
+
+.filter-button:hover {
+  background-color: var(--main-bg-color);
 }
 
 .open-modal {
   background: #2f2118;
   color: #fff;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.open-modal:hover {
+  color: #2f2118;
+  background-color: #fff;
 }
 
 .filter-icon {
@@ -94,6 +107,11 @@
 
   .search-container {
     gap: 10px;
+  }
+
+  .filter-icon {
+    width: 14px;
+    height: 14px;
   }
 
   .products-list {

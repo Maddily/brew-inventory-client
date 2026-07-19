@@ -53,18 +53,18 @@
 }
 
 .availability.in-stock span {
-  background: #e8f2e8;
-  color: #2d7a2d;
+  background: var(--in-stock-bg);
+  color: var(--in-stock);
 }
 
 .availability.low-stock span {
-  background: #fef3e2;
-  color: #a05c00;
+  background: var(--low-stock-bg);
+  color: var(--low-stock);
 }
 
 .availability.out-of-stock span {
-  background: #fdecea;
-  color: #c0392b;
+  background: var(--out-of-stock-bg);
+  color: var(--out-of-stock);
 }
 
 .availability-icon {

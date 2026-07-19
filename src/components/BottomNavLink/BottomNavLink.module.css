@@ -1,6 +1,6 @@
 .icon,
 .text {
-  color: #9a8f88;
+  color: #a0918a;
 }
 
 .text {
@@ -17,5 +17,5 @@
 
 .active .icon,
 .active .text {
-  color: var(--primary-color);
+  color: #2f2118;
 }

@@ -7,10 +7,11 @@
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
+  transition: background-color 0.1s;
 }
 
 .product:hover {
-  background: #faf8f6;
+  background-color: #faf8f6;
 }
 
 .left {
@@ -64,18 +65,18 @@
 }
 
 .availability.in-stock {
-  background: #e8f2e8;
-  color: #2d7a2d;
+  background: var(--in-stock-bg);
+  color: var(--in-stock);
 }
 
 .availability.low-stock {
-  background: #fef3e2;
-  color: #a05c00;
+  background: var(--low-stock-bg);
+  color: var(--low-stock);
 }
 
 .availability.out-of-stock {
-  background: #fdecea;
-  color: #c0392b;
+  background: var(--out-of-stock-bg);
+  color: var(--out-of-stock);
 }
 
 .chevron {
