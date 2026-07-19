@@ -214,6 +214,15 @@ function Products() {
               stockQuantity={product.stock_quantity}
               category={!categoryId && product.category}
               path={`/products/${product.id}`}
+              state={
+                categoryId
+                  ? {
+                      from: "category",
+                      categoryId,
+                      categoryName: product.category,
+                    }
+                  : { from: "all" }
+              }
             />
           ))}
         </div>
