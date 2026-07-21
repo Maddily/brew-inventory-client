@@ -31,7 +31,7 @@ function Product() {
   useEffect(() => {
     let componentIsMounted = true;
 
-    async function fetchProducts() {
+    async function fetchProduct() {
       setLoading(true);
       setError(null);
 
@@ -78,7 +78,7 @@ function Product() {
       }
     }
 
-    fetchProducts();
+    fetchProduct();
 
     return () => (componentIsMounted = false);
   }, [id, retryCount]);
