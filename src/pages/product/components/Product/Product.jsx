@@ -7,7 +7,7 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import styles from "./Product.module.css";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import useIsWide from "../../../../hooks/useIsWide";
@@ -24,6 +24,7 @@ function Product() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
+  const navigate = useNavigate();
   const isWide = useIsWide(740);
 
   useEffect(() => {
@@ -204,7 +205,14 @@ function Product() {
               Actions
             </div>
             <div className={styles["action-btns"]}>
-              <button className={styles["btn-edit"]}>
+              <button
+                className={styles["btn-edit"]}
+                onClick={() =>
+                  navigate(`/products/${id}/edit`, {
+                    state: { categoryId },
+                  })
+                }
+              >
                 <IconPencil className={styles["edit-icon"]} stroke={2} /> Edit{" "}
                 {isWide && "product"}
               </button>
