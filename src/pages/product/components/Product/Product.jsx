@@ -15,6 +15,7 @@ import SkeletonProduct from "../SkeletonProduct/SkeletonProduct";
 import useAvailability from "../../../../hooks/useAvailability";
 import { categoryIdToClassName } from "../../../../constants";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
+import { formatPrice } from "../../../../utils/utils";
 
 function Product() {
   const location = useLocation();
@@ -91,10 +92,7 @@ function Product() {
     return <ErrorState setRetryCount={setRetryCount} entity="product" />;
   if (loading) return <SkeletonProduct />;
 
-  const formattedPrice = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(product.price);
+  const formattedPrice = formatPrice(product.price);
 
   const categoryIcons = {
     1: (
