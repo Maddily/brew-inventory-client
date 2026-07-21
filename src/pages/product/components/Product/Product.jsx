@@ -1,6 +1,4 @@
 import {
-  IconChevronLeft,
-  IconChevronRight,
   IconCoffee,
   IconLeaf,
   IconBottle,
@@ -9,13 +7,14 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import styles from "./Product.module.css";
-import { Link, useLocation, useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import useIsWide from "../../../../hooks/useIsWide";
 import SkeletonProduct from "../SkeletonProduct/SkeletonProduct";
 import useAvailability from "../../../../hooks/useAvailability";
 import { categoryIdToClassName } from "../../../../constants";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 function Product() {
   const location = useLocation();
@@ -125,14 +124,11 @@ function Product() {
 
   return (
     <main className={styles["main"]}>
-      <div className={styles["breadcrumb"]}>
-        <IconChevronLeft className={styles["chevron-left"]} stroke={2} />
-        <Link to={from === "all" ? "/products" : `/categories/${categoryId}`}>
-          {from === "all" ? "All products" : categoryName}
-        </Link>
-        <IconChevronRight className={styles["chevron-right"]} stroke={2} />
-        <span>{product.name}</span>
-      </div>
+      <Breadcrumb
+        prevPath={from === "all" ? "/products" : `/categories/${categoryId}`}
+        prev={from === "all" ? "All products" : categoryName}
+        current={product.name}
+      />
       <div className={styles["product-layout"]}>
         <div className={styles["product-main"]}>
           <div
