@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router";
 import styles from "./ProductRow.module.css";
 import useAvailability from "../../../../hooks/useAvailability";
+import { formatPrice } from "../../../../utils/utils";
 
 function ProductRow({ name, price, stockQuantity, category, path, state }) {
   const navigate = useNavigate();
@@ -19,12 +20,7 @@ function ProductRow({ name, price, stockQuantity, category, path, state }) {
         <p className={styles["name"]}>{name}</p>
         <p className={styles["category"]}>{category}</p>
       </td>
-      <td className={styles["price"]}>
-        {new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(price)}
-      </td>
+      <td className={styles["price"]}>{formatPrice(price)}</td>
       <td className={styles["quantity"]}>{stockQuantity}</td>
       <td
         className={`${styles["availability"]} ${styles[availabilityClassName]}`}

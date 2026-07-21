@@ -3,6 +3,7 @@ import { IconChevronRight } from "@tabler/icons-react";
 import PropTypes from "prop-types";
 import styles from "./Product.module.css";
 import useAvailability from "../../../../hooks/useAvailability";
+import { formatPrice } from "../../../../utils/utils";
 
 function Product({ name, price, stockQuantity, category, path, state }) {
   const { availability, availabilityClassName } =
@@ -14,12 +15,7 @@ function Product({ name, price, stockQuantity, category, path, state }) {
         <p className={styles["name"]}>{name}</p>
         <p className={styles["category"]}>{category}</p>
         <div className={styles["meta"]}>
-          <div className={styles["meta-item"]}>
-            {new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-            }).format(price)}
-          </div>
+          <div className={styles["meta-item"]}>{formatPrice(price)}</div>
           <div className={styles["meta-item"]}>
             <span>Qty</span>
             {stockQuantity}
