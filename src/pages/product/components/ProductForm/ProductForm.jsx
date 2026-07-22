@@ -16,6 +16,7 @@ function ProductForm({
   attributes,
   categoryId,
   categoryName,
+  onSave,
 }) {
   const [productName, setProductName] = useState(name);
   const [productDescription, setProductDescription] = useState(description);
@@ -168,7 +169,18 @@ function ProductForm({
             </div>
           </div>
           <div className={`${styles["actions"]} ${styles["sidebar-card"]}`}>
-            <button className={styles["btn-save"]}>
+            <button
+              className={styles["btn-save"]}
+              onClick={() =>
+                onSave({
+                  name: productName,
+                  description: productDescription,
+                  price: productPrice,
+                  quantity: productQuantity,
+                  ...productAttributes,
+                })
+              }
+            >
               <IconCheck stroke={2} className={styles["action-icon"]} /> Save
               changes
             </button>
