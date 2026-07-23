@@ -107,6 +107,17 @@ select.input {
   cursor: pointer;
 }
 
+.btn-save.error {
+  background: #f0ebe6;
+  color: #a0918a;
+  border: 0.5px solid #e0d8d2;
+  cursor: not-allowed;
+}
+
+.btn-save.error .alert-icon {
+  color: #c5a882;
+}
+
 .btn-cancel {
   flex: 1;
   background: #ffffff;
