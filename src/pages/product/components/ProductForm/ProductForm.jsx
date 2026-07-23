@@ -73,6 +73,8 @@ function ProductForm({
     });
   }
 
+  const errorsExist = Object.keys(fieldErrors).length > 0;
+
   return (
     <main className={styles["main"]}>
       <Breadcrumb
@@ -280,8 +282,14 @@ function ProductForm({
             </div>
           </div>
           <div className={`${styles["actions"]} ${styles["sidebar-card"]}`}>
-            <button className={styles["btn-save"]} onClick={handleSave}>
-              {Object.keys(fieldErrors).length > 0 ? (
+            <button
+              disabled={errorsExist}
+              className={`${styles["btn-save"]} ${
+                errorsExist ? styles["error"] : ""
+              }`}
+              onClick={handleSave}
+            >
+              {errorsExist ? (
                 <>
                   <IconAlertTriangle
                     stroke={2}
