@@ -1,6 +1,6 @@
-import { useLocation, useParams } from "react-router";
-import ProductForm from "../ProductForm/ProductForm";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
+import ProductForm from "../ProductForm/ProductForm";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import SkeletonProduct from "../SkeletonProduct/SkeletonProduct";
 
@@ -10,7 +10,9 @@ function EditProduct() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
+  const [saveError, setSaveError] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const { categoryId } = location.state || {};
 
   useEffect(() => {
@@ -25,7 +27,10 @@ function EditProduct() {
           `${import.meta.env.VITE_API_URL}/api/products/${id}`
         );
         if (!response.ok) {
-          throw new Error(`HTTP error. Status: ${response.status}`);
+          const data = await response.json();
+          throw new Error(
+            data.error || `HTTP error. Status: ${response.status}`
+          );
         }
         const data = await response.json();
 
@@ -54,7 +59,7 @@ function EditProduct() {
         }
       } catch (error) {
         if (componentIsMounted) {
-          setError(error);
+          setError(error.message);
         }
       } finally {
         if (componentIsMounted) {
@@ -68,8 +73,74 @@ function EditProduct() {
     return () => (componentIsMounted = false);
   }, [id, retryCount]);
 
-  if (error)
-    return <ErrorState setRetryCount={setRetryCount} entity="product" />;
+  const onDismissError = () => setSaveError(null);
+
+  const onSave = async function ({
+    name,
+    description,
+    price,
+    quantity,
+    ...attributes
+  }) {
+    setSaveError(null);
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/products/${id}`,
+        {
+          headers: { "Content-Type": "application/json" },
+          method: "PUT",
+          body: JSON.stringify({
+            name,
+            description,
+            price,
+            stock_quantity: quantity,
+            category_id: product.category_id,
+            ...attributes,
+          }),
+        }
+      );
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || `HTTP error. Status: ${response.status}`);
+      }
+
+      setProduct({
+        ...product,
+        name,
+        description,
+        price,
+        stock_quantity: quantity,
+        attributes: { ...attributes },
+      });
+
+      navigate(`/products/${id}`, {
+        state: categoryId
+          ? {
+              from: "category",
+              categoryId,
+              categoryName: product.category,
+            }
+          : { from: "all" },
+      });
+    } catch (error) {
+      setSaveError(error.message);
+    }
+  };
+
+  const onCancel = function () {
+    navigate(`/products/${id}`, {
+      state: categoryId
+        ? {
+            from: "category",
+            categoryId,
+            categoryName: product.category,
+          }
+        : { from: "all" },
+    });
+  };
+
+  if (error) return <ErrorState setRetryCount={setRetryCount} entity="form" />;
   if (loading) return <SkeletonProduct />;
 
   return (
@@ -82,6 +153,10 @@ function EditProduct() {
       attributes={product.attributes}
       categoryId={categoryId}
       categoryName={product.category}
+      onSave={onSave}
+      saveError={saveError}
+      onDismissError={onDismissError}
+      onCancel={onCancel}
     />
   );
 }
