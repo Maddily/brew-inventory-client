@@ -98,7 +98,13 @@ function ProductForm({
           onRetry={handleSave}
         />
       )}
-      <div className={styles["form-layout"]}>
+      <form
+        className={styles["form-layout"]}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSave();
+        }}
+      >
         <div className={styles["left"]}>
           <div className={styles["card"]}>
             <div className={styles["card-title"]}>Basic details</div>
@@ -310,7 +316,7 @@ function ProductForm({
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </main>
   );
 }
