@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { IconCheck, IconX } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconX,
+  IconAlertCircle,
+  IconAlertTriangle,
+} from "@tabler/icons-react";
 import PropTypes from "prop-types";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import styles from "./ProductForm.module.css";
@@ -23,10 +28,47 @@ function ProductForm({
   const [productPrice, setProductPrice] = useState(price);
   const [productQuantity, setProductQuantity] = useState(quantity);
   const [productAttributes, setProductAttributes] = useState(attributes);
+  const [fieldErrors, setFieldErrors] = useState({});
   const { availability, availabilityClassName, icon } = useAvailability(
     quantity,
     styles["availability-icon"]
   );
+
+  function handleSave() {
+    const errors = {};
+
+    if (!productName.trim()) errors.name = "Product name is required";
+    if (!productPrice || productPrice <= 0)
+      errors.price = "Price must be greater than 0";
+    if (productQuantity === "" || Number(productQuantity) < 0)
+      errors.quantity = "Quantity can't be negative";
+
+    for (const [attr, val] of Object.entries(productAttributes)) {
+      if (!shouldUseSelect(attr, categoryName) && !val)
+        errors[attr] = `${attr} is required`;
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
+    onSave({
+      name: productName,
+      description: productDescription,
+      price: productPrice,
+      quantity: productQuantity,
+      ...productAttributes,
+    });
+  }
+
+  function clearFieldError(fieldName) {
+    setFieldErrors((prev) => {
+      const next = { ...prev };
+      delete next[fieldName];
+      return next;
+    });
+  }
 
   return (
     <main className={styles["main"]}>
@@ -56,8 +98,23 @@ function ProductForm({
                 id="name"
                 className={styles["input"]}
                 value={productName}
-                onChange={(e) => setProductName(e.target.value)}
+                required
+                onChange={(e) => {
+                  e.target.value.trim() &&
+                    fieldErrors.name &&
+                    clearFieldError("name");
+                  setProductName(e.target.value);
+                }}
               />
+              {fieldErrors.name && (
+                <div className={styles["field-error"]}>
+                  <IconAlertCircle
+                    className={styles["field-error-icon"]}
+                    stroke={2}
+                  />{" "}
+                  {fieldErrors.name}
+                </div>
+              )}
             </div>
             <div className={styles["field"]}>
               <label
@@ -85,8 +142,23 @@ function ProductForm({
                   id="price"
                   className={styles["input"]}
                   value={productPrice}
-                  onChange={(e) => setProductPrice(e.target.value)}
+                  onChange={(e) => {
+                    Number(e.target.value) > 0 &&
+                      fieldErrors.price &&
+                      clearFieldError("price");
+                    setProductPrice(e.target.value);
+                  }}
+                  required
                 />
+                {fieldErrors.price && (
+                  <div className={styles["field-error"]}>
+                    <IconAlertCircle
+                      className={styles["field-error-icon"]}
+                      stroke={2}
+                    />{" "}
+                    {fieldErrors.price}
+                  </div>
+                )}
               </div>
               <div className={styles["field"]}>
                 <label htmlFor="quantity" className={styles["label"]}>
@@ -98,8 +170,24 @@ function ProductForm({
                   id="quantity"
                   className={styles["input"]}
                   value={productQuantity}
-                  onChange={(e) => setProductQuantity(e.target.value)}
+                  onChange={(e) => {
+                    e.target.value !== "" &&
+                      Number(e.target.value) >= 0 &&
+                      fieldErrors.quantity &&
+                      clearFieldError("quantity");
+                    setProductQuantity(e.target.value);
+                  }}
+                  required
                 />
+                {fieldErrors.quantity && (
+                  <div className={styles["field-error"]}>
+                    <IconAlertCircle
+                      className={styles["field-error-icon"]}
+                      stroke={2}
+                    />{" "}
+                    {fieldErrors.quantity}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -133,13 +221,26 @@ function ProductForm({
                     <input
                       className={styles["input"]}
                       value={productAttributes[attr]}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        e.target.value &&
+                          fieldErrors[attr] &&
+                          clearFieldError(attr);
                         setProductAttributes({
                           ...productAttributes,
                           [attr]: e.target.value,
-                        })
-                      }
+                        });
+                      }}
+                      required
                     />
+                  )}
+                  {fieldErrors[attr] && (
+                    <div className={styles["field-error"]}>
+                      <IconAlertCircle
+                        className={styles["field-error-icon"]}
+                        stroke={2}
+                      />{" "}
+                      {fieldErrors[attr]}
+                    </div>
                   )}
                 </div>
               ))}
@@ -169,20 +270,21 @@ function ProductForm({
             </div>
           </div>
           <div className={`${styles["actions"]} ${styles["sidebar-card"]}`}>
-            <button
-              className={styles["btn-save"]}
-              onClick={() =>
-                onSave({
-                  name: productName,
-                  description: productDescription,
-                  price: productPrice,
-                  quantity: productQuantity,
-                  ...productAttributes,
-                })
-              }
-            >
-              <IconCheck stroke={2} className={styles["action-icon"]} /> Save
-              changes
+            <button className={styles["btn-save"]} onClick={handleSave}>
+              {Object.keys(fieldErrors).length > 0 ? (
+                <>
+                  <IconAlertTriangle
+                    stroke={2}
+                    className={styles["alert-icon"]}
+                  />
+                  Fix errors to save
+                </>
+              ) : (
+                <>
+                  <IconCheck stroke={2} className={styles["action-icon"]} />
+                  Save changes
+                </>
+              )}
             </button>
             <button className={styles["btn-cancel"]}>
               <IconX stroke={2} className={styles["action-icon"]} />
@@ -199,11 +301,12 @@ ProductForm.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   description: PropTypes.string,
-  price: PropTypes.string,
-  quantity: PropTypes.string,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   attributes: PropTypes.object,
   categoryId: PropTypes.string,
   categoryName: PropTypes.string,
+  onSave: PropTypes.func.isRequired,
 };
 
 export default ProductForm;
