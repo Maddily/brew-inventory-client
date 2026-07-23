@@ -1,0 +1,75 @@
+.error-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fdecea;
+  border-bottom: 0.5px solid #f5c6c2;
+  padding: 12px 1.25rem;
+  margin-top: -10px;
+}
+
+.error-icon {
+  color: #c0392b;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.error-text {
+  flex: 1;
+}
+
+.error-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a02020;
+  margin-bottom: 2px;
+}
+
+.error-msg {
+  font-size: 11px;
+  color: #b03030;
+  line-height: 1.4;
+}
+
+.error-retry {
+  font-size: 11px;
+  color: #a02020;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.error-dismiss {
+  color: #c0392b;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+@media (min-width: 700px) {
+  .error-title {
+    font-size: 13px;
+  }
+
+  .error-msg,
+  .error-retry {
+    font-size: 12.5px;
+  }
+
+  .error-dismiss {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (min-width: 740px) {
+  .error-banner {
+    margin-top: -1.5rem;
+  }
+}
