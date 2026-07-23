@@ -25,6 +25,7 @@ function ProductForm({
   onSave,
   saveError,
   onDismissError,
+  onCancel,
 }) {
   const [productName, setProductName] = useState(name);
   const [productDescription, setProductDescription] = useState(description);
@@ -310,7 +311,7 @@ function ProductForm({
                 </>
               )}
             </button>
-            <button className={styles["btn-cancel"]}>
+            <button className={styles["btn-cancel"]} onClick={onCancel}>
               <IconX stroke={2} className={styles["action-icon"]} />
               Cancel
             </button>
@@ -333,6 +334,7 @@ ProductForm.propTypes = {
   onSave: PropTypes.func.isRequired,
   saveError: PropTypes.string,
   onDismissError: PropTypes.func,
+  onCancel: PropTypes.func.isRequired,
 };
 
 export default ProductForm;
