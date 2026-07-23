@@ -11,6 +11,7 @@ import styles from "./ProductForm.module.css";
 import { formatPrice, shouldUseSelect } from "../../../../utils/utils";
 import { categoryAttributes } from "../../../../constants";
 import useAvailability from "../../../../hooks/useAvailability";
+import FormError from "../../../../components/FormError/FormError";
 
 function ProductForm({
   id,
@@ -22,6 +23,8 @@ function ProductForm({
   categoryId,
   categoryName,
   onSave,
+  saveError,
+  onDismissError,
 }) {
   const [productName, setProductName] = useState(name);
   const [productDescription, setProductDescription] = useState(description);
@@ -86,6 +89,13 @@ function ProductForm({
             : { from: "all" }
         }
       />
+      {saveError && (
+        <FormError
+          message={saveError}
+          onDismiss={onDismissError}
+          onRetry={handleSave}
+        />
+      )}
       <div className={styles["form-layout"]}>
         <div className={styles["left"]}>
           <div className={styles["card"]}>
@@ -307,6 +317,8 @@ ProductForm.propTypes = {
   categoryId: PropTypes.string,
   categoryName: PropTypes.string,
   onSave: PropTypes.func.isRequired,
+  saveError: PropTypes.string,
+  onDismissError: PropTypes.func,
 };
 
 export default ProductForm;
