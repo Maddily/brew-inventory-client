@@ -17,10 +17,10 @@ function Breadcrumb({ prevPath, prev, current, state }) {
 }
 
 Breadcrumb.propTypes = {
-  prevPath: PropTypes.string,
-  prev: PropTypes.string,
-  current: PropTypes.string,
-  state: PropTypes.object,
+  prevPath: PropTypes.string.isRequired,
+  prev: PropTypes.string.isRequired,
+  current: PropTypes.string.isRequired,
+  state: PropTypes.object.isRequired,
 };
 
 export default Breadcrumb;

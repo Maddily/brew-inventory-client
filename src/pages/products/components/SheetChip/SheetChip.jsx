@@ -34,8 +34,8 @@ function SheetChip({ section, value }) {
 }
 
 SheetChip.propTypes = {
-  section: PropTypes.string,
-  value: PropTypes.string,
+  section: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default SheetChip;

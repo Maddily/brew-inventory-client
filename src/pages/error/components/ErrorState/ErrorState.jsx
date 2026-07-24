@@ -26,8 +26,8 @@ function ErrorState({ setRetryCount, entity }) {
 }
 
 ErrorState.propTypes = {
-  setRetryCount: PropTypes.func,
-  data: PropTypes.string,
+  setRetryCount: PropTypes.func.isRequired,
+  data: PropTypes.string.isRequired,
 };
 
 export default ErrorState;

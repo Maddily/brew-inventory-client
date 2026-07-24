@@ -120,7 +120,7 @@ FilterBottomSheet.propTypes = {
     current: PropTypes.instanceOf(Element),
   }).isRequired,
   resetButtonStyle: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(PropTypes.object),
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default FilterBottomSheet;

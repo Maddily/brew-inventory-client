@@ -39,7 +39,7 @@ function ProductsTable({ products, categoryId }) {
 }
 
 ProductsTable.propTypes = {
-  products: PropTypes.array,
+  products: PropTypes.array.isRequired,
   categoryId: PropTypes.string,
 };
 

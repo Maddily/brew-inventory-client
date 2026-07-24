@@ -20,9 +20,9 @@ function FilterSection({ sections, section, type }) {
 }
 
 FilterSection.propTypes = {
-  sections: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
-  section: PropTypes.string,
-  type: PropTypes.string,
+  sections: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+  section: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default FilterSection;

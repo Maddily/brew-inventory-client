@@ -35,12 +35,12 @@ function ProductRow({ name, price, stockQuantity, category, path, state }) {
 }
 
 ProductRow.propTypes = {
-  name: PropTypes.string,
-  price: PropTypes.string,
-  stockQuantity: PropTypes.string,
-  category: PropTypes.string,
-  path: PropTypes.string,
-  state: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  stockQuantity: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  state: PropTypes.object.isRequired,
 };
 
 export default ProductRow;

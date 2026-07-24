@@ -66,7 +66,7 @@ function FilterDropdown({ products, resetButtonStyle }) {
 }
 
 FilterDropdown.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object),
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
   resetButtonStyle: PropTypes.func.isRequired,
 };
 

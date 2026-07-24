@@ -22,9 +22,10 @@ function ProductEmptyState({ title, subtitle, action }) {
 }
 
 ProductEmptyState.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  action: PropTypes.shape({ label: PropTypes.string, onClick: PropTypes.func }),
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  action: PropTypes.shape({ label: PropTypes.string, onClick: PropTypes.func })
+    .isRequired,
 };
 
 export default ProductEmptyState;

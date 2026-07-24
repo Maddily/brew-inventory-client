@@ -323,17 +323,18 @@ function ProductForm({
 }
 
 ProductForm.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  description: PropTypes.string,
-  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  attributes: PropTypes.object,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+  attributes: PropTypes.object.isRequired,
   categoryId: PropTypes.string,
-  categoryName: PropTypes.string,
+  categoryName: PropTypes.string.isRequired,
   onSave: PropTypes.func.isRequired,
-  saveError: PropTypes.string,
-  onDismissError: PropTypes.func,
+  saveError: PropTypes.string.isRequired,
+  onDismissError: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
 

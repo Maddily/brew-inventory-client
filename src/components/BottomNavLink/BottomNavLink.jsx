@@ -23,9 +23,9 @@ function BottomNavLink({ value, path, iconPath }) {
 }
 
 BottomNavLink.propTypes = {
-  value: PropTypes.string,
-  path: PropTypes.string,
-  iconPath: PropTypes.any,
+  value: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  iconPath: PropTypes.any.isRequired,
 };
 
 export default BottomNavLink;

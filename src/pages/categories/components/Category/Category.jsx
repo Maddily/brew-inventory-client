@@ -37,12 +37,12 @@ function Category({
 }
 
 Category.propType = {
-  icon: PropTypes.func,
-  id: PropTypes.number,
-  name: PropTypes.string,
-  description: PropTypes.string,
-  productCount: PropTypes.string,
-  path: PropTypes.string,
+  icon: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  productCount: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
 };
 
 export default Category;
