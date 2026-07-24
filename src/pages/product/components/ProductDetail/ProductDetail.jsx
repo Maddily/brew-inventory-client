@@ -14,7 +14,7 @@ import useIsWide from "../../../../hooks/useIsWide";
 import SkeletonProduct from "../SkeletonProduct/SkeletonProduct";
 import useAvailability from "../../../../hooks/useAvailability";
 import { categoryIdToClassName } from "../../../../constants";
-import Breadcrumb from "../Breadcrumb/Breadcrumb";
+import Breadcrumb from "../../../../components/Breadcrumb/Breadcrumb";
 import { formatPrice } from "../../../../utils/utils";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
