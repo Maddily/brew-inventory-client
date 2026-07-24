@@ -8,7 +8,7 @@ import {
 } from "@tabler/icons-react";
 import styles from "./Product.module.css";
 import { useLocation, useParams, useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import useIsWide from "../../../../hooks/useIsWide";
 import SkeletonProduct from "../SkeletonProduct/SkeletonProduct";
@@ -16,6 +16,7 @@ import useAvailability from "../../../../hooks/useAvailability";
 import { categoryIdToClassName } from "../../../../constants";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import { formatPrice } from "../../../../utils/utils";
+import DeleteModal from "../DeleteModal/DeleteModal";
 
 function Product() {
   const location = useLocation();
@@ -24,7 +25,9 @@ function Product() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [deleteError, setDeleteError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
+  const deleteModalRef = useRef(null);
   const navigate = useNavigate();
   const isWide = useIsWide(740);
 
@@ -82,6 +85,35 @@ function Product() {
 
     return () => (componentIsMounted = false);
   }, [id, retryCount]);
+
+  const showModal = function () {
+    deleteModalRef.current.showModal();
+  };
+
+  const onDelete = async function () {
+    setDeleteError(null);
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || `HTTP error. Status: ${response.status}`);
+      }
+
+      if (categoryId) {
+        navigate(`/categories/${categoryId}`);
+      } else {
+        navigate("/products");
+      }
+    } catch (error) {
+      setDeleteError(error.message);
+    }
+  };
 
   const { availability, availabilityClassName, icon } = useAvailability(
     product?.stock_quantity ?? 0,
@@ -214,7 +246,7 @@ function Product() {
                 <IconPencil className={styles["edit-icon"]} stroke={2} /> Edit{" "}
                 {isWide && "product"}
               </button>
-              <button className={styles["btn-delete"]}>
+              <button className={styles["btn-delete"]} onClick={showModal}>
                 <IconTrash className={styles["delete-icon"]} stroke={2} />{" "}
                 Delete {isWide && "product"}
               </button>
@@ -222,6 +254,13 @@ function Product() {
           </div>
         </div>
       </div>
+      <DeleteModal
+        deleteModalRef={deleteModalRef}
+        productName={product.name}
+        deleteError={!!deleteError}
+        setDeleteError={setDeleteError}
+        onDelete={onDelete}
+      />
     </main>
   );
 }
