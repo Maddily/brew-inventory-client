@@ -27,23 +27,23 @@ function FilterBottomSheet({
   };
 
   useEffect(() => {
-    const dialog = filterBottomSheetRef.current;
+    const modal = filterBottomSheetRef.current;
 
     const handleCancel = (e) => {
       e.preventDefault();
-      closeSheetWithAnimation(dialog);
+      closeSheetWithAnimation(modal);
     };
 
     const handleBackdropClick = (e) => {
-      if (e.target === dialog) closeSheetWithAnimation(dialog);
+      if (e.target === modal) closeSheetWithAnimation(modal);
     };
 
-    dialog.addEventListener("cancel", handleCancel);
-    dialog.addEventListener("click", handleBackdropClick);
+    modal.addEventListener("cancel", handleCancel);
+    modal.addEventListener("click", handleBackdropClick);
 
     return () => {
-      dialog.removeEventListener("cancel", handleCancel);
-      dialog.removeEventListener("click", handleBackdropClick);
+      modal.removeEventListener("cancel", handleCancel);
+      modal.removeEventListener("click", handleBackdropClick);
     };
   }, [filterBottomSheetRef]);
 
