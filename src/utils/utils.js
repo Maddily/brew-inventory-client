@@ -21,3 +21,9 @@ export const closeWithAnimation = (modal, resetButtonStyle) => {
   };
 };
 
+export const closeModalWithAnimation = (modal) => {
+  modal.animate([{ opacity: 1 }, { opacity: 0 }], {
+    duration: 150,
+    easing: "ease-out",
+  }).onfinish = () => modal.close();
+};
