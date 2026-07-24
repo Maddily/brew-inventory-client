@@ -11,11 +11,9 @@ function FormError({ message, onDismiss, onRetry }) {
         <div className={styles["error-msg"]}>
           {message} — your changes were not saved.
         </div>
-        {onRetry && (
-          <span className={styles["error-retry"]} onClick={onRetry}>
-            Try again
-          </span>
-        )}
+        <span className={styles["error-retry"]} onClick={onRetry}>
+          Try again
+        </span>
       </div>
       <IconX
         stroke={2}
@@ -27,9 +25,9 @@ function FormError({ message, onDismiss, onRetry }) {
 }
 
 FormError.propTypes = {
-  message: PropTypes.string,
-  onDismiss: PropTypes.func,
-  onRetry: PropTypes.func,
+  message: PropTypes.string.isRequired,
+  onDismiss: PropTypes.func.isRequired,
+  onRetry: PropTypes.func.isRequired,
 };
 
 export default FormError;
