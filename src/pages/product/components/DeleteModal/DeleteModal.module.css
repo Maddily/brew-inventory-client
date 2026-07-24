@@ -142,7 +142,7 @@
   }
 }
 
-@keyframes dialog-enter {
+@keyframes modal-enter {
   from {
     opacity: 0;
   }
@@ -194,7 +194,7 @@
     margin-bottom: 8px;
   }
 
-  .dialog-msg {
+  .modal-msg {
     font-size: 13.5px;
     line-height: 1.55;
     padding-bottom: 0;
@@ -232,6 +232,6 @@
   }
 
   .delete-modal[open] {
-    animation: dialog-enter 0.15s ease-out;
+    animation: modal-enter 0.15s ease-out;
   }
 }
