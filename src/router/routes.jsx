@@ -2,7 +2,7 @@ import App from "../App";
 import Categories from "../pages/categories/components/Categories/Categories";
 import ProductDetail from "../pages/productDetail/components/ProductDetail/ProductDetail";
 import Products from "../pages/products/components/Products/Products";
-import EditProduct from "../pages/productDetail/components/EditProduct/EditProduct";
+import EditProduct from "../pages/editProduct/components/EditProduct/EditProduct";
 
 const routes = [
   {
