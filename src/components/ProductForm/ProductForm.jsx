@@ -6,12 +6,12 @@ import {
   IconAlertTriangle,
 } from "@tabler/icons-react";
 import PropTypes from "prop-types";
-import Breadcrumb from "../../../../components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import styles from "./ProductForm.module.css";
-import { formatPrice, shouldUseSelect } from "../../../../utils/utils";
-import { categoryAttributes } from "../../../../constants";
-import useAvailability from "../../../../hooks/useAvailability";
-import FormError from "../../../../components/FormError/FormError";
+import { formatPrice, shouldUseSelect } from "../../utils/utils";
+import { categoryAttributes } from "../../constants";
+import useAvailability from "../../hooks/useAvailability";
+import FormError from "../FormError/FormError";
 
 function ProductForm({
   id,
