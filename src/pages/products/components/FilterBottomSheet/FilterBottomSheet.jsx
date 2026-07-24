@@ -5,13 +5,10 @@ import PropTypes from "prop-types";
 import styles from "./FilterBottomSheet.module.css";
 import FilterSection from "../FilterSection/FilterSection";
 import { SelectedChipsContext } from "../../../../contexts";
-import {
-  applyFilters,
-  clearFilters,
-  closeWithAnimation,
-} from "../../../../utils/filterUtils";
+import { applyFilters, clearFilters } from "../../../../utils/filterUtils";
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
 import useSections from "../../../../hooks/useSections";
+import { closeSheetWithAnimation } from "../../../../utils/utils";
 
 function FilterBottomSheet({
   filterBottomSheetRef,
@@ -26,7 +23,7 @@ function FilterBottomSheet({
 
   // Handle close button click
   const handleCloseBtnClick = () => {
-    closeWithAnimation(filterBottomSheetRef.current);
+    closeSheetWithAnimation(filterBottomSheetRef.current);
   };
 
   useEffect(() => {
@@ -34,11 +31,11 @@ function FilterBottomSheet({
 
     const handleCancel = (e) => {
       e.preventDefault();
-      closeWithAnimation(dialog);
+      closeSheetWithAnimation(dialog);
     };
 
     const handleBackdropClick = (e) => {
-      if (e.target === dialog) closeWithAnimation(dialog);
+      if (e.target === dialog) closeSheetWithAnimation(dialog);
     };
 
     dialog.addEventListener("cancel", handleCancel);
@@ -52,12 +49,12 @@ function FilterBottomSheet({
 
   function handleClearFilters() {
     clearFilters(setSelectedChips, setSearchParams);
-    closeWithAnimation(filterBottomSheetRef.current, resetButtonStyle);
+    closeSheetWithAnimation(filterBottomSheetRef.current, resetButtonStyle);
   }
 
   function handleApplyFilters() {
     applyFilters(selectedChips, searchParams, setSearchParams);
-    closeWithAnimation(filterBottomSheetRef.current, resetButtonStyle);
+    closeSheetWithAnimation(filterBottomSheetRef.current, resetButtonStyle);
   }
 
   return (
