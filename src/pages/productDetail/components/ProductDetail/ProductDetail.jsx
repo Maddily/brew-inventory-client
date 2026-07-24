@@ -11,7 +11,7 @@ import { useLocation, useParams, useNavigate } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import useIsWide from "../../../../hooks/useIsWide";
-import SkeletonProduct from "../SkeletonProductDetail/SkeletonProductDetail";
+import SkeletonProductDetail from "../SkeletonProductDetail/SkeletonProductDetail";
 import useAvailability from "../../../../hooks/useAvailability";
 import { categoryIdToClassName } from "../../../../constants";
 import Breadcrumb from "../../../../components/Breadcrumb/Breadcrumb";
@@ -122,7 +122,7 @@ function ProductDetail() {
 
   if (error)
     return <ErrorState setRetryCount={setRetryCount} entity="product" />;
-  if (loading) return <SkeletonProduct />;
+  if (loading) return <SkeletonProductDetail />;
 
   const formattedPrice = formatPrice(product.price);
 
