@@ -2,7 +2,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import ProductForm from "../ProductForm/ProductForm";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
-import SkeletonProduct from "../SkeletonProduct/SkeletonProduct";
+import SkeletonProduct from "../SkeletonProductDetail/SkeletonProductDetail";
 
 function EditProduct() {
   const { id } = useParams();

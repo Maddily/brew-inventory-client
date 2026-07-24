@@ -11,7 +11,7 @@ import { useLocation, useParams, useNavigate } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import useIsWide from "../../../../hooks/useIsWide";
-import SkeletonProduct from "../SkeletonProduct/SkeletonProduct";
+import SkeletonProduct from "../SkeletonProductDetail/SkeletonProductDetail";
 import useAvailability from "../../../../hooks/useAvailability";
 import { categoryIdToClassName } from "../../../../constants";
 import Breadcrumb from "../../../../components/Breadcrumb/Breadcrumb";
