@@ -1,8 +1,8 @@
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import ProductForm from "../ProductForm/ProductForm";
+import ProductForm from "../../../../components/ProductForm/ProductForm";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
-import SkeletonProduct from "../SkeletonProductDetail/SkeletonProductDetail";
+import SkeletonProductDetail from "../../../productDetail/components/SkeletonProductDetail/SkeletonProductDetail";
 
 function EditProduct() {
   const { id } = useParams();
@@ -141,7 +141,7 @@ function EditProduct() {
   };
 
   if (error) return <ErrorState setRetryCount={setRetryCount} entity="form" />;
-  if (loading) return <SkeletonProduct />;
+  if (loading) return <SkeletonProductDetail />;
 
   return (
     <ProductForm
