@@ -111,13 +111,3 @@ export function applyFilters(selectedChips, searchParams, setSearchParams) {
     setSearchParams(params);
   }
 }
-
-export const closeWithAnimation = (dialog, resetButtonStyle) => {
-  dialog.animate(
-    [{ transform: "translateY(0)" }, { transform: "translateY(100%)" }],
-    { duration: 300, easing: "ease-in" }
-  ).onfinish = () => {
-    dialog.close();
-    resetButtonStyle && resetButtonStyle();
-  };
-};
