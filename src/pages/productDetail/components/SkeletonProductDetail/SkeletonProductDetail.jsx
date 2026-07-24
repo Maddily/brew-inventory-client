@@ -1,6 +1,6 @@
-import styles from "./SkeletonProduct.module.css";
+import styles from "./SkeletonProductDetail.module.css";
 
-function SkeletonProduct() {
+function SkeletonProductDetail() {
   return (
     <main
       className={styles["skel-container"]}
@@ -86,4 +86,4 @@ function SkeletonProduct() {
   );
 }
 
-export default SkeletonProduct;
+export default SkeletonProductDetail;
