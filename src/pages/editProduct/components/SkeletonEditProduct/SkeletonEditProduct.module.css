@@ -1,0 +1,124 @@
+@keyframes shimmer {
+  0% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+.skel-container {
+  height: 100%;
+  padding: 18px 16px;
+}
+
+/* Shimmer base */
+.skel-breadcrumb,
+.skel-card-title,
+.skel-field-label,
+.skel-input,
+.skel-textarea,
+.skel-btn,
+.skel-btn-secondary {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.2s infinite linear;
+  border-radius: 6px;
+}
+
+.skel-breadcrumb {
+  width: 220px;
+  height: 14px;
+  margin-bottom: 1.5rem;
+}
+
+/* Layout — mobile: single column */
+.skel-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.skel-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skel-card {
+  background: #ffffff;
+  border: 0.5px solid #e8e3de;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skel-card-title {
+  width: 120px;
+  height: 14px;
+  margin-bottom: 4px;
+}
+
+.skel-field-label {
+  width: 80px;
+  height: 12px;
+}
+
+.skel-input {
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.skel-textarea {
+  width: 100%;
+  height: 80px;
+  border-radius: 8px;
+}
+
+.skel-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.skel-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Sidebar — hidden on mobile */
+.skel-sidebar {
+  display: none;
+}
+
+.skel-btn {
+  width: 100%;
+  height: 38px;
+  border-radius: 8px;
+}
+
+.skel-btn-secondary {
+  width: 100%;
+  height: 38px;
+  border-radius: 8px;
+  opacity: 0.5;
+}
+
+@media (min-width: 670px) {
+  .skel-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .skel-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+}
