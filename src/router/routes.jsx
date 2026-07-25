@@ -1,6 +1,6 @@
 import App from "../App";
 import Categories from "../pages/categories/components/Categories/Categories";
-import Product from "../pages/product/components/Product/Product";
+import ProductDetail from "../pages/product/components/ProductDetail/ProductDetail";
 import Products from "../pages/products/components/Products/Products";
 import EditProduct from "../pages/product/components/EditProduct/EditProduct";
 
@@ -23,7 +23,7 @@ const routes = [
       },
       {
         path: "/products/:id",
-        element: <Product />,
+        element: <ProductDetail />,
       },
       {
         path: "/products/:id/edit",

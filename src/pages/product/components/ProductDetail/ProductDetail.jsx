@@ -6,7 +6,7 @@ import {
   IconPencil,
   IconTrash,
 } from "@tabler/icons-react";
-import styles from "./Product.module.css";
+import styles from "./ProductDetail.module.css";
 import { useLocation, useParams, useNavigate } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
@@ -18,7 +18,7 @@ import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import { formatPrice } from "../../../../utils/utils";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
-function Product() {
+function ProductDetail() {
   const location = useLocation();
   const { from, categoryId, categoryName } = location.state || {};
   const { id } = useParams();
@@ -265,4 +265,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default ProductDetail;
