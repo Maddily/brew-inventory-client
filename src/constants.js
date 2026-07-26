@@ -49,3 +49,9 @@ export const categoryAttributes = {
     "Compatible With": ["Coffee", "Tea", "Both"],
   },
 };
+
+export const attributePlaceholders = {
+  Origin: "e.g. Ethiopia",
+  Weight: "e.g. 250",
+  Volume: "e.g. 330",
+};
