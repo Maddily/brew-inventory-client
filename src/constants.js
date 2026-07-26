@@ -5,6 +5,13 @@ export const idToCategory = {
   4: "Accessories",
 };
 
+export const categoryNameToId = {
+  Coffee: 1,
+  Tea: 2,
+  "Ready-to-Drink": 3,
+  Accessories: 4,
+};
+
 export const categoryIdToAttributes = {
   1: ["Origin", "Roast Level", "Format", "Weight"],
   2: ["Type", "Origin", "Format", "Caffeine Level", "Weight"],
@@ -22,7 +29,7 @@ export const categoryIdToClassName = {
 export const categoryAttributes = {
   Coffee: {
     Origin: null,
-    "Roast Level": ["Light", "Medium", "Dark", "Espresso"],
+    "Roast Level": ["Light", "Medium", "Dark"],
     Format: ["Whole Bean", "Ground"],
     Weight: null,
   },

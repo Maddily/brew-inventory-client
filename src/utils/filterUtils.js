@@ -1,4 +1,4 @@
-import { idToCategory } from "../constants";
+import { categoryNameToId, idToCategory } from "../constants";
 
 export function filtersChanged(params, searchParams) {
   const keys = new Set([...params.keys(), ...searchParams.keys()]);
@@ -80,13 +80,6 @@ export function clearFilters(setSelectedChips, setSearchParams) {
 }
 
 export function applyFilters(selectedChips, searchParams, setSearchParams) {
-  const categoryNameToId = {
-    Coffee: 1,
-    Tea: 2,
-    "Ready-to-Drink": 3,
-    Accessories: 4,
-  };
-
   const params = new URLSearchParams();
 
   for (const section in selectedChips) {
