@@ -55,3 +55,10 @@ export const attributePlaceholders = {
   Weight: "e.g. 250",
   Volume: "e.g. 330",
 };
+
+export const attributeStates = {
+  Coffee: { Origin: "", "Roast Level": "", Format: "", Weight: "" },
+  Tea: { Type: "", Origin: "", Format: "", "Caffeine Level": "", Weight: "" },
+  "Ready-to-Drink": { Base: "", Volume: "" },
+  Accessories: { Type: "", "Compatible With": "" },
+};
