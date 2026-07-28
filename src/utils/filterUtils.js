@@ -104,3 +104,7 @@ export function applyFilters(selectedChips, searchParams, setSearchParams) {
     setSearchParams(params);
   }
 }
+
+export function filtersExist(selectedChips) {
+  return Object.values(selectedChips).some((value) => value.length > 0);
+}
