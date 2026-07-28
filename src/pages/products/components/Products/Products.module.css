@@ -41,32 +41,37 @@
 
 .filter-button {
   background-color: #fff;
-  border: 0.5px solid hsl(from #0b0b0b h s l / 20%);
+  border: 0.5px solid #e8e3de;
   border-radius: 8px;
   padding: 7px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  color: #2f2118;
+  color: #6b5e57;
   cursor: pointer;
   font-size: 13px;
-  transition: background-color 0.15s;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
 .filter-button:hover {
   background-color: var(--main-bg-color);
+  border-color: #c5b8b2;
 }
 
-.open-modal {
-  background: #2f2118;
-  color: #fff;
-  transition: background-color 0.15s, color 0.15s;
-}
-
-.open-modal:hover {
+.filter-button:active,
+.filter-button.active {
+  background-color: #f5ede8;
+  border-color: #2f2118;
   color: #2f2118;
-  background-color: #fff;
+}
+
+.filter-button.active {
+  transition: background-color 0.15s;
+}
+
+.filter-button.active:hover {
+  background-color: #ece2da;
 }
 
 .filter-icon {
