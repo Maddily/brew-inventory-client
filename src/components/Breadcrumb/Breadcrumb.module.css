@@ -6,19 +6,27 @@
   margin-bottom: 10px;
 }
 
-.breadcrumb a {
+.back {
   text-decoration: none;
+  color: #a0918a;
+  transition: color 0.15s, text-decoration 0.1s;
 }
 
-.breadcrumb,
-.breadcrumb a {
-  color: #a0918a;
+.back:hover {
+  color: #6b5e57;
+  text-decoration: underline;
+}
+
+.back:active {
+  color: #2f2118;
+  text-decoration: underline;
 }
 
 .chevron-left,
 .chevron-right {
   width: 12px;
   height: 12px;
+  color: #c5b8b2;
 }
 
 .breadcrumb span {
