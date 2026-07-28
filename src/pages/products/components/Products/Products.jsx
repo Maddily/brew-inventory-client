@@ -142,10 +142,10 @@ function Products() {
 
   function showFilter() {
     !isWide && filterBottomSheetRef.current.showModal();
-    isWide && filterOpen ? resetButtonStyle() : setFilterOpen(true);
+    isWide && filterOpen ? closeFilterDropDown() : setFilterOpen(true);
   }
 
-  function resetButtonStyle() {
+  function closeFilterDropDown() {
     setFilterOpen(false);
   }
 
@@ -235,14 +235,16 @@ function Products() {
         {isWide && filterOpen ? (
           <FilterDropdown
             products={products}
-            resetButtonStyle={resetButtonStyle}
+            closeFilterDropDown={closeFilterDropDown}
           />
-        ) : (
+        ) : !isWide ? (
           <FilterBottomSheet
             filterBottomSheetRef={filterBottomSheetRef}
-            resetButtonStyle={resetButtonStyle}
+            closeFilterDropDown={closeFilterDropDown}
             products={products}
           />
+        ) : (
+          ""
         )}
       </SelectedChipsContext>
     </main>

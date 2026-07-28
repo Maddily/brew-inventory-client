@@ -11,13 +11,13 @@ export function shouldUseSelect(attr, category) {
   return !!categoryAttributes[category]?.[attr];
 }
 
-export const closeSheetWithAnimation = (sheet, resetButtonStyle) => {
+export const closeSheetWithAnimation = (sheet, closeFilterDropDown) => {
   sheet.animate(
     [{ transform: "translateY(0)" }, { transform: "translateY(100%)" }],
     { duration: 300, easing: "ease-in" }
   ).onfinish = () => {
     sheet.close();
-    resetButtonStyle && resetButtonStyle();
+    closeFilterDropDown && closeFilterDropDown();
   };
 };
 
