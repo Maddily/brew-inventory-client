@@ -17,20 +17,25 @@
 
 .add-product-icon,
 .add-product-link {
-  color: #0b0b0b;
+  color: #fff;
 }
 
 .add-product-link {
   font-size: 14px;
   text-decoration: none;
   border: 0.5px solid hsl(from #0b0b0b h s l / 20%);
-  border-radius: var(--radius);
+  border-radius: 8px;
   padding: 6px 12px;
+  background-color: #2f2118;
   transition: background-color 0.15s, transform 0.1s;
 }
 
 .add-product-link:hover {
-  background-color: #fcfcfb;
+  background-color: #1a110d;
+}
+
+.add-product-link:active {
+  background-color: #0f0a07;
 }
 
 @media (min-width: 540px) {
