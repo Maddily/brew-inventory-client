@@ -15,7 +15,8 @@
   gap: 10px;
 }
 
-.sidebar-card:first-of-type {
+.current-vals-card,
+.tip-card {
   display: none;
 }
 
@@ -51,6 +52,10 @@
   color: #6b5e57;
   margin-bottom: 4px;
   display: block;
+}
+
+.label span {
+  color: #c0392b;
 }
 
 .input {
@@ -96,15 +101,12 @@ select.input {
   display: none;
 }
 
-.btn-save {
-  flex: 2;
-  background: #2f2118;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
+.btn-action {
   font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.15s;
 }
 
 .btn-save.error {
@@ -118,35 +120,68 @@ select.input {
   color: #c5a882;
 }
 
+.btn-save {
+  flex: 2;
+  background-color: #2f2118;
+  color: #fff;
+  border: none;
+}
+
+.btn-save:hover {
+  background-color: #1a110d;
+}
+
+.btn-save:active {
+  background-color: #0f0a07;
+}
+
+.btn-save:disabled {
+  background-color: #2f2118;
+  opacity: 0.4;
+}
+
 .btn-cancel {
   flex: 1;
-  background: #ffffff;
+  background-color: #fff;
   border: 0.5px solid #e8e3de;
   color: #6b5e57;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 13px;
-  cursor: pointer;
 }
 
-.field-error {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-  color: #b03030;
+.btn-cancel:hover {
+  background-color: #f9f7f5;
 }
 
-.field-error-icon {
-  width: 13px;
-  height: 13px;
-  flex-shrink: 0;
+.btn-cancel:active {
+  background-color: #f0ebe6;
 }
 
 .alert-icon {
   width: 14px;
   height: 14px;
+}
+
+.attrs-placeholder {
+  background: #f9f7f5;
+  border: 0.5px dashed #e0d8d2;
+  border-radius: 8px;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.tag-icon {
+  width: 20px;
+  height: 20px;
+  color: #c5b8b2;
+}
+
+.attrs-placeholder-text {
+  font-size: 12px;
+  color: #a0918a;
+  line-height: 1.5;
 }
 
 @media (min-width: 350px) {
@@ -259,7 +294,8 @@ select.input {
     gap: 1.25rem;
   }
 
-  .sidebar-card:first-of-type {
+  .current-vals-card,
+  .tip-card {
     display: block;
   }
 
@@ -326,12 +362,44 @@ select.input {
     height: 11px;
   }
 
+  .tip {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    background-color: #f5ede8;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .tip-icon {
+    width: 14px;
+    height: 14px;
+    color: #8c6e5e;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .tip-text {
+    font-size: 12.5px;
+    color: #6b5e57;
+    line-height: 1.5;
+  }
+
+  .tip-text strong {
+    color: #1a1412;
+    font-weight: 400;
+  }
+
+  .tip-text strong.tip-asterisk {
+    color: #c0392b;
+  }
+
   .actions {
     flex-direction: column;
   }
 
-  .btn-save,
-  .btn-cancel {
+  .btn-action {
     font-size: 14px;
     flex: auto;
     display: flex;
