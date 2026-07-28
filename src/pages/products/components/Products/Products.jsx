@@ -43,6 +43,13 @@ function Products() {
   const filterBottomSheetRef = useRef(null);
   const navigate = useNavigate();
   const hasProducts = products.length > 0;
+  const state = categoryId
+    ? {
+        from: "category",
+        categoryId,
+        categoryName: idToCategory[categoryId],
+      }
+    : { from: "all" };
 
   useEffect(() => {
     let componentIsMounted = true;
@@ -191,7 +198,7 @@ function Products() {
             subtitle="Add the first product to this category to get started."
             action={{
               label: "Add product",
-              onClick: () => navigate("/products/new"),
+              onClick: () => navigate("/products/new", { state }),
             }}
           />
         ) : (
@@ -200,7 +207,7 @@ function Products() {
             subtitle="This inventory is empty. Add your first product to get started."
             action={{
               label: "Add product",
-              onClick: () => navigate("/products/new"),
+              onClick: () => navigate("/products/new", { state }),
             }}
           />
         ))}
@@ -215,15 +222,7 @@ function Products() {
               stockQuantity={product.stock_quantity}
               category={!categoryId && product.category}
               path={`/products/${product.id}`}
-              state={
-                categoryId
-                  ? {
-                      from: "category",
-                      categoryId,
-                      categoryName: product.category,
-                    }
-                  : { from: "all" }
-              }
+              state={state}
             />
           ))}
         </div>
