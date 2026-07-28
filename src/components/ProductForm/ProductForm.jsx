@@ -1,46 +1,57 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   IconCheck,
   IconX,
-  IconAlertCircle,
   IconAlertTriangle,
+  IconTag,
+  IconInfoCircle,
+  IconPlus,
 } from "@tabler/icons-react";
 import PropTypes from "prop-types";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import styles from "./ProductForm.module.css";
 import { formatPrice, shouldUseSelect } from "../../utils/utils";
-import { categoryAttributes } from "../../constants";
+import {
+  attributePlaceholders,
+  attributeStates,
+  categoryAttributes,
+  idToCategory,
+} from "../../constants";
 import useAvailability from "../../hooks/useAvailability";
 import FormError from "../FormError/FormError";
+import FieldError from "../FieldError/FieldError";
 
 function ProductForm({
-  id,
-  name,
-  description,
-  price,
-  quantity,
-  attributes,
+  product,
   categoryId,
-  categoryName,
-  onSave,
-  saveError,
+  onSubmit,
+  isEditing,
+  error,
   onDismissError,
   onCancel,
 }) {
-  const [productName, setProductName] = useState(name);
-  const [productDescription, setProductDescription] = useState(description);
-  const [productPrice, setProductPrice] = useState(price);
-  const [productQuantity, setProductQuantity] = useState(quantity);
-  const [productAttributes, setProductAttributes] = useState(attributes);
+  const [category, setCategory] = useState(product?.category ?? "");
+  const [productName, setProductName] = useState(product?.name ?? "");
+  const [productDescription, setProductDescription] = useState(
+    product?.description ?? ""
+  );
+  const [productPrice, setProductPrice] = useState(product?.price ?? "");
+  const [productQuantity, setProductQuantity] = useState(
+    product?.stock_quantity ?? ""
+  );
+  const [productAttributes, setProductAttributes] = useState(
+    product?.attributes ?? {}
+  );
   const [fieldErrors, setFieldErrors] = useState({});
   const { availability, availabilityClassName, icon } = useAvailability(
-    quantity,
+    product?.stock_quantity ?? "",
     styles["availability-icon"]
   );
 
   function handleSave() {
     const errors = {};
 
+    if (!isEditing && !category) errors.category = "Category is required";
     if (!productName.trim()) errors.name = "Product name is required";
     if (!productPrice || productPrice <= 0)
       errors.price = "Price must be greater than 0";
@@ -48,8 +59,7 @@ function ProductForm({
       errors.quantity = "Quantity can't be negative";
 
     for (const [attr, val] of Object.entries(productAttributes)) {
-      if (!shouldUseSelect(attr, categoryName) && !val)
-        errors[attr] = `${attr} is required`;
+      if (!val) errors[attr] = `${attr} is required`;
     }
 
     if (Object.keys(errors).length > 0) {
@@ -57,12 +67,21 @@ function ProductForm({
       return;
     }
 
-    onSave({
+    onSubmit({
+      category,
       name: productName,
       description: productDescription,
       price: productPrice,
       quantity: productQuantity,
       ...productAttributes,
+    });
+  }
+
+  function handleAttrChange(e, attr) {
+    e.target.value && fieldErrors[attr] && clearFieldError(attr);
+    setProductAttributes({
+      ...productAttributes,
+      [attr]: e.target.value,
     });
   }
 
@@ -79,22 +98,34 @@ function ProductForm({
   return (
     <main className={styles["main"]}>
       <Breadcrumb
-        prevPath={`/products/${id}`}
-        prev={name}
-        current="Edit"
+        prevPath={
+          isEditing
+            ? `/products/${product.id}`
+            : categoryId
+            ? `/categories/${categoryId}`
+            : "/products"
+        }
+        prev={
+          isEditing
+            ? product.name
+            : categoryId
+            ? idToCategory[categoryId]
+            : "All products"
+        }
+        current={isEditing ? "Edit" : "Add product"}
         state={
           categoryId
             ? {
                 from: "category",
                 categoryId,
-                categoryName,
+                categoryName: idToCategory[categoryId],
               }
             : { from: "all" }
         }
       />
-      {saveError && (
+      {error && (
         <FormError
-          message={saveError}
+          message={error}
           onDismiss={onDismissError}
           onRetry={handleSave}
         />
@@ -110,14 +141,38 @@ function ProductForm({
           <div className={styles["card"]}>
             <div className={styles["card-title"]}>Basic details</div>
             <div className={styles["field"]}>
+              <label htmlFor="category" className={styles["label"]}>
+                Category <span>*</span>
+              </label>
+              <select
+                id="category"
+                className={styles["input"]}
+                disabled={isEditing}
+                value={category}
+                onChange={(e) => {
+                  const selected = e.target.value;
+                  setCategory(selected);
+                  setFieldErrors({});
+                  setProductAttributes(attributeStates[selected]);
+                }}
+              >
+                <option hidden>Select a category…</option>
+                <option>Coffee</option>
+                <option>Tea</option>
+                <option>Ready-to-Drink</option>
+                <option>Accessories</option>
+              </select>
+              {<FieldError message={fieldErrors.category} />}
+            </div>
+            <div className={styles["field"]}>
               <label htmlFor="name" className={styles["label"]}>
-                Product name
+                Product name <span>*</span>
               </label>
               <input
                 id="name"
                 className={styles["input"]}
                 value={productName}
-                required
+                placeholder="e.g. Ethiopia Yirgacheffe"
                 onChange={(e) => {
                   e.target.value.trim() &&
                     fieldErrors.name &&
@@ -125,15 +180,7 @@ function ProductForm({
                   setProductName(e.target.value);
                 }}
               />
-              {fieldErrors.name && (
-                <div className={styles["field-error"]}>
-                  <IconAlertCircle
-                    className={styles["field-error-icon"]}
-                    stroke={2}
-                  />{" "}
-                  {fieldErrors.name}
-                </div>
-              )}
+              {<FieldError message={fieldErrors.name} />}
             </div>
             <div className={styles["field"]}>
               <label
@@ -146,13 +193,14 @@ function ProductForm({
                 id="description"
                 className={styles["input"]}
                 value={productDescription}
+                placeholder="Describe the product…"
                 onChange={(e) => setProductDescription(e.target.value)}
               ></textarea>
             </div>
             <div className={styles["two-col"]}>
               <div className={styles["field"]}>
                 <label htmlFor="price" className={styles["label"]}>
-                  Price
+                  Price <span>*</span>
                 </label>
                 <input
                   type="number"
@@ -161,27 +209,19 @@ function ProductForm({
                   id="price"
                   className={styles["input"]}
                   value={productPrice}
+                  placeholder="0.00"
                   onChange={(e) => {
                     Number(e.target.value) > 0 &&
                       fieldErrors.price &&
                       clearFieldError("price");
                     setProductPrice(e.target.value);
                   }}
-                  required
                 />
-                {fieldErrors.price && (
-                  <div className={styles["field-error"]}>
-                    <IconAlertCircle
-                      className={styles["field-error-icon"]}
-                      stroke={2}
-                    />{" "}
-                    {fieldErrors.price}
-                  </div>
-                )}
+                {<FieldError message={fieldErrors.price} />}
               </div>
               <div className={styles["field"]}>
                 <label htmlFor="quantity" className={styles["label"]}>
-                  Quantity
+                  Quantity <span>*</span>
                 </label>
                 <input
                   type="number"
@@ -189,6 +229,7 @@ function ProductForm({
                   id="quantity"
                   className={styles["input"]}
                   value={productQuantity}
+                  placeholder="0"
                   onChange={(e) => {
                     e.target.value !== "" &&
                       Number(e.target.value) >= 0 &&
@@ -196,105 +237,127 @@ function ProductForm({
                       clearFieldError("quantity");
                     setProductQuantity(e.target.value);
                   }}
-                  required
                 />
-                {fieldErrors.quantity && (
-                  <div className={styles["field-error"]}>
-                    <IconAlertCircle
-                      className={styles["field-error-icon"]}
-                      stroke={2}
-                    />{" "}
-                    {fieldErrors.quantity}
-                  </div>
-                )}
+                {<FieldError message={fieldErrors.quantity} />}
               </div>
             </div>
           </div>
           <div className={styles["card"]}>
             <div className={styles["card-title"]}>
-              Attributes <span>— {categoryName}</span>
+              Attributes{" "}
+              <span>
+                {(product || category) && "—"} {product?.category || category}
+              </span>
             </div>
-            <div className={styles["two-col"]}>
-              {Object.keys(attributes).map((attr) => (
-                <div key={attr} className={styles["field"]}>
-                  <label className={styles["label"]}>
-                    {attr} {attr === "Weight" && "(g)"}
-                    {attr === "Volume" && "(ml)"}
-                  </label>
-                  {shouldUseSelect(attr, categoryName) ? (
-                    <select
-                      className={styles["input"]}
-                      value={productAttributes[attr]}
-                      onChange={(e) =>
-                        setProductAttributes({
-                          ...productAttributes,
-                          [attr]: e.target.value,
-                        })
-                      }
-                    >
-                      {categoryAttributes[categoryName][attr].map((val) => (
-                        <option key={val}>{val}</option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      className={styles["input"]}
-                      value={productAttributes[attr]}
-                      onChange={(e) => {
-                        e.target.value &&
-                          fieldErrors[attr] &&
-                          clearFieldError(attr);
-                        setProductAttributes({
-                          ...productAttributes,
-                          [attr]: e.target.value,
-                        });
-                      }}
-                      required
-                    />
-                  )}
-                  {fieldErrors[attr] && (
-                    <div className={styles["field-error"]}>
-                      <IconAlertCircle
-                        className={styles["field-error-icon"]}
-                        stroke={2}
-                      />{" "}
-                      {fieldErrors[attr]}
-                    </div>
-                  )}
+            {!isEditing && !category ? (
+              <div className={styles["attrs-placeholder"]}>
+                <IconTag stroke={2} className={styles["tag-icon"]} />
+                <div className={styles["attrs-placeholder-text"]}>
+                  Select a category above to see its required attributes
                 </div>
-              ))}
-            </div>
+              </div>
+            ) : (
+              <div className={styles["two-col"]}>
+                {Object.keys(
+                  product?.attributes ?? categoryAttributes[category]
+                ).map((attr) => (
+                  <div key={attr} className={styles["field"]}>
+                    <label htmlFor={attr} className={styles["label"]}>
+                      {attr} {attr === "Weight" && "(g)"}
+                      {attr === "Volume" && "(ml)"} <span>*</span>
+                    </label>
+                    {shouldUseSelect(attr, product?.category || category) ? (
+                      <select
+                        id={attr}
+                        className={styles["input"]}
+                        value={productAttributes[attr]}
+                        onChange={(e) => {
+                          handleAttrChange(e, attr);
+                        }}
+                      >
+                        {categoryAttributes[product?.category || category][
+                          attr
+                        ].map((val, i) => (
+                          <Fragment key={val}>
+                            {i === 0 && <option hidden>Select...</option>}
+                            <option>{val}</option>
+                          </Fragment>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        id={attr}
+                        className={styles["input"]}
+                        value={productAttributes[attr]}
+                        placeholder={attributePlaceholders[attr]}
+                        onChange={(e) => {
+                          handleAttrChange(e, attr);
+                        }}
+                      />
+                    )}
+                    {<FieldError message={fieldErrors[attr]} />}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
         <div className={styles["sidebar"]}>
-          <div className={styles["sidebar-card"]}>
-            <div className={styles["sidebar-title"]}>Current values</div>
-            <div className={styles["current-val"]}>
-              <span className={styles["current-label"]}>Price</span>
-              <span className={styles["current-data"]}>
-                {formatPrice(price)}
-              </span>
+          {isEditing ? (
+            <div
+              className={`${styles["sidebar-card"]} ${styles["current-vals-card"]}`}
+            >
+              <div className={styles["sidebar-title"]}>Current values</div>
+              <div className={styles["current-val"]}>
+                <span className={styles["current-label"]}>Price</span>
+                <span className={styles["current-data"]}>
+                  {formatPrice(product?.price)}
+                </span>
+              </div>
+              <div className={styles["current-val"]}>
+                <span className={styles["current-label"]}>Stock</span>
+                <span className={styles["current-data"]}>
+                  {product?.stock_quantity} units
+                </span>
+              </div>
+              <div className={styles["current-val"]}>
+                <span className={styles["current-label"]}>Availability</span>
+                <span
+                  className={`${styles["badge"]} ${styles[availabilityClassName]}`}
+                >
+                  {icon} {availability}
+                </span>
+              </div>
             </div>
-            <div className={styles["current-val"]}>
-              <span className={styles["current-label"]}>Stock</span>
-              <span className={styles["current-data"]}>{quantity} units</span>
+          ) : (
+            <div className={`${styles["sidebar-card"]} ${styles["tip-card"]}`}>
+              <div className={styles["sidebar-title"]}>Tip</div>
+              <div className={styles["tip"]}>
+                <IconInfoCircle stroke={2} className={styles["tip-icon"]} />
+                <div className={styles["tip-text"]}>
+                  {category ? (
+                    <>
+                      All fields marked{" "}
+                      <strong className={styles["tip-asterisk"]}>*</strong> are
+                      required before the product can be added.
+                    </>
+                  ) : (
+                    <>
+                      Start by picking a <strong>category</strong> — this
+                      determines which attributes you'll need to fill in.
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className={styles["current-val"]}>
-              <span className={styles["current-label"]}>Availability</span>
-              <span
-                className={`${styles["badge"]} ${styles[availabilityClassName]}`}
-              >
-                {icon} {availability}
-              </span>
-            </div>
-          </div>
+          )}
           <div className={`${styles["actions"]} ${styles["sidebar-card"]}`}>
             <button
               disabled={errorsExist}
               className={`${styles["btn-save"]} ${
                 errorsExist ? styles["error"] : ""
-              }`}
-              onClick={handleSave}
+              } ${styles["btn-action"]}`}
+              type="submit"
             >
               {errorsExist ? (
                 <>
@@ -304,14 +367,23 @@ function ProductForm({
                   />
                   Fix errors to save
                 </>
-              ) : (
+              ) : isEditing ? (
                 <>
                   <IconCheck stroke={2} className={styles["action-icon"]} />
                   Save changes
                 </>
+              ) : (
+                <>
+                  <IconPlus stroke={2} className={styles["action-icon"]} />
+                  Add product
+                </>
               )}
             </button>
-            <button className={styles["btn-cancel"]} onClick={onCancel}>
+            <button
+              className={`${styles["btn-cancel"]} ${styles["btn-action"]}`}
+              onClick={onCancel}
+              type="button"
+            >
               <IconX stroke={2} className={styles["action-icon"]} />
               Cancel
             </button>
@@ -323,17 +395,11 @@ function ProductForm({
 }
 
 ProductForm.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
-  attributes: PropTypes.object.isRequired,
+  product: PropTypes.object,
   categoryId: PropTypes.string,
-  categoryName: PropTypes.string.isRequired,
-  onSave: PropTypes.func.isRequired,
-  saveError: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  error: PropTypes.string,
   onDismissError: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
