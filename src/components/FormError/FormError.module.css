@@ -41,6 +41,16 @@
   cursor: pointer;
   margin-top: 4px;
   display: inline-block;
+  transition: color 0.15s;
+}
+
+.error-retry:hover {
+  color: #7a1818;
+}
+
+.error-retry:active {
+  color: #5c1010;
+  transform: scale(0.985);
 }
 
 .error-dismiss {
@@ -50,6 +60,17 @@
   cursor: pointer;
   flex-shrink: 0;
   opacity: 0.6;
+  transition: color 0.15s, opacity 0.1s, transform 0.1s;
+}
+
+.error-dismiss:hover {
+  opacity: 1;
+}
+
+.error-dismiss:active {
+  color: #a02020;
+  opacity: 1;
+  transform: scale(0.9);
 }
 
 @media (min-width: 700px) {
