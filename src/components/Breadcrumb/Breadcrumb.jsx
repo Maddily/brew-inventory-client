@@ -7,7 +7,7 @@ function Breadcrumb({ prevPath, prev, current, state }) {
   return (
     <div className={styles["breadcrumb"]}>
       <IconChevronLeft className={styles["chevron-left"]} stroke={2} />
-      <Link to={prevPath} state={state}>
+      <Link to={prevPath} state={state} className={styles["back"]}>
         {prev}
       </Link>
       <IconChevronRight className={styles["chevron-right"]} stroke={2} />
