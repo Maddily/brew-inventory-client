@@ -81,6 +81,15 @@
   font-size: 12.5px;
   font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.modal-btn-cancel:hover {
+  background-color: var(--main-bg-color);
+}
+
+.modal-btn-cancel:active {
+  background-color: #f0ebe6;
 }
 
 .modal-btn-delete {
@@ -97,6 +106,16 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+.modal-btn-delete:hover {
+  background-color: #a93226;
+}
+
+.modal-btn-delete:active {
+  background-color: #922b21;
+  transform: scale(0.98);
 }
 
 .modal-btn-delete-icon,
