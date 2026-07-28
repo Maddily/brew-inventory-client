@@ -9,6 +9,7 @@ import ProductsTable from "../ProductsTable/ProductsTable";
 import { SelectedChipsContext } from "../../../../contexts";
 import {
   clearFilters,
+  filtersExist,
   populateSelectedChips,
 } from "../../../../utils/filterUtils";
 import SkeletonProducts from "../SkeletonProducts/SkeletonProducts";
@@ -172,7 +173,7 @@ function Products() {
           <SearchBar setProducts={setProducts} setError={setError} />
           <button
             className={`${styles["filter-button"]} ${
-              filterOpen ? styles["open-modal"] : ""
+              filtersExist(selectedChips) ? styles["active"] : ""
             }`}
             aria-label="filter"
             onClick={showFilter}
