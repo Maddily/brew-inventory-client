@@ -23,7 +23,6 @@
 .add-product-link {
   font-size: 14px;
   text-decoration: none;
-  border: 0.5px solid hsl(from #0b0b0b h s l / 20%);
   border-radius: 8px;
   padding: 6px 12px;
   background-color: #2f2118;
@@ -36,6 +35,7 @@
 
 .add-product-link:active {
   background-color: #0f0a07;
+  transform: scale(0.98);
 }
 
 @media (min-width: 540px) {
