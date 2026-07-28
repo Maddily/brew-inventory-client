@@ -50,6 +50,15 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  transition: background-color 0.15s;
+}
+
+.retry-btn:hover {
+  background-color: #f5ede8;
+}
+
+.retry-btn:active {
+  background-color: #ece2da;
 }
 
 .retry-icon {
