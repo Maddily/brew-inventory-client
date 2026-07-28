@@ -94,10 +94,10 @@ function Products() {
         const data = await response.json();
 
         // Reduce data into one object per product
-        const productsMap = {};
+        const productsMap = new Map();
         for (const row of data) {
-          if (!productsMap[row.id]) {
-            productsMap[row.id] = {
+          if (!productsMap.has(row.id)) {
+            productsMap.set(row.id, {
               id: row.id,
               name: row.name,
               description: row.description,
@@ -106,15 +106,15 @@ function Products() {
               category_id: row.category_id,
               category: row.category,
               attributes: {},
-            };
+            });
           }
 
-          productsMap[row.id].attributes[row.attribute_name] =
+          productsMap.get(row.id).attributes[row.attribute_name] =
             row.attribute_value;
         }
 
         if (componentIsMounted) {
-          setProducts(Object.values(productsMap));
+          setProducts(Array.from(productsMap.values()));
           populateSelectedChips(searchParams, setSelectedChips);
         }
       } catch (error) {
@@ -170,7 +170,8 @@ function Products() {
             aria-label="filter"
             onClick={showFilter}
           >
-            <IconFilter className={styles["filter-icon"]} stroke={2} /> {isWide && "Filter"}
+            <IconFilter className={styles["filter-icon"]} stroke={2} />{" "}
+            {isWide && "Filter"}
           </button>
         </div>
       </header>
