@@ -5,6 +5,10 @@ import {
 } from "@tabler/icons-react";
 
 function useAvailability(stockQuantity, iconClassName) {
+  if (stockQuantity === null || stockQuantity === "") {
+    return { availability: "", availabilityClassName: "", icon: null };
+  }
+
   if (stockQuantity > 10) {
     return {
       availability: "In stock",
