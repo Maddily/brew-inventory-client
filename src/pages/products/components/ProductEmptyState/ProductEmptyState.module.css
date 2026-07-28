@@ -56,6 +56,16 @@
   align-items: center;
   gap: 6px;
   margin-top: 0.5rem;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+.add-btn:hover {
+  background-color: #1a110d;
+}
+
+.add-btn:active {
+  background-color: #0f0a07;
+  transform: scale(0.98);
 }
 
 .add-icon {
