@@ -9,6 +9,8 @@
 
 .search:focus {
   outline: none;
+  border-color: #2f2118;
+  color: #1a1412;
 }
 
 .search,
