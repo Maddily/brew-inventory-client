@@ -29,6 +29,10 @@
   color: #6b5e57;
 }
 
+.sheet-btn-clear:only-child {
+  width: 100%;
+}
+
 .sheet-btn-apply {
   background: #2f2118;
   color: #fff;
