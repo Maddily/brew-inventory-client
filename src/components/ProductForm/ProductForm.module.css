@@ -125,6 +125,7 @@ select.input {
   background-color: #2f2118;
   color: #fff;
   border: none;
+  transition: background-color 0.15s, transform 0.1s;
 }
 
 .btn-save:hover {
@@ -133,6 +134,7 @@ select.input {
 
 .btn-save:active {
   background-color: #0f0a07;
+  transform: scale(0.98);
 }
 
 .btn-save:disabled {
@@ -145,6 +147,7 @@ select.input {
   background-color: #fff;
   border: 0.5px solid #e8e3de;
   color: #6b5e57;
+  transition: background-color 0.15s;
 }
 
 .btn-cancel:hover {
