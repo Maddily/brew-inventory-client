@@ -41,7 +41,7 @@
   cursor: pointer;
   margin-top: 4px;
   display: inline-block;
-  transition: color 0.15s;
+  transition: color 0.15s, transform 0.1s;
 }
 
 .error-retry:hover {
