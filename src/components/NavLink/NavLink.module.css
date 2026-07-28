@@ -2,6 +2,7 @@
   font-size: 14px;
   text-decoration: none;
   color: #6b5e57;
+  transition: color 0.15s;
 }
 
 .nav-link:hover {
