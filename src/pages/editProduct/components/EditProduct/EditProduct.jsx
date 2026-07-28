@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ProductForm from "../../../../components/ProductForm/ProductForm";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
 import SkeletonEditProduct from "../SkeletonEditProduct/SkeletonEditProduct";
+import { navigateBackAfterEdit } from "../../../../utils/utils";
 
 function EditProduct() {
   const { id } = useParams();
@@ -105,39 +106,14 @@ function EditProduct() {
         throw new Error(data.error || `HTTP error. Status: ${response.status}`);
       }
 
-      setProduct({
-        ...product,
-        name,
-        description,
-        price,
-        stock_quantity: quantity,
-        attributes: { ...attributes },
-      });
-
-      navigate(`/products/${id}`, {
-        state: categoryId
-          ? {
-              from: "category",
-              categoryId,
-              categoryName: product.category,
-            }
-          : { from: "all" },
-      });
+      navigateBackAfterEdit(id, categoryId, product.category, navigate);
     } catch (error) {
       setSaveError(error.message);
     }
   };
 
   const onCancel = function () {
-    navigate(`/products/${id}`, {
-      state: categoryId
-        ? {
-            from: "category",
-            categoryId,
-            categoryName: product.category,
-          }
-        : { from: "all" },
-    });
+    navigateBackAfterEdit(id, categoryId, product.category, navigate);
   };
 
   if (error) return <ErrorState setRetryCount={setRetryCount} entity="form" />;
@@ -145,16 +121,11 @@ function EditProduct() {
 
   return (
     <ProductForm
-      id={id}
-      name={product.name}
-      description={product.description}
-      price={product.price}
-      quantity={product.stock_quantity}
-      attributes={product.attributes}
+      product={product}
       categoryId={categoryId}
-      categoryName={product.category}
-      onSave={onSave}
-      saveError={saveError}
+      onSubmit={onSave}
+      isEditing={true}
+      error={saveError}
       onDismissError={onDismissError}
       onCancel={onCancel}
     />
