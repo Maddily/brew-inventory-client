@@ -1,12 +1,19 @@
 .product-row {
   padding: 0 1.25rem;
   height: 56px;
-  transition: background-color 0.1s;
   cursor: pointer;
+  border: 0.5px solid #e8e3de;
+  transition: background-color 0.15s, border-color 0.15s;
 }
 
 .product-row:hover {
-  background: #faf8f6;
+  background-color: #faf8f6;
+  border-color: #c5b8b2;
+}
+
+.product-row:active {
+  background-color: #f5ede8;
+  border-color: #2f2118;
 }
 
 .product-row td {

@@ -7,11 +7,17 @@
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
-  transition: background-color 0.1s;
+  transition: background-color 0.15s, border-color 0.15s;
 }
 
 .product:hover {
   background-color: #faf8f6;
+  border-color: #c5b8b2;
+}
+
+.product:active {
+  background-color: #f5ede8;
+  border-color: #2f2118;
 }
 
 .left {

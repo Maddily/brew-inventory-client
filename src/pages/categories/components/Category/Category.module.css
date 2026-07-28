@@ -1,12 +1,23 @@
 .category {
   display: flex;
   align-items: stretch;
-  background-color: #fcfcfb;
-  border: 1px solid var(--border);
+  background-color: #fff;
+  border: 0.5px solid #e8e3de;
   border-radius: 10px;
   overflow: hidden;
   text-decoration: none;
   user-select: none;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.category:hover {
+  background-color: #faf8f6;
+  border-color: #c5b8b2;
+}
+
+.category:active {
+  background-color: #f5ede8;
+  border-color: #2f2118;
 }
 
 .icon-container {
