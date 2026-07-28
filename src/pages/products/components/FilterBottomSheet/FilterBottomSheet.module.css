@@ -65,9 +65,19 @@
 
 .sheet-btn-clear {
   flex: 1;
-  background: #f9f7f5;
+  background-color: var(--main-bg-color);
   border: 0.5px solid #e8e3de;
   color: #6b5e57;
+  transition: background-color 0.15s, color 0.1s;
+}
+
+.sheet-btn-clear:hover {
+  background-color: #f0ebe6;
+}
+
+.sheet-btn-clear:active {
+  background-color: #e8e3de;
+  color: #1a1412;
 }
 
 .sheet-btn-apply {
@@ -75,6 +85,16 @@
   background: #2f2118;
   color: #fff;
   border: none;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+.sheet-btn-apply:hover {
+  background-color: #1a110d;
+}
+
+.sheet-btn-apply:active {
+  background-color: #0f0a07;
+  transform: scale(0.98);
 }
 
 .sheet-btn-clear,
