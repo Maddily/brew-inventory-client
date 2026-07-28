@@ -28,7 +28,7 @@ function FilterDropdown({ products, closeFilterDropdown }) {
   return (
     <div className={styles["filter-dropdown"]}>
       {products.length ? (
-        <div className={styles["sheet-body"]}>
+        <div className={styles["body"]}>
           {sectionKeys.map((section, index) => (
             <Fragment key={section}>
               <FilterSection
@@ -45,16 +45,16 @@ function FilterDropdown({ products, closeFilterDropdown }) {
       ) : (
         <FilterEmptyState />
       )}
-      <div className={styles["sheet-footer"]}>
+      <div className={styles["footer"]}>
         <button
-          className={styles["sheet-btn-clear"]}
+          className={styles["btn-clear"]}
           onClick={handleClearFilters}
         >
           Clear all
         </button>
         {products.length ? (
           <button
-            className={styles["sheet-btn-apply"]}
+            className={styles["btn-apply"]}
             onClick={handleApplyFilters}
           >
             Apply
