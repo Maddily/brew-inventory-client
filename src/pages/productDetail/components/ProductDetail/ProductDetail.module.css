@@ -219,6 +219,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+  transition: background-color 0.15s, transform 0.1s;
 }
 
 .btn-edit:hover {
@@ -227,6 +228,7 @@
 
 .btn-edit:active {
   background-color: #0f0a07;
+  transform: scale(0.98);
 }
 
 .btn-delete {
