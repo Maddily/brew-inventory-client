@@ -143,10 +143,10 @@ function Products() {
 
   function showFilter() {
     !isWide && filterBottomSheetRef.current.showModal();
-    isWide && filterOpen ? closeFilterDropDown() : setFilterOpen(true);
+    isWide && filterOpen ? closeFilterDropdown() : setFilterOpen(true);
   }
 
-  function closeFilterDropDown() {
+  function closeFilterDropdown() {
     setFilterOpen(false);
   }
 
@@ -236,12 +236,12 @@ function Products() {
         {isWide && filterOpen ? (
           <FilterDropdown
             products={products}
-            closeFilterDropDown={closeFilterDropDown}
+            closeFilterDropdown={closeFilterDropdown}
           />
         ) : !isWide ? (
           <FilterBottomSheet
             filterBottomSheetRef={filterBottomSheetRef}
-            closeFilterDropDown={closeFilterDropDown}
+            closeFilterDropdown={closeFilterDropdown}
             products={products}
           />
         ) : (

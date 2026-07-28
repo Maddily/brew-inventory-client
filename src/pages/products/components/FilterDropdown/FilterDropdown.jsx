@@ -8,7 +8,7 @@ import { applyFilters, clearFilters } from "../../../../utils/filterUtils";
 import { SelectedChipsContext } from "../../../../contexts";
 import PropTypes from "prop-types";
 
-function FilterDropdown({ products, closeFilterDropDown }) {
+function FilterDropdown({ products, closeFilterDropdown }) {
   const [selectedChips, setSelectedChips] = useContext(SelectedChipsContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { category_id: categoryId } = useParams();
@@ -17,12 +17,12 @@ function FilterDropdown({ products, closeFilterDropDown }) {
 
   function handleClearFilters() {
     clearFilters(setSelectedChips, setSearchParams);
-    closeFilterDropDown();
+    closeFilterDropdown();
   }
 
   function handleApplyFilters() {
     applyFilters(selectedChips, searchParams, setSearchParams);
-    closeFilterDropDown();
+    closeFilterDropdown();
   }
 
   return (
@@ -67,7 +67,7 @@ function FilterDropdown({ products, closeFilterDropDown }) {
 
 FilterDropdown.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
-  closeFilterDropDown: PropTypes.func.isRequired,
+  closeFilterDropdown: PropTypes.func.isRequired,
 };
 
 export default FilterDropdown;

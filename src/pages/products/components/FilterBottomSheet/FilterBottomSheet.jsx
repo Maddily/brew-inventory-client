@@ -12,7 +12,7 @@ import { closeSheetWithAnimation } from "../../../../utils/utils";
 
 function FilterBottomSheet({
   filterBottomSheetRef,
-  closeFilterDropDown,
+  closeFilterDropdown,
   products,
 }) {
   const [selectedChips, setSelectedChips] = useContext(SelectedChipsContext);
@@ -49,12 +49,12 @@ function FilterBottomSheet({
 
   function handleClearFilters() {
     clearFilters(setSelectedChips, setSearchParams);
-    closeSheetWithAnimation(filterBottomSheetRef.current, closeFilterDropDown);
+    closeSheetWithAnimation(filterBottomSheetRef.current, closeFilterDropdown);
   }
 
   function handleApplyFilters() {
     applyFilters(selectedChips, searchParams, setSearchParams);
-    closeSheetWithAnimation(filterBottomSheetRef.current, closeFilterDropDown);
+    closeSheetWithAnimation(filterBottomSheetRef.current, closeFilterDropdown);
   }
 
   return (
@@ -62,7 +62,7 @@ function FilterBottomSheet({
       className={styles["filter-bottom-sheet"]}
       ref={filterBottomSheetRef}
       closedby="any"
-      onClose={closeFilterDropDown}
+      onClose={closeFilterDropdown}
     >
       <div className={styles["sheet-handle-row"]}>
         <div className={styles["sheet-handle"]}></div>
@@ -119,7 +119,7 @@ FilterBottomSheet.propTypes = {
   filterBottomSheetRef: PropTypes.shape({
     current: PropTypes.instanceOf(Element),
   }).isRequired,
-  closeFilterDropDown: PropTypes.func.isRequired,
+  closeFilterDropdown: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
