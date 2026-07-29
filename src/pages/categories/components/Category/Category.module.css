@@ -97,12 +97,12 @@
   font-size: 11px;
 }
 
-.product-count,
-.chevron {
-  color: #898781;
+.product-count{
+  color: #76746F;
 }
 
 .chevron {
+  color: #898781;
   width: 14px;
   height: 14px;
 }
