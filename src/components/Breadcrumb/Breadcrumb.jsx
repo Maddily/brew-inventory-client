@@ -20,7 +20,7 @@ Breadcrumb.propTypes = {
   prevPath: PropTypes.string.isRequired,
   prev: PropTypes.string.isRequired,
   current: PropTypes.string.isRequired,
-  state: PropTypes.object.isRequired,
+  state: PropTypes.object,
 };
 
 export default Breadcrumb;
