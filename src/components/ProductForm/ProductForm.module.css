@@ -37,7 +37,7 @@
 }
 
 .card-title span {
-  color: #80746F;
+  color: #80746f;
   font-size: 11px;
   font-weight: 400;
 }
@@ -67,7 +67,13 @@
   font-size: 13px;
   color: #1a1412;
   font-family: inherit;
-  outline: none;
+}
+
+.input:focus {
+  outline: 2px solid #2f2118;
+  outline-offset: 2px;
+  border-color: #2f2118;
+  background: #ffffff;
 }
 
 textarea.input {
@@ -77,7 +83,7 @@ textarea.input {
 }
 
 .desc span {
-  color: #84736C;
+  color: #84736c;
   font-weight: 400;
 }
 
@@ -183,7 +189,7 @@ select.input {
 
 .attrs-placeholder-text {
   font-size: 12px;
-  color: #7E6F67;
+  color: #7e6f67;
   line-height: 1.5;
 }
 
@@ -312,7 +318,7 @@ select.input {
   .sidebar-title {
     font-size: 12px;
     font-weight: 600;
-    color: #80746F;
+    color: #80746f;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
