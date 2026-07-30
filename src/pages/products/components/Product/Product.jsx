@@ -28,7 +28,7 @@ function Product({ name, price, stockQuantity, category, path, state }) {
         >
           {availability}
         </p>
-        <IconChevronRight className={styles["chevron"]} />
+        <IconChevronRight className={styles["chevron"]} aria-hidden="true" />
       </div>
     </Link>
   );

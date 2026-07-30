@@ -24,7 +24,11 @@ function SearchBar() {
 
   return (
     <>
-      <IconSearch className={styles["search-icon"]} stroke={2} />
+      <IconSearch
+        className={styles["search-icon"]}
+        stroke={2}
+        aria-hidden="true"
+      />
       <input
         className={styles["search"]}
         type="search"

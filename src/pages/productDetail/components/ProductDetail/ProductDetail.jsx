@@ -131,24 +131,28 @@ function ProductDetail() {
       <IconCoffee
         stroke={2}
         className={`${styles["hero-icon"]} ${styles["coffee"]}`}
+        aria-hidden="true"
       />
     ),
     2: (
       <IconLeaf
         stroke={2}
         className={`${styles["hero-icon"]} ${styles["tea"]}`}
+        aria-hidden="true"
       />
     ),
     3: (
       <IconBottle
         stroke={2}
         className={`${styles["hero-icon"]} ${styles["rtd"]}`}
+        aria-hidden="true"
       />
     ),
     4: (
       <IconTool
         stroke={2}
         className={`${styles["hero-icon"]} ${styles["acc"]}`}
+        aria-hidden="true"
       />
     ),
   };
@@ -243,11 +247,19 @@ function ProductDetail() {
                   })
                 }
               >
-                <IconPencil className={styles["edit-icon"]} stroke={2} /> Edit{" "}
-                {isWide && "product"}
+                <IconPencil
+                  className={styles["edit-icon"]}
+                  stroke={2}
+                  aria-hidden="true"
+                />{" "}
+                Edit {isWide && "product"}
               </button>
               <button className={styles["btn-delete"]} onClick={showModal}>
-                <IconTrash className={styles["delete-icon"]} stroke={2} />{" "}
+                <IconTrash
+                  className={styles["delete-icon"]}
+                  stroke={2}
+                  aria-hidden="true"
+                />{" "}
                 Delete {isWide && "product"}
               </button>
             </div>

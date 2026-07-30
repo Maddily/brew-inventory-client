@@ -5,7 +5,11 @@ import styles from "./FormError.module.css";
 function FormError({ message, onDismiss, onRetry }) {
   return (
     <div className={styles["error-banner"]}>
-      <IconAlertCircle stroke={2} className={styles["error-icon"]} />
+      <IconAlertCircle
+        stroke={2}
+        className={styles["error-icon"]}
+        aria-hidden="true"
+      />
       <div className={styles["error-text"]}>
         <div className={styles["error-title"]}>Failed to save changes</div>
         <div className={styles["error-msg"]}>

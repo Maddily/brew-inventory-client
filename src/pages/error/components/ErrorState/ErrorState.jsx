@@ -6,7 +6,11 @@ function ErrorState({ setRetryCount, entity }) {
   return (
     <main className={styles["main"]}>
       <div className={styles["error-icon-container"]}>
-        <IconWifiOff className={styles["error-icon"]} stroke={2} />
+        <IconWifiOff
+          className={styles["error-icon"]}
+          stroke={2}
+          aria-hidden="true"
+        />
       </div>
       <p className={styles["error-title"]}>Couldn't load {entity}</p>
       <p className={styles["error-msg"]}>
@@ -18,7 +22,11 @@ function ErrorState({ setRetryCount, entity }) {
         className={styles["retry-btn"]}
         onClick={() => setRetryCount((c) => c + 1)}
       >
-        <IconRefresh className={styles["retry-icon"]} stroke={2} />
+        <IconRefresh
+          className={styles["retry-icon"]}
+          stroke={2}
+          aria-hidden="true"
+        />
         <span className={styles["retry-btn-text"]}>Try again</span>
       </button>
     </main>

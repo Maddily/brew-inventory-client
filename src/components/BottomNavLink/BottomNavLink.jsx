@@ -27,7 +27,12 @@ function BottomNavLink({ value, path, iconPath }) {
           : { from: "all" }
       }
     >
-      <Icon className={styles["icon"]} path={iconPath} size={0.8} />
+      <Icon
+        className={styles["icon"]}
+        path={iconPath}
+        size={0.8}
+        aria-hidden="true"
+      />
       <span className={styles["text"]}>{value}</span>
     </Link>
   );

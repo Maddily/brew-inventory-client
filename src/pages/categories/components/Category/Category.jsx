@@ -20,6 +20,7 @@ function Category({
         <CatIcon
           stroke={2}
           className={`${styles["icon"]} ${styles[iconName]}`}
+          aria-hidden="true"
         />
       </div>
       <div className={styles["category-body"]}>
@@ -29,7 +30,7 @@ function Category({
           <span className={styles["product-count"]}>
             {productCount} {productCount === "1" ? "product" : "products"}
           </span>
-          <IconChevronRight className={styles["chevron"]} />
+          <IconChevronRight className={styles["chevron"]} aria-hidden="true" />
         </div>
       </div>
     </Link>

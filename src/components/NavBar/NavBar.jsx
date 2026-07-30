@@ -18,6 +18,7 @@ function NavBar() {
           className={styles["add-product-icon"]}
           path={mdiPlus}
           size={0.7}
+          aria-hidden="true"
         />
         <span className={styles["add-product-text"]}>Add product</span>
       </Link>

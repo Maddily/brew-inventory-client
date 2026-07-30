@@ -14,7 +14,11 @@ function useAvailability(stockQuantity, iconClassName) {
       availability: "In stock",
       availabilityClassName: "in-stock",
       icon: iconClassName ? (
-        <IconCircleCheck className={iconClassName} stroke={2} />
+        <IconCircleCheck
+          className={iconClassName}
+          stroke={2}
+          aria-hidden="true"
+        />
       ) : null,
     };
   } else if (stockQuantity > 0) {
@@ -22,7 +26,11 @@ function useAvailability(stockQuantity, iconClassName) {
       availability: "Low stock",
       availabilityClassName: "low-stock",
       icon: iconClassName ? (
-        <IconAlertTriangle className={iconClassName} stroke={2} />
+        <IconAlertTriangle
+          className={iconClassName}
+          stroke={2}
+          aria-hidden="true"
+        />
       ) : null,
     };
   } else {
@@ -30,7 +38,7 @@ function useAvailability(stockQuantity, iconClassName) {
       availability: "Out of stock",
       availabilityClassName: "out-of-stock",
       icon: iconClassName ? (
-        <IconCircleX className={iconClassName} stroke={2} />
+        <IconCircleX className={iconClassName} stroke={2} aria-hidden="true" />
       ) : null,
     };
   }

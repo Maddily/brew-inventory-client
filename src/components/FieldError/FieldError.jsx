@@ -7,7 +7,11 @@ function FieldError({ message }) {
 
   return (
     <div className={styles["field-error"]}>
-      <IconAlertCircle className={styles["field-error-icon"]} stroke={2} />
+      <IconAlertCircle
+        className={styles["field-error-icon"]}
+        stroke={2}
+        aria-hidden="true"
+      />
       {message}
     </div>
   );

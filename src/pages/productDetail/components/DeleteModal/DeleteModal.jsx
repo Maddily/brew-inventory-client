@@ -63,7 +63,11 @@ function DeleteModal({
       </div>
       <div className={styles["modal-inner"]}>
         <div className={styles["modal-icon-wrap"]}>
-          <IconTrash stroke={2} className={styles["modal-delete-icon"]} />
+          <IconTrash
+            stroke={2}
+            className={styles["modal-delete-icon"]}
+            aria-hidden="true"
+          />
         </div>
         <div className={styles["modal-title"]}>Delete product?</div>
         <div className={styles["modal-msg"]}>
@@ -73,7 +77,11 @@ function DeleteModal({
       </div>
       {deleteError && (
         <div className={styles["error"]}>
-          <IconAlertCircle stroke={2} className={styles["error-icon"]} />
+          <IconAlertCircle
+            stroke={2}
+            className={styles["error-icon"]}
+            aria-hidden="true"
+          />
           <div className={styles["error-text"]}>
             Failed to delete. Please try again.
           </div>
@@ -93,14 +101,19 @@ function DeleteModal({
         >
           {deleteError ? (
             <>
-              <IconRefresh stroke={2} className={styles["retry-icon"]} /> Try
-              again
+              <IconRefresh
+                stroke={2}
+                className={styles["retry-icon"]}
+                aria-hidden="true"
+              />{" "}
+              Try again
             </>
           ) : (
             <>
               <IconTrash
                 stroke={2}
                 className={styles["modal-btn-delete-icon"]}
+                aria-hidden="true"
               />
               Delete
             </>

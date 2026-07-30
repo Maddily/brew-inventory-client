@@ -251,7 +251,11 @@ function ProductForm({
             </div>
             {!isEditing && !category ? (
               <div className={styles["attrs-placeholder"]}>
-                <IconTag stroke={2} className={styles["tag-icon"]} />
+                <IconTag
+                  stroke={2}
+                  className={styles["tag-icon"]}
+                  aria-hidden="true"
+                />
                 <div className={styles["attrs-placeholder-text"]}>
                   Select a category above to see its required attributes
                 </div>
@@ -333,7 +337,11 @@ function ProductForm({
             <div className={`${styles["sidebar-card"]} ${styles["tip-card"]}`}>
               <div className={styles["sidebar-title"]}>Tip</div>
               <div className={styles["tip"]}>
-                <IconInfoCircle stroke={2} className={styles["tip-icon"]} />
+                <IconInfoCircle
+                  stroke={2}
+                  className={styles["tip-icon"]}
+                  aria-hidden="true"
+                />
                 <div className={styles["tip-text"]}>
                   {category ? (
                     <>
@@ -364,17 +372,26 @@ function ProductForm({
                   <IconAlertTriangle
                     stroke={2}
                     className={styles["alert-icon"]}
+                    aria-hidden="true"
                   />
                   Fix errors to save
                 </>
               ) : isEditing ? (
                 <>
-                  <IconCheck stroke={2} className={styles["action-icon"]} />
+                  <IconCheck
+                    stroke={2}
+                    className={styles["action-icon"]}
+                    aria-hidden="true"
+                  />
                   Save changes
                 </>
               ) : (
                 <>
-                  <IconPlus stroke={2} className={styles["action-icon"]} />
+                  <IconPlus
+                    stroke={2}
+                    className={styles["action-icon"]}
+                    aria-hidden="true"
+                  />
                   Add product
                 </>
               )}
@@ -384,7 +401,11 @@ function ProductForm({
               onClick={onCancel}
               type="button"
             >
-              <IconX stroke={2} className={styles["action-icon"]} />
+              <IconX
+                stroke={2}
+                className={styles["action-icon"]}
+                aria-hidden="true"
+              />
               Cancel
             </button>
           </div>
