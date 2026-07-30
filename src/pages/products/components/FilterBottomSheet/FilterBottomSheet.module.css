@@ -34,6 +34,11 @@
   border-bottom: 0.5px solid #f0ebe6;
 }
 
+.sheet-header button {
+  border: none;
+  background: none;
+}
+
 .sheet-title {
   font-size: 15px;
   font-weight: 600;
