@@ -22,14 +22,15 @@ function SheetChip({ section, value }) {
   const isActive = selectedChips[section].includes(value);
 
   return (
-    <span
+    <button
+      type="button"
       className={`${styles["sheet-chip"]} ${
         isActive ? styles["selected"] : ""
       }`}
       onClick={handleChipSelection}
     >
       {value}
-    </span>
+    </button>
   );
 }
 
