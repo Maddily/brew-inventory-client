@@ -15,6 +15,12 @@ function ProductRow({ name, price, stockQuantity, category, path, state }) {
     <tr
       className={styles["product-row"]}
       onClick={() => navigate(path, { state })}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") navigate(path, { state });
+      }}
+      tabIndex={0}
+      role="link"
+      aria-label={`View ${name}`}
     >
       <td className={styles["name-and-category"]}>
         <p className={styles["name"]}>{name}</p>
