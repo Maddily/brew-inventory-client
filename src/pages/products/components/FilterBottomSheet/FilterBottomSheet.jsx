@@ -69,13 +69,17 @@ function FilterBottomSheet({
       </div>
       <div className={styles["sheet-header"]}>
         <span className={styles["sheet-title"]}>Filter products</span>
-        <IconX
-          stroke={2}
-          className={styles["sheet-close"]}
-          aria-label="close filter modal"
-          role="button"
+        <button
+          type="button"
           onClick={handleCloseBtnClick}
-        />
+          aria-label="close filter panel"
+        >
+          <IconX
+            stroke={2}
+            aria-hidden="true"
+            className={styles["sheet-close"]}
+          />
+        </button>
       </div>
       {products.length ? (
         <div className={styles["sheet-body"]}>
