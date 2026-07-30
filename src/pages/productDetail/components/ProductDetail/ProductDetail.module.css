@@ -169,7 +169,7 @@
 .attrs-title {
   font-size: 11px;
   font-weight: 600;
-  color: #a0918a;
+  color: #80746F;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 8px;
@@ -188,7 +188,7 @@
 
 .attr-key {
   font-size: 12px;
-  color: #a0918a;
+  color: #80746F;
 }
 
 .attr-val {
@@ -327,19 +327,19 @@
   }
 
   .hero-label.coffee {
-    color: #8c6e5e;
+    color: #7D5E4F;
   }
 
   .hero-label.tea {
-    color: #6b7d5a;
+    color: #5E6D4F;
   }
 
   .hero-label.ready-to-drink {
-    color: #5a7a85;
+    color: #4D6B75;
   }
 
   .hero-label.accessories {
-    color: #7a7064;
+    color: #71675B;
   }
 
   .card {
@@ -423,7 +423,7 @@
   .sidebar-title {
     font-size: 12px;
     font-weight: 600;
-    color: #a0918a;
+    color: #80746F;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
@@ -444,7 +444,7 @@
 
   .price-unit {
     font-size: 14px;
-    color: #a0918a;
+    color: #80746F;
   }
 
   .stock-row {
