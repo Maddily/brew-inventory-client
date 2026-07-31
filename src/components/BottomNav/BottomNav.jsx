@@ -4,14 +4,14 @@ import styles from "./BottomNav.module.css";
 
 function BottomNav() {
   return (
-    <nav className={styles["bottom-nav"]} aria-label="Bottom navigation">
+    <nav className={styles["bottom-nav"]} aria-label="primary navigation">
       <BottomNavLink value="Categories" path="/" iconPath={mdiDotsGrid} />
       <BottomNavLink
         value="All products"
         path="/products"
         iconPath={mdiPackageVariantClosed}
       />
-      <BottomNavLink value="Add" path="/products/new" iconPath={mdiPlus} />
+      <BottomNavLink value="Add product" path="/products/new" iconPath={mdiPlus} />
     </nav>
   );
 }
