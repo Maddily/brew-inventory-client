@@ -1,4 +1,4 @@
-import NavBar from "./components/NavBar/NavBar";
+import Header from "./components/Header/Header";
 import BottomNav from "./components/BottomNav/BottomNav";
 import "./styles/normalize.css";
 import "./styles/App.css";
@@ -7,7 +7,7 @@ import { Outlet } from "react-router";
 function App() {
   return (
     <>
-      <NavBar />
+      <Header />
       <Outlet />
       <BottomNav />
     </>
