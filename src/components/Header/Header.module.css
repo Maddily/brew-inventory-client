@@ -1,6 +1,10 @@
+.header,
 .nav {
   display: flex;
   align-items: center;
+}
+
+.header {
   justify-content: left;
   border-bottom: 0.5px solid var(--border);
   padding: 0 1rem;
@@ -10,9 +14,9 @@
   height: 42px;
 }
 
-.middle-nav-btns-container,
-.add-product-link {
-  display: none;
+.nav {
+  flex: 1;
+  justify-content: space-between;
 }
 
 .add-product-icon,
@@ -39,7 +43,7 @@
 }
 
 @media (min-width: 540px) {
-  .nav {
+  .header {
     justify-content: space-between;
     padding: 0.2rem 1.5rem;
   }
