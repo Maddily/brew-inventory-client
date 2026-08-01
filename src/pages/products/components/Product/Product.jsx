@@ -8,9 +8,16 @@ import { formatPrice } from "../../../../utils/utils";
 function Product({ name, price, stockQuantity, category, path, state }) {
   const { availability, availabilityClassName } =
     useAvailability(stockQuantity);
+  const ariaPrice = `${parseFloat(price)} dollars`;
+  const ariaCategory = category.split("-").join(" ");
 
   return (
-    <Link className={styles["product"]} to={path} state={state}>
+    <Link
+      className={styles["product"]}
+      to={path}
+      state={state}
+      aria-label={`${name}, ${ariaCategory}, ${ariaPrice}, stock quantity ${stockQuantity}, ${availability}`}
+    >
       <div className={styles["left"]}>
         <p className={styles["name"]}>{name}</p>
         <p className={styles["category"]}>{category}</p>
