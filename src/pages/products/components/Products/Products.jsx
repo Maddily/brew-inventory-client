@@ -175,7 +175,8 @@ function Products() {
             className={`${styles["filter-button"]} ${
               filtersExist(selectedChips) ? styles["active"] : ""
             }`}
-            aria-label="filter"
+            aria-label="filter products"
+            aria-expanded={filterOpen}
             onClick={showFilter}
           >
             <IconFilter
