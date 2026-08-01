@@ -15,7 +15,13 @@ function Category({
     id === 1 ? "coffee" : id === 2 ? "tea" : id === 3 ? "rtd" : "acc";
 
   return (
-    <Link to={path} className={styles["category"]}>
+    <Link
+      to={path}
+      className={styles["category"]}
+      aria-label={`View the ${name} category containing ${productCount} ${
+        productCount === "1" ? "product" : "products"
+      }`}
+    >
       <div className={`${styles["icon-container"]} ${styles[iconName]}`}>
         <CatIcon
           stroke={2}
