@@ -29,6 +29,9 @@ function SearchBar() {
         stroke={2}
         aria-hidden="true"
       />
+      <label htmlFor="search" className={styles["visually-hidden"]}>
+        Search products
+      </label>
       <input
         className={styles["search"]}
         type="search"
