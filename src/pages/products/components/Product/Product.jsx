@@ -9,7 +9,7 @@ function Product({ name, price, stockQuantity, category, path, state }) {
   const { availability, availabilityClassName } =
     useAvailability(stockQuantity);
   const ariaPrice = `${parseFloat(price)} dollars`;
-  const ariaCategory = category.split("-").join(" ");
+  const ariaCategory = category ? category.split("-").join(" ") : "";
 
   return (
     <Link
