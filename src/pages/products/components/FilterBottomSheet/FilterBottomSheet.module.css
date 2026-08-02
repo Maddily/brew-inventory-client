@@ -85,6 +85,12 @@
   color: #1a1412;
 }
 
+.sheet-btn-clear:disabled {
+  border-color: #f0ebe6;
+  color: #c5b8b2;
+  cursor: not-allowed;
+}
+
 .sheet-btn-apply {
   flex: 2;
   background: #2f2118;
