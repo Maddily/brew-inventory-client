@@ -4,18 +4,16 @@ import SheetChip from "../SheetChip/SheetChip";
 
 function FilterSection({ sections, section, type }) {
   return (
-    <>
-      <div className={styles["sheet-section"]}>
-        <div className={`${styles["sheet-section-title"]} ${styles[type]}`}>
-          {section}
-        </div>
-        <div className={styles["sheet-chips"]}>
-          {sections[section].map((value) => (
-            <SheetChip key={value} section={section} value={value} />
-          ))}
-        </div>
+    <section className={styles["sheet-section"]}>
+      <h3 className={`${styles["sheet-section-title"]} ${styles[type]}`}>
+        {section}
+      </h3>
+      <div className={styles["sheet-chips"]}>
+        {sections[section].map((value) => (
+          <SheetChip key={value} section={section} value={value} />
+        ))}
       </div>
-    </>
+    </section>
   );
 }
 
