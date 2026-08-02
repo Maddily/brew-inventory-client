@@ -12,10 +12,10 @@ function ProductEmptyState({ title, subtitle, action }) {
           aria-hidden="true"
         />
       </div>
-      <div className={styles["empty-title"]}>{title}</div>
-      <div className={`${styles["empty-sub"]} ${styles["mob-empty"]}`}>
+      <h2 className={styles["empty-title"]}>{title}</h2>
+      <p className={`${styles["empty-sub"]} ${styles["mob-empty"]}`}>
         {subtitle}
-      </div>
+      </p>
       {action && (
         <button className={styles["add-btn"]} onClick={action.onClick}>
           <IconPlus
