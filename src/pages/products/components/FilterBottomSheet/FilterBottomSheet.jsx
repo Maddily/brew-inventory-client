@@ -5,7 +5,11 @@ import PropTypes from "prop-types";
 import styles from "./FilterBottomSheet.module.css";
 import FilterSection from "../FilterSection/FilterSection";
 import { SelectedChipsContext } from "../../../../contexts";
-import { applyFilters, clearFilters } from "../../../../utils/filterUtils";
+import {
+  applyFilters,
+  clearFilters,
+  filtersExist,
+} from "../../../../utils/filterUtils";
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
 import useSections from "../../../../hooks/useSections";
 import { closeSheetWithAnimation } from "../../../../utils/utils";
@@ -63,12 +67,13 @@ function FilterBottomSheet({
       ref={filterBottomSheetRef}
       closedby="any"
       onClose={closeFilterDropdown}
+      aria-modal="true"
     >
-      <div className={styles["sheet-handle-row"]}>
+      <div className={styles["sheet-handle-row"]} aria-hidden="true">
         <div className={styles["sheet-handle"]}></div>
       </div>
-      <div className={styles["sheet-header"]}>
-        <span className={styles["sheet-title"]}>Filter products</span>
+      <header className={styles["sheet-header"]}>
+        <h2 className={styles["sheet-title"]}>Filter products</h2>
         <button
           type="button"
           onClick={handleCloseBtnClick}
@@ -80,7 +85,7 @@ function FilterBottomSheet({
             className={styles["sheet-close"]}
           />
         </button>
-      </div>
+      </header>
       {products.length ? (
         <div className={styles["sheet-body"]}>
           {sectionKeys.map((section, index) => (
@@ -91,7 +96,7 @@ function FilterBottomSheet({
                 type="bottom-sheet"
               />
               {index !== sectionKeys.length - 1 && (
-                <div className={styles["filter-divider"]}></div>
+                <div className={styles["filter-divider"]} aria-hidden="true" />
               )}
             </Fragment>
           ))}
@@ -99,10 +104,11 @@ function FilterBottomSheet({
       ) : (
         <FilterEmptyState />
       )}
-      <div className={styles["sheet-footer"]}>
+      <footer className={styles["sheet-footer"]}>
         <button
           className={styles["sheet-btn-clear"]}
           onClick={handleClearFilters}
+          disabled={!filtersExist(selectedChips)}
         >
           Clear all
         </button>
@@ -114,7 +120,7 @@ function FilterBottomSheet({
             Apply filters
           </button>
         ) : null}
-      </div>
+      </footer>
     </dialog>
   );
 }
