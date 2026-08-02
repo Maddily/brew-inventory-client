@@ -28,6 +28,7 @@ function SheetChip({ section, value }) {
         isActive ? styles["selected"] : ""
       }`}
       onClick={handleChipSelection}
+      aria-pressed={isActive}
     >
       {value}
     </button>
