@@ -218,19 +218,20 @@ function Products() {
         ))}
       {/* Mobile list */}
       {hasProducts ? (
-        <div className={styles["products-list"]}>
+        <ul className={styles["products-list"]}>
           {products.map((product) => (
-            <Product
-              key={product.id}
-              name={product.name}
-              price={product.price}
-              stockQuantity={product.stock_quantity}
-              category={!categoryId && product.category}
-              path={`/products/${product.id}`}
-              state={state}
-            />
+            <li key={product.id}>
+              <Product
+                name={product.name}
+                price={product.price}
+                stockQuantity={product.stock_quantity}
+                category={!categoryId && product.category}
+                path={`/products/${product.id}`}
+                state={state}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
       ) : null}
       {/* Desktop table */}
       {hasProducts ? (
