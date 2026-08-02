@@ -4,7 +4,7 @@ import styles from "./FilterDropdown.module.css";
 import FilterSection from "../FilterSection/FilterSection";
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
 import useSections from "../../../../hooks/useSections";
-import { applyFilters, clearFilters } from "../../../../utils/filterUtils";
+import { applyFilters, clearFilters, filtersExist } from "../../../../utils/filterUtils";
 import { SelectedChipsContext } from "../../../../contexts";
 import PropTypes from "prop-types";
 
@@ -37,7 +37,10 @@ function FilterDropdown({ products, closeFilterDropdown }) {
                 type="dropdown"
               />
               {index !== sectionKeys.length - 1 && (
-                <div className={styles["filter-divider"]}></div>
+                <div
+                  className={styles["filter-divider"]}
+                  aria-hidden="true"
+                ></div>
               )}
             </Fragment>
           ))}
@@ -45,22 +48,20 @@ function FilterDropdown({ products, closeFilterDropdown }) {
       ) : (
         <FilterEmptyState />
       )}
-      <div className={styles["footer"]}>
+      <footer className={styles["footer"]}>
         <button
           className={styles["btn-clear"]}
           onClick={handleClearFilters}
+          disabled={!filtersExist(selectedChips)}
         >
           Clear all
         </button>
         {products.length ? (
-          <button
-            className={styles["btn-apply"]}
-            onClick={handleApplyFilters}
-          >
+          <button className={styles["btn-apply"]} onClick={handleApplyFilters}>
             Apply
           </button>
         ) : null}
-      </div>
+      </footer>
     </div>
   );
 }
