@@ -15,25 +15,30 @@ function Category({
     id === 1 ? "coffee" : id === 2 ? "tea" : id === 3 ? "rtd" : "acc";
 
   return (
-    <Link className={styles["category"]} to={path}>
-      <div className={`${styles["icon-container"]} ${styles[iconName]}`}>
-        <CatIcon
-          stroke={2}
-          className={`${styles["icon"]} ${styles[iconName]}`}
-          aria-hidden="true"
-        />
-      </div>
-      <div className={styles["category-body"]}>
-        <span className={styles["name"]}>{name}</span>
-        <span className={styles["description"]}>{description}</span>
-        <div className={styles["category-footer"]}>
-          <span className={styles["product-count"]}>
-            {productCount} {productCount === "1" ? "product" : "products"}
-          </span>
-          <IconChevronRight className={styles["chevron"]} aria-hidden="true" />
+    <li>
+      <Link to={path} className={styles["category"]}>
+        <div className={`${styles["icon-container"]} ${styles[iconName]}`}>
+          <CatIcon
+            stroke={2}
+            className={`${styles["icon"]} ${styles[iconName]}`}
+            aria-hidden="true"
+          />
         </div>
-      </div>
-    </Link>
+        <div className={styles["category-body"]}>
+          <span className={styles["name"]}>{name}</span>
+          <span className={styles["description"]}>{description}</span>
+          <div className={styles["category-footer"]}>
+            <span className={styles["product-count"]}>
+              {productCount} {productCount === "1" ? "product" : "products"}
+            </span>
+            <IconChevronRight
+              className={styles["chevron"]}
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+      </Link>
+    </li>
   );
 }
 

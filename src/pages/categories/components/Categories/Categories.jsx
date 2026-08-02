@@ -67,7 +67,7 @@ function Categories() {
         <h1 className={styles["heading"]}>Categories</h1>
         <p className={styles["description"]}>Browse inventory by category</p>
       </header>
-      <div className={styles["categories-container"]}>
+      <ul className={styles["categories-container"]}>
         {categories.map((category) => (
           <Category
             key={category.id}
@@ -79,7 +79,7 @@ function Categories() {
             path={`/categories/${category.id}`}
           />
         ))}
-      </div>
+      </ul>
     </main>
   );
 }
