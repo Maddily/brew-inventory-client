@@ -69,15 +69,16 @@ function Categories() {
       </header>
       <ul className={styles["categories-container"]}>
         {categories.map((category) => (
-          <Category
-            key={category.id}
-            icon={categoryIcons[category.id]}
-            id={category.id}
-            name={category.name}
-            description={category.description}
-            productCount={category.product_count}
-            path={`/categories/${category.id}`}
-          />
+          <li key={category.id}>
+            <Category
+              icon={categoryIcons[category.id]}
+              id={category.id}
+              name={category.name}
+              description={category.description}
+              productCount={category.product_count}
+              path={`/categories/${category.id}`}
+            />
+          </li>
         ))}
       </ul>
     </main>
