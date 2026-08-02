@@ -10,6 +10,8 @@ function ProductRow({ name, price, stockQuantity, category, path, state }) {
     stockQuantity,
     styles["availability-icon"]
   );
+  const ariaPrice = `${parseFloat(price)} dollars`;
+  const ariaCategory = category ? category.split("-").join(" ") : "";
 
   return (
     <tr
@@ -20,7 +22,7 @@ function ProductRow({ name, price, stockQuantity, category, path, state }) {
       }}
       tabIndex={0}
       role="link"
-      aria-label={`View ${name}`}
+      aria-label={`${name}, ${ariaCategory}, ${ariaPrice}, stock quantity ${stockQuantity}, ${availability}`}
     >
       <td className={styles["name-and-category"]}>
         <p className={styles["name"]}>{name}</p>
