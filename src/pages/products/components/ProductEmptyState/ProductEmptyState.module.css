@@ -28,6 +28,7 @@
   font-size: 15px;
   font-weight: 600;
   color: #1a1412;
+  margin: 0;
 }
 
 .mob-empty .empty-sub {
@@ -41,6 +42,7 @@
   line-height: 1.6;
   max-width: 220px;
   margin-bottom: 1rem;
+  margin: 0;
 }
 
 .add-btn {
