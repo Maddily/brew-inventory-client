@@ -9,7 +9,7 @@ function FilterEmptyState() {
         stroke={2}
         aria-hidden="true"
       />
-      <h2 className={styles["empty-title"]}>No filters available</h2>
+      <h3 className={styles["empty-title"]}>No filters available</h3>
       <p className={styles["empty-sub"]}>
         No products match your current filters. Clear filters to see all
         products.
