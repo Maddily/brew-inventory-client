@@ -5,14 +5,10 @@ import styles from "./ErrorState.module.css";
 function ErrorState({ setRetryCount, entity }) {
   return (
     <main className={styles["main"]}>
-      <div className={styles["error-icon-container"]}>
-        <IconWifiOff
-          className={styles["error-icon"]}
-          stroke={2}
-          aria-hidden="true"
-        />
+      <div className={styles["error-icon-container"]} aria-hidden="true">
+        <IconWifiOff className={styles["error-icon"]} stroke={2} />
       </div>
-      <p className={styles["error-title"]}>Couldn't load {entity}</p>
+      <h1 className={styles["error-title"]}>Couldn't load {entity}</h1>
       <p className={styles["error-msg"]}>
         Something went wrong while fetching data.
         <br />
