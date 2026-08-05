@@ -5,13 +5,18 @@ import PropTypes from "prop-types";
 
 function Breadcrumb({ prevPath, prev, current, state }) {
   return (
-    <div className={styles["breadcrumb"]}>
+    <nav className={styles["breadcrumb"]} aria-label="breadcrumb">
       <IconChevronLeft
         className={styles["chevron-left"]}
         stroke={2}
         aria-hidden="true"
       />
-      <Link to={prevPath} state={state} className={styles["back"]}>
+      <Link
+        to={prevPath}
+        state={state}
+        className={styles["back"]}
+        aria-label={`${prev?.split("-").join(" ")}`}
+      >
         {prev}
       </Link>
       <IconChevronRight
@@ -19,8 +24,8 @@ function Breadcrumb({ prevPath, prev, current, state }) {
         stroke={2}
         aria-hidden="true"
       />
-      <span>{current}</span>
-    </div>
+      <span aria-hidden="true">{current}</span>
+    </nav>
   );
 }
 
