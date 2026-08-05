@@ -156,6 +156,8 @@ function ProductDetail() {
       />
     ),
   };
+  const ariaCategory = product?.category.split("-").join(" ");
+  const ariaPrice = `${parseFloat(product.price)} dollars`;
 
   return (
     <main className={styles["main"]}>
@@ -172,10 +174,12 @@ function ProductDetail() {
             }`}
           >
             {categoryIcons[product.category_id]}
+            <div className={styles["sr-only"]}>{ariaCategory}</div>
             <div
               className={`${styles["hero-label"]} ${
                 styles[`${product.category.toLowerCase()}`]
               }`}
+              aria-hidden="true"
             >
               {product.category}
             </div>
@@ -187,6 +191,7 @@ function ProductDetail() {
                 className={`${styles["cat-tag"]} ${
                   styles[categoryIdToClassName[product.category_id]]
                 }`}
+                aria-hidden="true"
               >
                 {product.category}
               </span>
@@ -211,7 +216,11 @@ function ProductDetail() {
             {Object.entries(product.attributes).map(([attr, val]) => (
               <div key={attr} className={styles["attr-row"]}>
                 <span className={styles["attr-key"]}>{attr}</span>
-                <span className={styles["attr-val"]}>
+                <span className={styles["sr-only"]}>
+                  {val} {attr === "Weight" && "grams"}{" "}
+                  {attr === "Volume" && "milliliters"}
+                </span>
+                <span className={styles["attr-val"]} aria-hidden="true">
                   {val} {attr === "Weight" && "g"} {attr === "Volume" && "ml"}
                 </span>
               </div>
@@ -222,7 +231,10 @@ function ProductDetail() {
           <div className={styles["sidebar-card"]}>
             <div className={styles["sidebar-title"]}>Pricing &amp; Stock</div>
             <div className={styles["sidebar-price-row"]}>
-              <span className={styles["price-val"]}>{formattedPrice}</span>
+              <span className={styles["sr-only"]}>{ariaPrice}</span>
+              <span className={styles["price-val"]} aria-hidden="true">
+                {formattedPrice}
+              </span>
               <span className={styles["price-unit"]}>per unit</span>
             </div>
             <div className={styles["stock-row"]}>
