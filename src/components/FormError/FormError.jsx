@@ -4,26 +4,32 @@ import styles from "./FormError.module.css";
 
 function FormError({ message, onDismiss, onRetry }) {
   return (
-    <div className={styles["error-banner"]}>
+    <div className={styles["error-banner"]} role="alert">
       <IconAlertCircle
         stroke={2}
         className={styles["error-icon"]}
         aria-hidden="true"
       />
       <div className={styles["error-text"]}>
-        <div className={styles["error-title"]}>Failed to save changes</div>
-        <div className={styles["error-msg"]}>
+        <p className={styles["error-title"]}>Failed to save changes</p>
+        <p className={styles["error-msg"]}>
           {message} — your changes were not saved.
-        </div>
-        <span className={styles["error-retry"]} onClick={onRetry}>
+        </p>
+        <button
+          className={styles["error-retry"]}
+          onClick={onRetry}
+          aria-label="Try again to save changes"
+        >
           Try again
-        </span>
+        </button>
       </div>
-      <IconX
-        stroke={2}
-        className={styles["error-dismiss"]}
+      <button
+        className={styles["dismiss-btn-wrap"]}
         onClick={onDismiss}
-      />
+        aria-label="Dismiss error"
+      >
+        <IconX stroke={2} className={styles["error-dismiss"]} />{" "}
+      </button>
     </div>
   );
 }
