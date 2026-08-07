@@ -20,6 +20,11 @@
   flex: 1;
 }
 
+.error-title,
+.error-msg {
+  margin: 0;
+}
+
 .error-title {
   font-size: 12px;
   font-weight: 600;
@@ -41,6 +46,9 @@
   cursor: pointer;
   margin-top: 4px;
   display: inline-block;
+  border: none;
+  background: none;
+  padding: 0;
   transition: color 0.15s, transform 0.1s;
 }
 
@@ -71,6 +79,12 @@
   color: #a02020;
   opacity: 1;
   transform: scale(0.9);
+}
+
+.dismiss-btn-wrap {
+  border: none;
+  background: none;
+  padding: 0;
 }
 
 @media (min-width: 700px) {
