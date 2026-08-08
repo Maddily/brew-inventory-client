@@ -47,16 +47,25 @@ function ProductForm({
     product?.stock_quantity ?? "",
     styles["availability-icon"]
   );
+  const errorsExist = Object.keys(fieldErrors).length > 0;
 
   function handleSave() {
+    if (errorsExist) return;
+
     const errors = {};
 
     if (!isEditing && !category) errors.category = "Category is required";
+
     if (!productName.trim()) errors.name = "Product name is required";
+
     if (!productPrice || productPrice <= 0)
       errors.price = "Price must be greater than 0";
-    if (productQuantity === "" || Number(productQuantity) < 0)
+
+    if (productQuantity === "") {
+      errors.quantity = "Quantity is required";
+    } else if (Number(productQuantity) < 0) {
       errors.quantity = "Quantity can't be negative";
+    }
 
     for (const [attr, val] of Object.entries(productAttributes)) {
       if (!val) errors[attr] = `${attr} is required`;
@@ -64,6 +73,8 @@ function ProductForm({
 
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
+      const firstErrorKey = Object.keys(errors)[0];
+      document.getElementById(firstErrorKey)?.focus();
       return;
     }
 
@@ -93,7 +104,10 @@ function ProductForm({
     });
   }
 
-  const errorsExist = Object.keys(fieldErrors).length > 0;
+  const ariaCategory = isEditing
+    ? product.category.split("-").join(" ")
+    : category.split("-").join(" ");
+  const ariaPrice = `${parseFloat(productPrice)} dollars`;
 
   return (
     <main className={styles["main"]}>
@@ -139,13 +153,30 @@ function ProductForm({
       >
         <div className={styles["left"]}>
           <div className={styles["card"]}>
-            <div className={styles["card-title"]}>Basic details</div>
+            <h2 className={styles["card-title"]}>Basic details</h2>
             <div className={styles["field"]}>
               <label htmlFor="category" className={styles["label"]}>
-                Category <span>*</span>
+                Category{" "}
+                <span aria-hidden="true" className={styles["asterisk"]}>
+                  *
+                </span>{" "}
+                <span className={styles["sr-only"]}>required</span>
               </label>
+              {isEditing && (
+                <span id="category-desc" className={styles["sr-only"]}>
+                  {ariaCategory}
+                </span>
+              )}
               <select
                 id="category"
+                aria-describedby={
+                  isEditing && fieldErrors.category
+                    ? "category-desc category-error"
+                    : isEditing
+                    ? "category-desc"
+                    : undefined
+                }
+                aria-invalid={!!fieldErrors.category}
                 className={styles["input"]}
                 disabled={isEditing}
                 value={category}
@@ -162,14 +193,25 @@ function ProductForm({
                 <option>Ready-to-Drink</option>
                 <option>Accessories</option>
               </select>
-              {<FieldError message={fieldErrors.category} />}
+              {fieldErrors.category && (
+                <FieldError
+                  message={fieldErrors.category}
+                  id="category-error"
+                />
+              )}
             </div>
             <div className={styles["field"]}>
               <label htmlFor="name" className={styles["label"]}>
-                Product name <span>*</span>
+                Product name{" "}
+                <span aria-hidden="true" className={styles["asterisk"]}>
+                  *
+                </span>{" "}
+                <span className={styles["sr-only"]}>required</span>
               </label>
               <input
                 id="name"
+                aria-describedby={fieldErrors.name ? "name-error" : undefined}
+                aria-invalid={!!fieldErrors.name}
                 className={styles["input"]}
                 value={productName}
                 placeholder="e.g. Ethiopia Yirgacheffe"
@@ -180,14 +222,17 @@ function ProductForm({
                   setProductName(e.target.value);
                 }}
               />
-              {<FieldError message={fieldErrors.name} />}
+              {fieldErrors.name && (
+                <FieldError message={fieldErrors.name} id="name-error" />
+              )}
             </div>
             <div className={styles["field"]}>
               <label
                 htmlFor="description"
                 className={`${styles["label"]} ${styles["desc"]}`}
               >
-                Description <span>(optional)</span>
+                Description <span aria-hidden="true">(optional)</span>{" "}
+                <span className={styles["sr-only"]}>optional</span>
               </label>
               <textarea
                 id="description"
@@ -200,13 +245,20 @@ function ProductForm({
             <div className={styles["two-col"]}>
               <div className={styles["field"]}>
                 <label htmlFor="price" className={styles["label"]}>
-                  Price <span>*</span>
+                  Price{" "}
+                  <span aria-hidden="true" className={styles["asterisk"]}>
+                    *
+                  </span>{" "}
+                  <span className={styles["sr-only"]}>required</span>
                 </label>
                 <input
                   type="number"
                   step="0.01"
-                  min={1}
                   id="price"
+                  aria-describedby={
+                    fieldErrors.price ? "price-error" : undefined
+                  }
+                  aria-invalid={!!fieldErrors.price}
                   className={styles["input"]}
                   value={productPrice}
                   placeholder="0.00"
@@ -217,16 +269,25 @@ function ProductForm({
                     setProductPrice(e.target.value);
                   }}
                 />
-                {<FieldError message={fieldErrors.price} />}
+                {fieldErrors.price && (
+                  <FieldError message={fieldErrors.price} id="price-error" />
+                )}
               </div>
               <div className={styles["field"]}>
                 <label htmlFor="quantity" className={styles["label"]}>
-                  Quantity <span>*</span>
+                  Quantity{" "}
+                  <span aria-hidden="true" className={styles["asterisk"]}>
+                    *
+                  </span>{" "}
+                  <span className={styles["sr-only"]}>required</span>
                 </label>
                 <input
                   type="number"
-                  min={0}
                   id="quantity"
+                  aria-describedby={
+                    fieldErrors.quantity ? "quantity-error" : undefined
+                  }
+                  aria-invalid={!!fieldErrors.quantity}
                   className={styles["input"]}
                   value={productQuantity}
                   placeholder="0"
@@ -238,17 +299,25 @@ function ProductForm({
                     setProductQuantity(e.target.value);
                   }}
                 />
-                {<FieldError message={fieldErrors.quantity} />}
+                {fieldErrors.quantity && (
+                  <FieldError
+                    message={fieldErrors.quantity}
+                    id="quantity-error"
+                  />
+                )}
               </div>
             </div>
           </div>
           <div className={styles["card"]}>
-            <div className={styles["card-title"]}>
+            <h2 className={styles["card-title"]}>
               Attributes{" "}
-              <span>
+              <span aria-hidden="true">
                 {(product || category) && "—"} {product?.category || category}
               </span>
-            </div>
+              {(product || category) && (
+                <span className={styles["sr-only"]}>{ariaCategory}</span>
+              )}
+            </h2>
             {!isEditing && !category ? (
               <div className={styles["attrs-placeholder"]}>
                 <IconTag
@@ -267,12 +336,23 @@ function ProductForm({
                 ).map((attr) => (
                   <div key={attr} className={styles["field"]}>
                     <label htmlFor={attr} className={styles["label"]}>
-                      {attr} {attr === "Weight" && "(g)"}
-                      {attr === "Volume" && "(ml)"} <span>*</span>
+                      <span aria-hidden="true">
+                        {attr} {attr === "Weight" && "(g)"}{" "}
+                        {attr === "Volume" && "(ml)"}{" "}
+                        <span className={styles["asterisk"]}>*</span>
+                      </span>
+                      <span className={styles["sr-only"]}>
+                        {attr} {attr === "Weight" && "in grams"}{" "}
+                        {attr === "Volume" && "in milliliters"} required
+                      </span>
                     </label>
                     {shouldUseSelect(attr, product?.category || category) ? (
                       <select
                         id={attr}
+                        aria-describedby={
+                          fieldErrors[attr] ? `${attr}-error` : undefined
+                        }
+                        aria-invalid={!!fieldErrors[attr]}
                         className={styles["input"]}
                         value={productAttributes[attr]}
                         onChange={(e) => {
@@ -291,6 +371,10 @@ function ProductForm({
                     ) : (
                       <input
                         id={attr}
+                        aria-describedby={
+                          fieldErrors[attr] ? `${attr}-error` : undefined
+                        }
+                        aria-invalid={!!fieldErrors[attr]}
                         className={styles["input"]}
                         value={productAttributes[attr]}
                         placeholder={attributePlaceholders[attr]}
@@ -299,7 +383,12 @@ function ProductForm({
                         }}
                       />
                     )}
-                    {<FieldError message={fieldErrors[attr]} />}
+                    {fieldErrors[attr] && (
+                      <FieldError
+                        message={fieldErrors[attr]}
+                        id={`${attr}-error`}
+                      />
+                    )}
                   </div>
                 ))}
               </div>
@@ -314,9 +403,10 @@ function ProductForm({
               <div className={styles["sidebar-title"]}>Current values</div>
               <div className={styles["current-val"]}>
                 <span className={styles["current-label"]}>Price</span>
-                <span className={styles["current-data"]}>
+                <span className={styles["current-data"]} aria-hidden="true">
                   {formatPrice(product?.price)}
                 </span>
+                <span className={styles["sr-only"]}>{ariaPrice}</span>
               </div>
               <div className={styles["current-val"]}>
                 <span className={styles["current-label"]}>Stock</span>
@@ -361,7 +451,6 @@ function ProductForm({
           )}
           <div className={`${styles["actions"]} ${styles["sidebar-card"]}`}>
             <button
-              disabled={errorsExist}
               className={`${styles["btn-save"]} ${
                 errorsExist ? styles["error"] : ""
               } ${styles["btn-action"]}`}
