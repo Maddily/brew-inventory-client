@@ -24,7 +24,7 @@ function Breadcrumb({ prevPath, prev, current, state }) {
         stroke={2}
         aria-hidden="true"
       />
-      <span aria-hidden="true">{current}</span>
+      <h1 className={styles["current"]}>{current}</h1>
     </nav>
   );
 }
