@@ -185,7 +185,7 @@ function ProductDetail() {
             </div>
           </div>
           <div className={`${styles["card"]} ${styles["info-card"]}`}>
-            <div className={styles["product-name"]}>{product.name}</div>
+            <h2 className={styles["product-name"]}>{product.name}</h2>
             <div className={styles["meta-row"]}>
               <span
                 className={`${styles["cat-tag"]} ${
