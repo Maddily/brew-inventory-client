@@ -65,7 +65,6 @@ function FilterBottomSheet({
     <dialog
       className={styles["filter-bottom-sheet"]}
       ref={filterBottomSheetRef}
-      closedby="any"
       onClose={closeFilterDropdown}
       aria-modal="true"
     >
