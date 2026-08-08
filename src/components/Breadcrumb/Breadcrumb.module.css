@@ -8,7 +8,7 @@
 
 .back {
   text-decoration: none;
-  color: #7E6F67;
+  color: #7e6f67;
   transition: color 0.15s, text-decoration 0.1s;
 }
 
@@ -29,8 +29,10 @@
   color: #c5b8b2;
 }
 
-.breadcrumb span {
+.current {
   color: #1a1412;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 @media (min-width: 740px) {
@@ -38,6 +40,10 @@
     gap: 6px;
     font-size: 13px;
     margin-bottom: 1.5rem;
+  }
+
+  .current {
+    font-size: 13px;
   }
 
   .chevron-left,
