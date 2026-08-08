@@ -56,35 +56,34 @@ function DeleteModal({
     <dialog
       className={styles["delete-modal"]}
       ref={deleteModalRef}
-      closedby="any"
+      aria-labelledby="delete-modal-title"
+      aria-describedby="delete-modal-msg"
     >
-      <div className={styles["sheet-handle-row"]}>
+      <div className={styles["sheet-handle-row"]} aria-hidden="true">
         <div className={styles["sheet-handle"]}></div>
       </div>
       <div className={styles["modal-inner"]}>
-        <div className={styles["modal-icon-wrap"]}>
-          <IconTrash
-            stroke={2}
-            className={styles["modal-delete-icon"]}
-            aria-hidden="true"
-          />
+        <div className={styles["modal-icon-wrap"]} aria-hidden="true">
+          <IconTrash stroke={2} className={styles["modal-delete-icon"]} />
         </div>
-        <div className={styles["modal-title"]}>Delete product?</div>
-        <div className={styles["modal-msg"]}>
+        <h3 id="delete-modal-title" className={styles["modal-title"]}>
+          Delete product?
+        </h3>
+        <p id="delete-modal-msg" className={styles["modal-msg"]}>
           <strong>{productName}</strong> will be permanently deleted. This
           cannot be undone.
-        </div>
+        </p>
       </div>
       {deleteError && (
-        <div className={styles["error"]}>
+        <div className={styles["error"]} role="alert">
           <IconAlertCircle
             stroke={2}
             className={styles["error-icon"]}
             aria-hidden="true"
           />
-          <div className={styles["error-text"]}>
+          <p className={styles["error-text"]}>
             Failed to delete. Please try again.
-          </div>
+          </p>
         </div>
       )}
       <div className={styles["modal-footer"]}>
@@ -94,11 +93,7 @@ function DeleteModal({
         >
           Cancel
         </button>
-        <button
-          className={styles["modal-btn-delete"]}
-          disabled={deleteError}
-          onClick={onDelete}
-        >
+        <button className={styles["modal-btn-delete"]} onClick={onDelete}>
           {deleteError ? (
             <>
               <IconRefresh
