@@ -18,6 +18,23 @@ React frontend for Brew Inventory, a full-stack inventory management app for a s
 - Fully responsive: mobile bottom navigation, desktop top navigation
 - Accessible markup throughout
 
+## Screenshots
+
+### Categories
+
+<img src="screenshots/categories-desktop.png" width="800" />
+<img src="screenshots/categories-mobile.png" width="350" />
+
+### Products
+
+<img src="screenshots/products-desktop.png" width="800" />
+<img src="screenshots/products-mobile.png" width="350" />
+
+### Product detail
+
+<img src="screenshots/product-detail-desktop.png" width="800" />
+<img src="screenshots/product-detail-mobile.png" width="350" />
+
 ## Tech stack
 
 - **React** with **Vite**
