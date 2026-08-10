@@ -37,27 +37,6 @@ React frontend for Brew Inventory, a full-stack inventory management app for a s
 ## Project structure
 
 ```
-brew-inventory-client/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── BottomNav.jsx
-│   │   ├── ProductForm.jsx
-│   │   └── ...
-│   ├── pages/
-│   │   ├── Categories.jsx
-│   │   ├── Products.jsx
-│   │   ├── Product.jsx
-│   │   ├── AddProduct.jsx
-│   │   └── EditProduct.jsx
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-└── package.json
-```
-
-```
 └── 📁brew-inventory-client
     └── 📁public
         ├── apple-touch-icon.png
