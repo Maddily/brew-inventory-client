@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import {
   IconCheck,
   IconX,
@@ -29,6 +29,7 @@ function ProductForm({
   error,
   onDismissError,
   onCancel,
+  onPasswordChange,
 }) {
   const [category, setCategory] = useState(product?.category ?? "");
   const [productName, setProductName] = useState(product?.name ?? "");
@@ -42,12 +43,21 @@ function ProductForm({
   const [productAttributes, setProductAttributes] = useState(
     product?.attributes ?? {}
   );
+  const [password, setPassword] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
   const { availability, availabilityClassName, icon } = useAvailability(
     product?.stock_quantity ?? "",
     styles["availability-icon"]
   );
   const errorsExist = Object.keys(fieldErrors).length > 0;
+
+  useEffect(() => {
+    if (error === "Incorrect password") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setFieldErrors((prev) => ({ ...prev, password: error }));
+      document.getElementById("password")?.focus();
+    }
+  }, [error]);
 
   function handleSave() {
     if (errorsExist) return;
@@ -71,6 +81,10 @@ function ProductForm({
       if (!val) errors[attr] = `${attr} is required`;
     }
 
+    if (isEditing && !password) {
+      errors.password = "Admin password is required.";
+    }
+
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       const firstErrorKey = Object.keys(errors)[0];
@@ -84,6 +98,7 @@ function ProductForm({
       description: productDescription,
       price: productPrice,
       quantity: productQuantity,
+      password,
       ...productAttributes,
     });
   }
@@ -394,6 +409,41 @@ function ProductForm({
               </div>
             )}
           </div>
+          {isEditing && (
+            <div className={`${styles["card"]} ${styles["password-card"]}`}>
+              <div className={styles["card-title"]}>Admin authorization</div>
+              <div className={styles["password-hint"]}>
+                Enter the admin password to save changes.
+              </div>
+              <label htmlFor="password" className={styles["label"]}>
+                Admin password{" "}
+                <span aria-hidden="true" className={styles["asterisk"]}>
+                  *
+                </span>{" "}
+                <span className={styles["sr-only"]}>required</span>
+              </label>
+              <input
+                className={styles["input"]}
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  e.target.value.trim() &&
+                    fieldErrors.password &&
+                    clearFieldError("password");
+                  onPasswordChange();
+                  setPassword(e.target.value);
+                }}
+                placeholder="Enter admin password"
+              />
+              {isEditing && fieldErrors.password && (
+                <FieldError
+                  message={fieldErrors.password}
+                  id="password-error"
+                />
+              )}
+            </div>
+          )}
         </div>
         <div className={styles["sidebar"]}>
           {isEditing ? (
@@ -512,6 +562,7 @@ ProductForm.propTypes = {
   error: PropTypes.string,
   onDismissError: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  onPasswordChange: PropTypes.func.isRequired,
 };
 
 export default ProductForm;
