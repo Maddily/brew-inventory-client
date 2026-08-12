@@ -81,6 +81,7 @@ function EditProduct() {
     description,
     price,
     quantity,
+    password,
     ...attributes
   }) {
     setSaveError(null);
@@ -92,18 +93,24 @@ function EditProduct() {
           headers: { "Content-Type": "application/json" },
           method: "PUT",
           body: JSON.stringify({
+            id,
             name,
             description,
             price,
             stock_quantity: quantity,
             category_id: product.category_id,
+            password,
             ...attributes,
           }),
         }
       );
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || `HTTP error. Status: ${response.status}`);
+        throw new Error(
+          data.error ||
+            data.errors[0].msg ||
+            `HTTP error. Status: ${response.status}`
+        );
       }
 
       navigateBackAfterEdit(id, categoryId, product.category, navigate);
@@ -114,6 +121,10 @@ function EditProduct() {
 
   const onCancel = function () {
     navigateBackAfterEdit(id, categoryId, product.category, navigate);
+  };
+
+  const resetSaveError = function () {
+    setSaveError(null);
   };
 
   if (error) return <ErrorState setRetryCount={setRetryCount} entity="form" />;
@@ -128,6 +139,7 @@ function EditProduct() {
       error={saveError}
       onDismissError={onDismissError}
       onCancel={onCancel}
+      onPasswordChange={resetSaveError}
     />
   );
 }
