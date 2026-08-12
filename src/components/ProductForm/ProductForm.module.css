@@ -110,6 +110,25 @@ select.input {
   cursor: pointer;
 }
 
+.password-card {
+  border-left: 3px solid #2f2118;
+}
+
+.password-hint {
+  font-size: 12px;
+  color: #6b5e57;
+  margin-bottom: 0.85rem;
+  line-height: 1.5;
+}
+
+.password-card .input {
+  font-size: 16px;
+}
+
+.password-card .input::placeholder {
+  font-size: 13px;
+}
+
 .actions {
   display: flex;
   gap: 8px;
@@ -306,6 +325,11 @@ select.input {
 
   .card-title span {
     font-size: 12px;
+  }
+
+  .password-hint {
+    font-size: 12.5px;
+    margin-bottom: 1rem;
   }
 
   .sidebar {
