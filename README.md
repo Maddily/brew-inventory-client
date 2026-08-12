@@ -18,6 +18,12 @@ React frontend for Brew Inventory, a full-stack inventory management app for a s
 - Fully responsive: mobile bottom navigation, desktop top navigation
 - Accessible markup throughout
 
+## Admin access
+
+To edit or delete products, enter the admin password when prompted:
+
+**Password:** `brew123`
+
 ## Screenshots
 
 ### Categories
