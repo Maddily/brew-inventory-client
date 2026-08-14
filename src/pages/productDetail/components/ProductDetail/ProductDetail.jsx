@@ -90,20 +90,30 @@ function ProductDetail() {
     deleteModalRef.current.showModal();
   };
 
-  const onDelete = async function () {
-    setDeleteError(null);
+  const onDelete = async function (password) {
+    if (!password) {
+      setDeleteError("Password is required");
+      return;
+    }
 
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/products/${id}`,
         {
+          headers: { "Content-Type": "application/json" },
           method: "DELETE",
+          body: JSON.stringify({ password }),
         }
       );
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || `HTTP error. Status: ${response.status}`);
+        throw new Error(
+          data.error ||
+            data.errors[0].msg ||
+            `HTTP error. Status: ${response.status}`
+        );
       }
+      setDeleteError(null);
 
       if (categoryId) {
         navigate(`/categories/${categoryId}`);
@@ -281,7 +291,7 @@ function ProductDetail() {
       <DeleteModal
         deleteModalRef={deleteModalRef}
         productName={product.name}
-        deleteError={!!deleteError}
+        deleteError={deleteError}
         setDeleteError={setDeleteError}
         onDelete={onDelete}
       />
