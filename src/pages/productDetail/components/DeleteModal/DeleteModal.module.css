@@ -66,6 +66,42 @@
   font-weight: 400;
 }
 
+.modal-divider {
+  height: 0.5px;
+  background: #f0ebe6;
+  margin-bottom: 1rem;
+}
+
+.password-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #6b5e57;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.password {
+  padding: 7px 10px;
+  font-size: 13px;
+  border-radius: 7px;
+  width: 100%;
+  background: #f9f7f5;
+  border: 0.5px solid #e8e3de;
+  color: #1a1412;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.password:hover {
+  border-color: #c5b8b2;
+}
+
+.password-input:focus {
+  border-color: #2f2118;
+  background: #ffffff;
+}
+
 .modal-footer {
   display: flex;
   gap: 8px;
@@ -137,6 +173,7 @@
   border-top: 0.5px solid #f5c6c2;
   border-bottom: 0.5px solid #f5c6c2;
   padding: 10px 1.25rem;
+  margin: 1rem 0 0;
 }
 
 .error-icon {
@@ -190,12 +227,11 @@
   }
 
   .modal-inner {
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 1rem;
   }
 
   .modal-footer {
-    padding: 1.25rem 1.5rem;
-    border-top: 0.5px solid #f0ebe6;
+    padding: 0 1.5rem 1.25rem;
   }
 
   .modal-icon-wrap {
@@ -218,7 +254,12 @@
   .modal-msg {
     font-size: 13.5px;
     line-height: 1.55;
-    padding-bottom: 0;
+  }
+
+  .password {
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13.5px;
   }
 
   .modal-btn-cancel {
@@ -241,6 +282,7 @@
   .error {
     gap: 9px;
     padding: 11px 1.5rem;
+    margin: 0 0 1rem;
   }
 
   .error-icon {
