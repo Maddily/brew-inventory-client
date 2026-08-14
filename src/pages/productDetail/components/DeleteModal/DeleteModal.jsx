@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IconAlertCircle, IconRefresh, IconTrash } from "@tabler/icons-react";
 import PropTypes from "prop-types";
 import styles from "./DeleteModal.module.css";
@@ -15,6 +15,7 @@ function DeleteModal({
   setDeleteError,
   onDelete,
 }) {
+  const [password, setPassword] = useState("");
   const isWide = useIsWide(540);
 
   useEffect(() => {
@@ -73,6 +74,19 @@ function DeleteModal({
           <strong>{productName}</strong> will be permanently deleted. This
           cannot be undone.
         </p>
+        <div className={styles["modal-divider"]} aria-hidden="true" />
+        <label htmlFor="password" className={styles["password-label"]}>
+          Admin password
+        </label>
+        <input
+          className={styles["password"]}
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter admin password…"
+          onKeyDown={(e) => e.key === "Enter" && onDelete(password)}
+        />
       </div>
       {deleteError && (
         <div className={styles["error"]} role="alert">
@@ -82,7 +96,10 @@ function DeleteModal({
             aria-hidden="true"
           />
           <p className={styles["error-text"]}>
-            Failed to delete. Please try again.
+            {/password/i.test(deleteError)
+              ? `${deleteError}. `
+              : "Failed to delete. "}
+            {deleteError !== "Password is required" && "Please try again."}
           </p>
         </div>
       )}
@@ -93,7 +110,11 @@ function DeleteModal({
         >
           Cancel
         </button>
-        <button className={styles["modal-btn-delete"]} onClick={onDelete}>
+        <button
+          type="button"
+          onClick={() => onDelete(password)}
+          className={styles["modal-btn-delete"]}
+        >
           {deleteError ? (
             <>
               <IconRefresh
@@ -124,7 +145,7 @@ DeleteModal.propTypes = {
     current: PropTypes.instanceOf(Element),
   }).isRequired,
   productName: PropTypes.string.isRequired,
-  deleteError: PropTypes.bool.isRequired,
+  deleteError: PropTypes.string,
   setDeleteError: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
