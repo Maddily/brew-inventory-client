@@ -43,7 +43,7 @@ function Category({
   );
 }
 
-Category.propType = {
+Category.propTypes = {
   icon: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
