@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router";
 import { IconChevronRight } from "@tabler/icons-react";
 import PropTypes from "prop-types";
@@ -50,4 +51,4 @@ Product.propTypes = {
   state: PropTypes.object.isRequired,
 };
 
-export default Product;
+export default React.memo(Product);
