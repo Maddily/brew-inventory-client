@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./ProductsTable.module.css";
 import ProductRow from "../ProductRow/ProductRow";
 import PropTypes from "prop-types";
@@ -43,4 +44,4 @@ ProductsTable.propTypes = {
   categoryId: PropTypes.string,
 };
 
-export default ProductsTable;
+export default React.memo(ProductsTable);
