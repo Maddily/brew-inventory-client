@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
 import { IconFilter } from "@tabler/icons-react";
 import ErrorState from "../../../error/components/ErrorState/ErrorState";
@@ -44,13 +44,17 @@ function Products() {
   const filterBottomSheetRef = useRef(null);
   const navigate = useNavigate();
   const hasProducts = products.length > 0;
-  const state = categoryId
-    ? {
-        from: "category",
-        categoryId,
-        categoryName: idToCategory[categoryId],
-      }
-    : { from: "all" };
+  const state = useMemo(
+    () =>
+      categoryId
+        ? {
+            from: "category",
+            categoryId,
+            categoryName: idToCategory[categoryId],
+          }
+        : { from: "all" },
+    [categoryId]
+  );
 
   useEffect(() => {
     let componentIsMounted = true;
