@@ -1,3 +1,4 @@
+import React from "react";
 import { IconSearch } from "@tabler/icons-react";
 import styles from "./SearchBar.module.css";
 import { useEffect, useState } from "react";
@@ -45,4 +46,4 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+export default React.memo(SearchBar);
