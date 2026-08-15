@@ -142,8 +142,12 @@ function Products() {
   }, [categoryId, retryCount, searchParams]);
 
   function showFilter() {
-    !isWide && filterBottomSheetRef.current.showModal();
-    isWide && filterOpen ? closeFilterDropdown() : setFilterOpen(true);
+    if (!isWide) {
+      filterBottomSheetRef.current.showModal();
+      return;
+    }
+
+    filterOpen ? closeFilterDropdown() : setFilterOpen(true);
   }
 
   function closeFilterDropdown() {
