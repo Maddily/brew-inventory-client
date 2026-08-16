@@ -178,7 +178,7 @@ function Products() {
           </p>
         </div>
         <div className={styles["search-container"]}>
-          <SearchBar setProducts={setProducts} setError={setError} />
+          <SearchBar />
           <button
             className={`${styles["filter-button"]} ${
               filtersExist(selectedChips) ? styles["active"] : ""
