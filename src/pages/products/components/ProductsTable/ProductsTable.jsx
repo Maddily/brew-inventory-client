@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./ProductsTable.module.css";
 import ProductRow from "../ProductRow/ProductRow";
 import PropTypes from "prop-types";
 
 function ProductsTable({ products, categoryId }) {
+  const rowState = useMemo(
+    () =>
+      categoryId
+        ? { from: "category", categoryId, categoryName: products[0]?.category }
+        : { from: "all" },
+    [categoryId, products]
+  );
+
   return (
     <table className={styles["products-table"]}>
       <thead>
@@ -23,15 +31,7 @@ function ProductsTable({ products, categoryId }) {
             stockQuantity={product.stock_quantity}
             category={!categoryId && product.category}
             path={`/products/${product.id}`}
-            state={
-              categoryId
-                ? {
-                    from: "category",
-                    categoryId,
-                    categoryName: product.category,
-                  }
-                : { from: "all" }
-            }
+            state={rowState}
           />
         ))}
       </tbody>
