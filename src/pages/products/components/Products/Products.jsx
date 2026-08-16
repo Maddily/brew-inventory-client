@@ -227,7 +227,7 @@ function Products() {
           />
         ))}
       {/* Mobile list */}
-      {hasProducts ? (
+      {hasProducts && !isWide ? (
         <ul className={styles["products-list"]}>
           {products.map((product) => (
             <li key={product.id}>
@@ -244,7 +244,7 @@ function Products() {
         </ul>
       ) : null}
       {/* Desktop table */}
-      {hasProducts ? (
+      {hasProducts && isWide ? (
         <ProductsTable products={products} categoryId={categoryId} />
       ) : null}
       <SelectedChipsContext value={[selectedChips, setSelectedChips]}>
