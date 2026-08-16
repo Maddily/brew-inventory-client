@@ -4,6 +4,7 @@ import styles from "./SearchBar.module.css";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { useSearchParams } from "react-router";
+import { filtersChanged } from "../../../../utils/filterUtils";
 
 function SearchBar() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,7 +20,7 @@ function SearchBar() {
       newParams.delete("search");
     }
 
-    setSearchParams(newParams);
+    if (filtersChanged(newParams, searchParams)) setSearchParams(newParams);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearch]);
 
