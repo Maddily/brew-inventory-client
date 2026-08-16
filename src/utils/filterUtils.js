@@ -61,7 +61,7 @@ export function getAttributeValues(products, attribute) {
   return values;
 }
 
-export function clearFilters(setSelectedChips, setSearchParams) {
+export function clearFilters(setSelectedChips, searchParams, setSearchParams) {
   setSelectedChips({
     Category: [],
     Availability: [],
@@ -75,8 +75,10 @@ export function clearFilters(setSelectedChips, setSearchParams) {
     Volume: [],
     "Compatible With": [],
   });
-  const params = new URLSearchParams();
-  setSearchParams(params);
+
+  if (searchParams.size > 0) {
+    setSearchParams(new URLSearchParams());
+  }
 }
 
 export function applyFilters(selectedChips, searchParams, setSearchParams) {
