@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router";
 import styles from "./ProductRow.module.css";
@@ -46,9 +47,9 @@ ProductRow.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   stockQuantity: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   path: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired,
 };
 
-export default ProductRow;
+export default React.memo(ProductRow);
