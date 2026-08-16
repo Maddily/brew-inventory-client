@@ -4,7 +4,11 @@ import styles from "./FilterDropdown.module.css";
 import FilterSection from "../FilterSection/FilterSection";
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
 import useSections from "../../../../hooks/useSections";
-import { applyFilters, clearFilters, filtersExist } from "../../../../utils/filterUtils";
+import {
+  applyFilters,
+  clearFilters,
+  filtersExist,
+} from "../../../../utils/filterUtils";
 import { SelectedChipsContext } from "../../../../contexts";
 import PropTypes from "prop-types";
 
@@ -16,7 +20,7 @@ function FilterDropdown({ products, closeFilterDropdown }) {
   const sectionKeys = Object.keys(sections);
 
   function handleClearFilters() {
-    clearFilters(setSelectedChips, setSearchParams);
+    clearFilters(setSelectedChips, searchParams, setSearchParams);
     closeFilterDropdown();
   }
 

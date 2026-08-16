@@ -203,7 +203,8 @@ function Products() {
             subtitle="No products match your current filters. Try adjusting or clearing your filters."
             action={{
               label: "Clear filters",
-              onClick: () => clearFilters(setSelectedChips, setSearchParams),
+              onClick: () =>
+                clearFilters(setSelectedChips, searchParams, setSearchParams),
             }}
           />
         ) : categoryId ? (

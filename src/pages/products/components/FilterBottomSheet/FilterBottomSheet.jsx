@@ -52,7 +52,7 @@ function FilterBottomSheet({
   }, [filterBottomSheetRef]);
 
   function handleClearFilters() {
-    clearFilters(setSelectedChips, setSearchParams);
+    clearFilters(setSelectedChips, searchParams, setSearchParams);
     closeSheetWithAnimation(filterBottomSheetRef.current, closeFilterDropdown);
   }
 
