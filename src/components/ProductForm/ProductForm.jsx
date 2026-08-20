@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useMemo } from "react";
 import {
   IconCheck,
   IconX,
@@ -123,6 +123,17 @@ function ProductForm({
     ? product.category.split("-").join(" ")
     : category.split("-").join(" ");
   const ariaPrice = `${parseFloat(productPrice)} dollars`;
+  const state = useMemo(
+    () =>
+      categoryId
+        ? {
+            from: "category",
+            categoryId,
+            categoryName: idToCategory[categoryId],
+          }
+        : { from: "all" },
+    [categoryId]
+  );
 
   return (
     <main className={styles["main"]}>
@@ -142,15 +153,7 @@ function ProductForm({
             : "All products"
         }
         current={isEditing ? "Edit" : "Add product"}
-        state={
-          categoryId
-            ? {
-                from: "category",
-                categoryId,
-                categoryName: idToCategory[categoryId],
-              }
-            : { from: "all" }
-        }
+        state={state}
       />
       {error && (
         <FormError
