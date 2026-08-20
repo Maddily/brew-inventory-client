@@ -1,3 +1,4 @@
+import React from "react";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import styles from "./Breadcrumb.module.css";
 import { Link } from "react-router";
@@ -36,4 +37,4 @@ Breadcrumb.propTypes = {
   state: PropTypes.object,
 };
 
-export default Breadcrumb;
+export default React.memo(Breadcrumb);
