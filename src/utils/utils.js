@@ -1,5 +1,3 @@
-import { categoryAttributes } from "../constants";
-
 export function formatPrice(price) {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -7,7 +5,7 @@ export function formatPrice(price) {
   }).format(price);
 }
 
-export function shouldUseSelect(attr, category) {
+export function shouldUseSelect(attr, category, categoryAttributes) {
   return !!categoryAttributes[category]?.[attr];
 }
 

@@ -364,7 +364,7 @@ function ProductForm({
                         {attr === "Volume" && "in milliliters"} required
                       </span>
                     </label>
-                    {shouldUseSelect(attr, product?.category || category) ? (
+                    {shouldUseSelect(attr, product?.category || category, categoryAttributes) ? (
                       <select
                         id={attr}
                         aria-describedby={
