@@ -146,15 +146,17 @@ function Products() {
   }, [categoryId, retryCount, searchParams]);
 
   function showFilter() {
+    // Open the filter bottom sheet
     if (!isWide) {
       filterBottomSheetRef.current.showModal();
       return;
     }
 
-    filterOpen ? closeFilterDropdown() : setFilterOpen(true);
+    // Open/close the filter dropdown
+    filterOpen ? closeFilter() : setFilterOpen(true);
   }
 
-  function closeFilterDropdown() {
+  function closeFilter() {
     setFilterOpen(false);
   }
 
@@ -251,12 +253,12 @@ function Products() {
         {isWide && filterOpen ? (
           <FilterDropdown
             products={products}
-            closeFilterDropdown={closeFilterDropdown}
+            closeFilter={closeFilter}
           />
         ) : !isWide ? (
           <FilterBottomSheet
             filterBottomSheetRef={filterBottomSheetRef}
-            closeFilterDropdown={closeFilterDropdown}
+            closeFilter={closeFilter}
             products={products}
           />
         ) : (
