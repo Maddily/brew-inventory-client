@@ -1,4 +1,4 @@
-import { categoryNameToId, idToCategory } from "../constants";
+import { categoryNameToId } from "../constants";
 
 export function filtersChanged(params, searchParams) {
   const keys = new Set([...params.keys(), ...searchParams.keys()]);
@@ -14,7 +14,7 @@ export function filtersChanged(params, searchParams) {
   });
 }
 
-export function populateSelectedChips(searchParams, setSelectedChips) {
+export function populateSelectedChips(searchParams, setSelectedChips, idToCategory) {
   const newSelectedChips = {
     Category: [],
     Availability: [],

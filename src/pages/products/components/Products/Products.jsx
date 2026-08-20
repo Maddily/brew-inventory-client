@@ -127,7 +127,7 @@ function Products() {
 
         if (componentIsMounted) {
           setProducts(Array.from(productsMap.values()));
-          populateSelectedChips(searchParams, setSelectedChips);
+          populateSelectedChips(searchParams, setSelectedChips, idToCategory);
         }
       } catch (error) {
         if (componentIsMounted) {
@@ -251,10 +251,7 @@ function Products() {
       ) : null}
       <SelectedChipsContext value={[selectedChips, setSelectedChips]}>
         {isWide && filterOpen ? (
-          <FilterDropdown
-            products={products}
-            closeFilter={closeFilter}
-          />
+          <FilterDropdown products={products} closeFilter={closeFilter} />
         ) : !isWide ? (
           <FilterBottomSheet
             filterBottomSheetRef={filterBottomSheetRef}
