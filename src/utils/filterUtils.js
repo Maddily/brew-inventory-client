@@ -57,7 +57,7 @@ export function getAttributeValues(products, attribute) {
 
   for (const product of products) {
     const value = product.attributes[attribute];
-    !values.includes(value) && values.push(value);
+    value && !values.includes(value) && values.push(value);
   }
 
   return values;
