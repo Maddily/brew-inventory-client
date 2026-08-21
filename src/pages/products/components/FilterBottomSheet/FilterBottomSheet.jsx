@@ -13,17 +13,16 @@ import {
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
 import useSections from "../../../../hooks/useSections";
 import { closeSheetWithAnimation } from "../../../../utils/utils";
-import { categoryNameToId } from "../../../../constants";
+import {
+  categoryIdToAttributes,
+  categoryNameToId,
+} from "../../../../constants";
 
-function FilterBottomSheet({
-  filterBottomSheetRef,
-  closeFilter,
-  products,
-}) {
+function FilterBottomSheet({ filterBottomSheetRef, closeFilter, products }) {
   const [selectedChips, setSelectedChips] = useContext(SelectedChipsContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { category_id: categoryId } = useParams();
-  const sections = useSections(categoryId, products);
+  const sections = useSections(categoryId, products, categoryIdToAttributes);
   const sectionKeys = Object.keys(sections);
 
   // Handle close button click
@@ -58,7 +57,12 @@ function FilterBottomSheet({
   }
 
   function handleApplyFilters() {
-    applyFilters(selectedChips, searchParams, setSearchParams, categoryNameToId);
+    applyFilters(
+      selectedChips,
+      searchParams,
+      setSearchParams,
+      categoryNameToId
+    );
     closeSheetWithAnimation(filterBottomSheetRef.current, closeFilter);
   }
 

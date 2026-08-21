@@ -1,7 +1,6 @@
-import { categoryIdToAttributes } from "../constants";
 import { getAttributeValues } from "../utils/filterUtils";
 
-function useSections(categoryId, products) {
+function useSections(categoryId, products, categoryIdToAttributes) {
   const sections = {
     Category: ["Coffee", "Tea", "Ready-to-Drink", "Accessories"],
     Availability: ["In stock", "Low stock", "Out of stock"],

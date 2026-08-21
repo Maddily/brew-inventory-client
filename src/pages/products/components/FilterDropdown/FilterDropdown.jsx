@@ -11,13 +11,16 @@ import {
 } from "../../../../utils/filterUtils";
 import { SelectedChipsContext } from "../../../../contexts";
 import PropTypes from "prop-types";
-import { categoryNameToId } from "../../../../constants";
+import {
+  categoryIdToAttributes,
+  categoryNameToId,
+} from "../../../../constants";
 
 function FilterDropdown({ products, closeFilter }) {
   const [selectedChips, setSelectedChips] = useContext(SelectedChipsContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { category_id: categoryId } = useParams();
-  const sections = useSections(categoryId, products);
+  const sections = useSections(categoryId, products, categoryIdToAttributes);
   const sectionKeys = Object.keys(sections);
 
   function handleClearFilters() {
