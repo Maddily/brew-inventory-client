@@ -1,5 +1,3 @@
-import { categoryNameToId } from "../constants";
-
 export function filtersChanged(params, searchParams) {
   const keys = new Set([...params.keys(), ...searchParams.keys()]);
 
@@ -14,7 +12,11 @@ export function filtersChanged(params, searchParams) {
   });
 }
 
-export function populateSelectedChips(searchParams, setSelectedChips, idToCategory) {
+export function populateSelectedChips(
+  searchParams,
+  setSelectedChips,
+  idToCategory
+) {
   const newSelectedChips = {
     Category: [],
     Availability: [],
@@ -81,7 +83,12 @@ export function clearFilters(setSelectedChips, searchParams, setSearchParams) {
   }
 }
 
-export function applyFilters(selectedChips, searchParams, setSearchParams) {
+export function applyFilters(
+  selectedChips,
+  searchParams,
+  setSearchParams,
+  categoryNameToId
+) {
   const params = new URLSearchParams();
 
   for (const section in selectedChips) {

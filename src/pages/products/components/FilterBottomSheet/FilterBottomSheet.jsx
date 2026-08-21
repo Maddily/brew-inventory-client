@@ -13,6 +13,7 @@ import {
 import FilterEmptyState from "../FilterEmptyState/FilterEmptyState";
 import useSections from "../../../../hooks/useSections";
 import { closeSheetWithAnimation } from "../../../../utils/utils";
+import { categoryNameToId } from "../../../../constants";
 
 function FilterBottomSheet({
   filterBottomSheetRef,
@@ -57,7 +58,7 @@ function FilterBottomSheet({
   }
 
   function handleApplyFilters() {
-    applyFilters(selectedChips, searchParams, setSearchParams);
+    applyFilters(selectedChips, searchParams, setSearchParams, categoryNameToId);
     closeSheetWithAnimation(filterBottomSheetRef.current, closeFilter);
   }
 

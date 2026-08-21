@@ -11,6 +11,7 @@ import {
 } from "../../../../utils/filterUtils";
 import { SelectedChipsContext } from "../../../../contexts";
 import PropTypes from "prop-types";
+import { categoryNameToId } from "../../../../constants";
 
 function FilterDropdown({ products, closeFilter }) {
   const [selectedChips, setSelectedChips] = useContext(SelectedChipsContext);
@@ -25,7 +26,12 @@ function FilterDropdown({ products, closeFilter }) {
   }
 
   function handleApplyFilters() {
-    applyFilters(selectedChips, searchParams, setSearchParams);
+    applyFilters(
+      selectedChips,
+      searchParams,
+      setSearchParams,
+      categoryNameToId
+    );
     closeFilter();
   }
 
