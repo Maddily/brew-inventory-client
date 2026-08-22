@@ -11,7 +11,9 @@ function Header() {
 
   return (
     <header className={styles["header"]}>
-      <img className={styles["logo"]} src={logo} alt="Brew Inventory logo" />
+      <Link className={styles["logo"]} to="/" aria-label="Go to home page">
+        <img src={logo} alt="" />
+      </Link>
       {isWide && (
         <nav aria-label="primary navigation" className={styles["nav"]}>
           <div className={styles["nav-spacer"]} aria-hidden="true" />
