@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./NavLink.module.css";
 import { idToCategory } from "../../constants";
 
-function NavButton({ value, path }) {
+function NavLink({ value, path }) {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const { category_id: categoryId } = useParams();
@@ -31,9 +31,9 @@ function NavButton({ value, path }) {
   );
 }
 
-NavButton.propTypes = {
+NavLink.propTypes = {
   value: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
 };
 
-export default NavButton;
+export default NavLink;
