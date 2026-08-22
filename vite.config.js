@@ -8,5 +8,6 @@ export default defineConfig({
     // Enables global test methods like expect, describe, and it
     globals: true,
     environment: "jsdom",
+    setupFiles: "./test-setup.js",
   },
 });
