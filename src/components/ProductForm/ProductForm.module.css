@@ -346,7 +346,7 @@ select.input {
     color: #80746f;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
   }
 
   .current-val {
