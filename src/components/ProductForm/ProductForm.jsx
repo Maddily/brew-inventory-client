@@ -364,7 +364,11 @@ function ProductForm({
                         {attr === "Volume" && "in milliliters"} required
                       </span>
                     </label>
-                    {shouldUseSelect(attr, product?.category || category, categoryAttributes) ? (
+                    {shouldUseSelect(
+                      attr,
+                      product?.category || category,
+                      categoryAttributes
+                    ) ? (
                       <select
                         id={attr}
                         aria-describedby={
@@ -389,6 +393,11 @@ function ProductForm({
                     ) : (
                       <input
                         id={attr}
+                        type={
+                          attr === "Weight" || attr === "Volume"
+                            ? "number"
+                            : "text"
+                        }
                         aria-describedby={
                           fieldErrors[attr] ? `${attr}-error` : undefined
                         }
