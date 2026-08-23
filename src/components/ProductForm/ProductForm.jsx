@@ -18,6 +18,7 @@ import {
   idToCategory,
 } from "../../constants";
 import useAvailability from "../../hooks/useAvailability";
+import useIsWide from "../../hooks/useIsWide";
 import FormError from "../FormError/FormError";
 import FieldError from "../FieldError/FieldError";
 
@@ -49,6 +50,7 @@ function ProductForm({
     product?.stock_quantity ?? "",
     styles["availability-icon"]
   );
+  const isWide = useIsWide(700);
   const errorsExist = Object.keys(fieldErrors).length > 0;
 
   useEffect(() => {
@@ -458,7 +460,7 @@ function ProductForm({
           )}
         </div>
         <div className={styles["sidebar"]}>
-          {isEditing ? (
+          {isEditing && isWide ? (
             <div
               className={`${styles["sidebar-card"]} ${styles["current-vals-card"]}`}
             >
@@ -485,7 +487,7 @@ function ProductForm({
                 </span>
               </div>
             </div>
-          ) : (
+          ) : isWide ? (
             <div className={`${styles["sidebar-card"]} ${styles["tip-card"]}`}>
               <div className={styles["sidebar-title"]}>Tip</div>
               <div className={styles["tip"]}>
@@ -510,6 +512,8 @@ function ProductForm({
                 </div>
               </div>
             </div>
+          ) : (
+            ""
           )}
           <div className={`${styles["actions"]} ${styles["sidebar-card"]}`}>
             <button
