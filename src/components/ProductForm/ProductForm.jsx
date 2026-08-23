@@ -423,10 +423,10 @@ function ProductForm({
           </div>
           {isEditing && (
             <div className={`${styles["card"]} ${styles["password-card"]}`}>
-              <div className={styles["card-title"]}>Admin authorization</div>
-              <div className={styles["password-hint"]}>
+              <h2 className={styles["card-title"]}>Admin authorization</h2>
+              <p className={styles["password-hint"]}>
                 Enter the admin password to save changes.
-              </div>
+              </p>
               <label htmlFor="password" className={styles["label"]}>
                 Admin password{" "}
                 <span aria-hidden="true" className={styles["asterisk"]}>
