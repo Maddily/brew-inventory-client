@@ -464,7 +464,7 @@ function ProductForm({
             <div
               className={`${styles["sidebar-card"]} ${styles["current-vals-card"]}`}
             >
-              <div className={styles["sidebar-title"]}>Current values</div>
+              <h2 className={styles["sidebar-title"]}>Current values</h2>
               <div className={styles["current-val"]}>
                 <span className={styles["current-label"]}>Price</span>
                 <span className={styles["current-data"]} aria-hidden="true">
