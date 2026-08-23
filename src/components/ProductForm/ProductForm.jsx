@@ -489,7 +489,7 @@ function ProductForm({
             </div>
           ) : isWide ? (
             <div className={`${styles["sidebar-card"]} ${styles["tip-card"]}`}>
-              <div className={styles["sidebar-title"]}>Tip</div>
+              <h2 className={styles["sidebar-title"]}>Tip</h2>
               <div className={styles["tip"]}>
                 <IconInfoCircle
                   stroke={2}
