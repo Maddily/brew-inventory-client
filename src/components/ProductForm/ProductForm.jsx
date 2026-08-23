@@ -362,8 +362,10 @@ function ProductForm({
                         <span className={styles["asterisk"]}>*</span>
                       </span>
                       <span className={styles["sr-only"]}>
-                        {attr} {attr === "Weight" && "in grams"}{" "}
-                        {attr === "Volume" && "in milliliters"} required
+                        {attr}
+                        {attr === "Weight" && " in grams"}
+                        {attr === "Volume" && " in milliliters"}
+                        {" required"}
                       </span>
                     </label>
                     {shouldUseSelect(
