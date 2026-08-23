@@ -70,8 +70,11 @@ function ProductForm({
 
     if (!productName.trim()) errors.name = "Product name is required";
 
-    if (!productPrice || productPrice <= 0)
+    if (productPrice === "") {
+      errors.price = "Price is required";
+    } else if (productPrice <= 0) {
       errors.price = "Price must be greater than 0";
+    }
 
     if (productQuantity === "") {
       errors.quantity = "Quantity is required";
