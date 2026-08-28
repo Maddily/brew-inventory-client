@@ -184,15 +184,22 @@ function ProductDetail() {
             }`}
           >
             {categoryIcons[product.category_id]}
-            <div className={styles["sr-only"]}>{ariaCategory}</div>
-            <div
-              className={`${styles["hero-label"]} ${
-                styles[`${product.category.toLowerCase()}`]
-              }`}
-              aria-hidden="true"
-            >
-              {product.category}
-            </div>
+            {isWide ? (
+              <>
+                <div className={styles["sr-only"]}>{ariaCategory}</div>
+                <div
+                  data-testid="hero-category-label"
+                  className={`${styles["hero-label"]} ${
+                    styles[`${product.category.toLowerCase()}`]
+                  }`}
+                  aria-hidden="true"
+                >
+                  {product.category}
+                </div>{" "}
+              </>
+            ) : (
+              ""
+            )}
           </div>
           <div className={`${styles["card"]} ${styles["info-card"]}`}>
             <h2 className={styles["product-name"]}>{product.name}</h2>
@@ -212,19 +219,29 @@ function ProductDetail() {
                 {availability}
               </span>
             </div>
-            <div className={styles["desc"]}>{product.description}</div>
-            <div className={styles["divider"]} aria-hidden="true"></div>
-            <div className={styles["price-row"]}>
-              <span className={styles["price"]} aria-hidden="true">
-                {formattedPrice}
-              </span>
-              <span className={styles["sr-only"]}>{ariaPrice}</span>
-              <span className={styles["stock"]}>
-                <span aria-hidden="true">Qty:</span>
-                <span className={styles["sr-only"]}>Quantity</span>{" "}
-                <strong>{product.stock_quantity}</strong>
-              </span>
-            </div>
+            {isWide ? (
+              <div className={styles["desc"]}>{product.description}</div>
+            ) : (
+              ""
+            )}
+            {!isWide ? (
+              <>
+                <div className={styles["divider"]} aria-hidden="true"></div>
+                <div className={styles["price-row"]} data-testid="price-row">
+                  <span className={styles["price"]} aria-hidden="true">
+                    {formattedPrice}
+                  </span>
+                  <span className={styles["sr-only"]}>{ariaPrice}</span>
+                  <span className={styles["stock"]}>
+                    <span aria-hidden="true">Qty:</span>
+                    <span className={styles["sr-only"]}>Quantity</span>{" "}
+                    <strong>{product.stock_quantity}</strong>
+                  </span>
+                </div>
+              </>
+            ) : (
+              ""
+            )}
           </div>
           <div className={`${styles["card"]} ${styles["attrs-card"]}`}>
             <h2 className={styles["attrs-title"]}>Attributes</h2>
@@ -243,22 +260,29 @@ function ProductDetail() {
           </div>
         </div>
         <div className={styles["sidebar"]}>
-          <div className={styles["sidebar-card"]}>
-            <h2 className={styles["sidebar-title"]}>Pricing &amp; Stock</h2>
-            <div className={styles["sidebar-price-row"]}>
-              <span className={styles["sr-only"]}>{ariaPrice}</span>
-              <span className={styles["price-val"]} aria-hidden="true">
-                {formattedPrice}
-              </span>
-              <span className={styles["price-unit"]}>per unit</span>
+          {isWide ? (
+            <div
+              className={styles["sidebar-card"]}
+              data-testid="price-quantity-card"
+            >
+              <h2 className={styles["sidebar-title"]}>Pricing &amp; Stock</h2>
+              <div className={styles["sidebar-price-row"]}>
+                <span className={styles["sr-only"]}>{ariaPrice}</span>
+                <span className={styles["price-val"]} aria-hidden="true">
+                  {formattedPrice}
+                </span>
+                <span className={styles["price-unit"]}>per unit</span>
+              </div>
+              <div className={styles["stock-row"]}>
+                <span className={styles["stock-label"]}>Stock quantity</span>
+                <span className={styles["stock-val"]}>
+                  {product.stock_quantity} units
+                </span>
+              </div>
             </div>
-            <div className={styles["stock-row"]}>
-              <span className={styles["stock-label"]}>Stock quantity</span>
-              <span className={styles["stock-val"]}>
-                {product.stock_quantity} units
-              </span>
-            </div>
-          </div>
+          ) : (
+            ""
+          )}
           <div className={styles["sidebar-card"]}>
             <h2
               className={`${styles["sidebar-title"]} ${styles["actions-title"]}`}
