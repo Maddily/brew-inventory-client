@@ -19,8 +19,6 @@ vi.mock("../../../../utils/utils", () => ({
 }));
 
 describe("DeleteModal", () => {
-  let mediaQueryListeners;
-  let mockMatchMedia;
   let mockRef;
   let setDeleteError;
   let onDelete;
@@ -29,19 +27,6 @@ describe("DeleteModal", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mediaQueryListeners = [];
-
-    mockMatchMedia = vi.fn((query) => ({
-      matches: window.innerWidth >= 600,
-      media: query,
-      addEventListener: vi.fn((_, handler) => {
-        mediaQueryListeners.push(handler);
-      }),
-      removeEventListener: vi.fn(),
-    }));
-
-    window.matchMedia = mockMatchMedia;
-
     Element.prototype.animate = vi.fn(() => ({
       finished: Promise.resolve(),
       cancel: vi.fn(),
