@@ -213,16 +213,21 @@ function ProductDetail() {
               </span>
             </div>
             <div className={styles["desc"]}>{product.description}</div>
-            <div className={styles["divider"]}></div>
+            <div className={styles["divider"]} aria-hidden="true"></div>
             <div className={styles["price-row"]}>
-              <span className={styles["price"]}>{formattedPrice}</span>
+              <span className={styles["price"]} aria-hidden="true">
+                {formattedPrice}
+              </span>
+              <span className={styles["sr-only"]}>{ariaPrice}</span>
               <span className={styles["stock"]}>
-                Qty: <strong>{product.stock_quantity}</strong>
+                <span aria-hidden="true">Qty:</span>
+                <span className={styles["sr-only"]}>Quantity</span>{" "}
+                <strong>{product.stock_quantity}</strong>
               </span>
             </div>
           </div>
           <div className={`${styles["card"]} ${styles["attrs-card"]}`}>
-            <div className={styles["attrs-title"]}>Attributes</div>
+            <h2 className={styles["attrs-title"]}>Attributes</h2>
             {Object.entries(product.attributes).map(([attr, val]) => (
               <div key={attr} className={styles["attr-row"]}>
                 <span className={styles["attr-key"]}>{attr}</span>
@@ -239,7 +244,7 @@ function ProductDetail() {
         </div>
         <div className={styles["sidebar"]}>
           <div className={styles["sidebar-card"]}>
-            <div className={styles["sidebar-title"]}>Pricing &amp; Stock</div>
+            <h2 className={styles["sidebar-title"]}>Pricing &amp; Stock</h2>
             <div className={styles["sidebar-price-row"]}>
               <span className={styles["sr-only"]}>{ariaPrice}</span>
               <span className={styles["price-val"]} aria-hidden="true">
@@ -255,11 +260,11 @@ function ProductDetail() {
             </div>
           </div>
           <div className={styles["sidebar-card"]}>
-            <div
+            <h2
               className={`${styles["sidebar-title"]} ${styles["actions-title"]}`}
             >
               Actions
-            </div>
+            </h2>
             <div className={styles["action-btns"]}>
               <button
                 className={styles["btn-edit"]}
