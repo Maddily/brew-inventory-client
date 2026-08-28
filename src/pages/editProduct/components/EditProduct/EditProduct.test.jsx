@@ -96,13 +96,13 @@ function mockFetchFailure(errorMessage, status = 400) {
   });
 }
 
-beforeEach(() => {
-  vi.clearAllMocks();
-  mockParams = { id: "1" };
-  mockLocationState = { categoryId: "1" };
-});
-
 describe("EditProduct", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockParams = { id: "1" };
+    mockLocationState = { categoryId: "1" };
+  });
+
   // Loading and error states
   it("renders SkeletonEditProduct while the product is loading", () => {
     globalThis.fetch = vi.fn(() => new Promise(() => {})); // never resolves
