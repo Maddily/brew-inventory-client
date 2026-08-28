@@ -58,10 +58,6 @@
   color: var(--acc-icon);
 }
 
-.hero-label {
-  display: none;
-}
-
 .card {
   background: #ffffff;
   border: 0.5px solid #e8e3de;
@@ -147,10 +143,6 @@
   display: none;
 }
 
-.desc {
-  display: none;
-}
-
 .divider {
   height: 0.5px;
   background: #f0ebe6;
@@ -206,10 +198,6 @@
 .attr-val {
   font-size: 12px;
   color: #1a1412;
-}
-
-.sidebar-card:first-of-type {
-  display: none;
 }
 
 .action-btns {
@@ -334,7 +322,6 @@
   }
 
   .hero-label {
-    display: block;
     font-size: 12px;
     letter-spacing: 0.04em;
   }
@@ -388,15 +375,9 @@
   }
 
   .desc {
-    display: block;
     font-size: 14px;
     color: #6b5e57;
     line-height: 1.6;
-  }
-
-  .price-row,
-  .divider {
-    display: none;
   }
 
   .attrs-title {
@@ -420,10 +401,6 @@
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-  }
-
-  .sidebar-card:first-of-type {
-    display: block;
   }
 
   .sidebar-card {
