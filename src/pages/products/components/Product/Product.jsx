@@ -46,7 +46,7 @@ Product.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   stockQuantity: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   path: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired,
 };
