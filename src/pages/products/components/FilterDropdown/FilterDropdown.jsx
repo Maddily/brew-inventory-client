@@ -52,6 +52,7 @@ function FilterDropdown({ products, closeFilter }) {
               {index !== sectionKeys.length - 1 && (
                 <div
                   className={styles["filter-divider"]}
+                  data-testid="divider"
                   aria-hidden="true"
                 ></div>
               )}
