@@ -100,7 +100,11 @@ function FilterBottomSheet({ filterBottomSheetRef, closeFilter, products }) {
                 type="bottom-sheet"
               />
               {index !== sectionKeys.length - 1 && (
-                <div className={styles["filter-divider"]} aria-hidden="true" />
+                <div
+                  className={styles["filter-divider"]}
+                  aria-hidden="true"
+                  data-testid="divider"
+                />
               )}
             </Fragment>
           ))}
