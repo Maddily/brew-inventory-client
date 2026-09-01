@@ -24,6 +24,7 @@ function ProductRow({ name, price, stockQuantity, category, path, state }) {
       tabIndex={0}
       role="link"
       aria-label={`${name}, ${ariaCategory}, ${ariaPrice}, stock quantity ${stockQuantity}, ${availability}`}
+      data-testid="product"
     >
       <td className={styles["name-and-category"]}>
         <p className={styles["name"]}>{name}</p>
