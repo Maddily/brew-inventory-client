@@ -71,6 +71,13 @@ To edit or delete products, enter the admin password when prompted:
         ├── site.webmanifest
         ├── web-app-manifest-192x192.png
         ├── web-app-manifest-512x512.png
+    └── 📁screenshots
+        ├── categories-desktop.png
+        ├── categories-mobile.png
+        ├── product-detail-desktop.png
+        ├── product-detail-mobile.png
+        ├── products-desktop.png
+        └── products-mobile.png
     └── 📁src
         └── 📁assets
             ├── logo.png
@@ -78,44 +85,58 @@ To edit or delete products, enter the admin password when prompted:
             └── 📁BottomNav
                 ├── BottomNav.jsx
                 ├── BottomNav.module.css
+                ├── BottomNav.test.jsx
             └── 📁BottomNavLink
                 ├── BottomNavLink.jsx
                 ├── BottomNavLink.module.css
+                ├── BottomNavLink.test.jsx
             └── 📁Breadcrumb
                 ├── Breadcrumb.jsx
                 ├── Breadcrumb.module.css
+                ├── Breadcrumb.test.jsx
             └── 📁FieldError
                 ├── FieldError.jsx
                 ├── FieldError.module.css
+                ├── FieldError.test.jsx
             └── 📁FormError
                 ├── FormError.jsx
                 ├── FormError.module.css
+                ├── FormError.test.jsx
             └── 📁Header
                 ├── Header.jsx
                 ├── Header.module.css
+                ├── Header.test.jsx
             └── 📁NavLink
                 ├── NavLink.jsx
                 ├── NavLink.module.css
+                ├── NavLink.test.jsx
             └── 📁ProductForm
                 ├── ProductForm.jsx
                 ├── ProductForm.module.css
+                ├── ProductForm.test.jsx
         └── 📁hooks
             ├── useAvailability.jsx
+            ├── useAvailability.test.jsx
             ├── useIsWide.js
+            ├── useIsWide.test.js
             ├── useSections.js
+            ├── useSections.test.js
         └── 📁pages
             └── 📁addProduct
                 └── 📁components
                     └── 📁AddProduct
                         ├── AddProduct.jsx
+                        ├── AddProduct.test.jsx
             └── 📁categories
                 └── 📁components
                     └── 📁Categories
                         ├── Categories.jsx
                         ├── Categories.module.css
+                        ├── Categories.test.jsx
                     └── 📁Category
                         ├── Category.jsx
                         ├── Category.module.css
+                        ├── Category.test.jsx
                     └── 📁SkeletonCategories
                         ├── SkeletonCategories.jsx
                         ├── SkeletonCategories.module.css
@@ -123,6 +144,7 @@ To edit or delete products, enter the admin password when prompted:
                 └── 📁components
                     └── 📁EditProduct
                         ├── EditProduct.jsx
+                        ├── EditProduct.test.jsx
                     └── 📁SkeletonEditProduct
                         ├── SkeletonEditProduct.jsx
                         ├── SkeletonEditProduct.module.css
@@ -131,14 +153,17 @@ To edit or delete products, enter the admin password when prompted:
                     └── 📁ErrorState
                         ├── ErrorState.jsx
                         ├── ErrorState.module.css
+                        ├── ErrorState.test.jsx
             └── 📁productDetail
                 └── 📁components
                     └── 📁DeleteModal
                         ├── DeleteModal.jsx
                         ├── DeleteModal.module.css
+                        ├── DeleteModal.test.jsx
                     └── 📁ProductDetail
                         ├── ProductDetail.jsx
                         ├── ProductDetail.module.css
+                        ├── ProductDetail.test.jsx
                     └── 📁SkeletonProductDetail
                         ├── SkeletonProductDetail.jsx
                         ├── SkeletonProductDetail.module.css
@@ -147,36 +172,46 @@ To edit or delete products, enter the admin password when prompted:
                     └── 📁FilterBottomSheet
                         ├── FilterBottomSheet.jsx
                         ├── FilterBottomSheet.module.css
+                        ── FilterBottomSheet.test.jsx
                     └── 📁FilterDropdown
                         ├── FilterDropdown.jsx
                         ├── FilterDropdown.module.css
+                        ├── FilterDropdown.test.jsx
                     └── 📁FilterEmptyState
                         ├── FilterEmptyState.jsx
                         ├── FilterEmptyState.module.css
                     └── 📁FilterSection
                         ├── FilterSection.jsx
                         ├── FilterSection.module.css
+                        ├── FilterSection.test.jsx
                     └── 📁Product
                         ├── Product.jsx
                         ├── Product.module.css
+                        ├── Product.test.jsx
                     └── 📁ProductEmptyState
                         ├── ProductEmptyState.jsx
                         ├── ProductEmptyState.module.css
+                        ├── ProductEmptyState.test.jsx
                     └── 📁ProductRow
                         ├── ProductRow.jsx
                         ├── ProductRow.module.css
+                        ├── ProductRow.test.jsx
                     └── 📁Products
                         ├── Products.jsx
                         ├── Products.module.css
+                        ├── Products.test.jsx
                     └── 📁ProductsTable
                         ├── ProductsTable.jsx
                         ├── ProductsTable.module.css
+                        ├── ProductsTable.test.jsx
                     └── 📁SearchBar
                         ├── SearchBar.jsx
                         ├── SearchBar.module.css
+                        ├── SearchBar.test.jsx
                     └── 📁SheetChip
                         ├── SheetChip.jsx
                         ├── SheetChip.module.css
+                        ├── SheetChip.test.jsx
                     └── 📁SkeletonProducts
                         ├── SkeletonProducts.jsx
                         ├── SkeletonProducts.module.css
@@ -187,7 +222,9 @@ To edit or delete products, enter the admin password when prompted:
             ├── normalize.css
         └── 📁utils
             ├── filterUtils.js
+            ├── filterUtils.test.js
             ├── utils.js
+            ├── utils.test.js
         ├── App.jsx
         ├── constants.js
         ├── contexts.js
