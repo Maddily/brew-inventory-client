@@ -39,7 +39,7 @@ function FilterDropdown({ products, closeFilter }) {
   }
 
   return (
-    <div className={styles["filter-dropdown"]}>
+    <div className={styles["filter-dropdown"]} data-testid="filter-dropdown">
       {products.length ? (
         <div className={styles["body"]}>
           {sectionKeys.map((section, index) => (
