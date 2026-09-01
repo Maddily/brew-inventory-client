@@ -18,6 +18,7 @@ function Product({ name, price, stockQuantity, category, path, state }) {
       to={path}
       state={state}
       aria-label={`${name}, ${ariaCategory}, ${ariaPrice}, stock quantity ${stockQuantity}, ${availability}`}
+      data-testid="product"
     >
       <div className={styles["left"]}>
         <p className={styles["name"]}>{name}</p>
