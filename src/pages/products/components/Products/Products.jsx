@@ -18,6 +18,7 @@ import { idToCategory } from "../../../../constants";
 import useIsWide from "../../../../hooks/useIsWide";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import SearchBar from "../SearchBar/SearchBar";
+import { getSearchResultDescription } from "../../../../utils/utils";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -172,11 +173,11 @@ function Products() {
             {categoryId ? idToCategory[categoryId] : "All Products"}
           </h1>
           <p className={styles["header-description"]}>
-            {searchParams.size
-              ? `${products.length} products match current filters`
-              : `${products.length} products across ${
-                  categoryId ? "1 category" : "4 categories"
-                }`}
+            {getSearchResultDescription(
+              products.length,
+              searchParams.size,
+              categoryId
+            )}
           </p>
         </div>
         <div className={styles["search-container"]}>

@@ -45,3 +45,20 @@ export function navigateBackAfterAdd(categoryId, navigate) {
     navigate("/products");
   }
 }
+
+export function getSearchResultDescription(
+  numberOfProducts,
+  searchParamsExist,
+  categoryId
+) {
+  if (searchParamsExist) {
+    if (numberOfProducts === 1) {
+      return "1 product matches current filters";
+    } else {
+      return `${numberOfProducts} products match current filters`;
+    }
+  }
+  return `${numberOfProducts} products across ${
+    categoryId ? "1 category" : "4 categories"
+  }`;
+}
