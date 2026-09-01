@@ -3,6 +3,7 @@ import {
   closeModalWithAnimation,
   closeSheetWithAnimation,
   formatPrice,
+  getSearchResultDescription,
   navigateBackAfterAdd,
   navigateBackAfterEdit,
   shouldUseSelect,
@@ -150,5 +151,37 @@ describe("navigateBackAfterAdd", () => {
     const mockNavigate = vi.fn();
     navigateBackAfterAdd(undefined, mockNavigate);
     expect(mockNavigate).toHaveBeenCalledWith("/products");
+  });
+});
+
+describe("getSearchResultDescription", () => {
+  it("returns '<number of products> products match current filters' when there are search parameters and more than one product match", () => {
+    expect(getSearchResultDescription(4, true, null)).toBe(
+      "4 products match current filters"
+    );
+  });
+
+  it("returns '1 product matches current filters' when there are search parameters and exactly one product matches", () => {
+    expect(getSearchResultDescription(1, true, null)).toBe(
+      "1 product matches current filters"
+    );
+  });
+
+  it("returns '0 products match current filters' when there are search parameters and no products match", () => {
+    expect(getSearchResultDescription(0, true, null)).toBe(
+      "0 products match current filters"
+    );
+  });
+
+  it("returns '<number of products> products across 1 category' when there are no search parameters and categoryId param exists", () => {
+    expect(getSearchResultDescription(4, false, 1)).toBe(
+      "4 products across 1 category"
+    );
+  });
+
+  it("returns '<number of products> products across 4 categories' when there are no search parameters and there is no categoryId param", () => {
+    expect(getSearchResultDescription(4, false, null)).toBe(
+      "4 products across 4 categories"
+    );
   });
 });
