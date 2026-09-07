@@ -77,7 +77,7 @@ To edit or delete products, enter the admin password when prompted:
         ├── product-detail-desktop.png
         ├── product-detail-mobile.png
         ├── products-desktop.png
-        └── products-mobile.png
+        ├── products-mobile.png
     └── 📁src
         └── 📁assets
             ├── logo.png
@@ -116,7 +116,7 @@ To edit or delete products, enter the admin password when prompted:
                 ├── ProductForm.test.jsx
         └── 📁hooks
             ├── useAvailability.jsx
-            ├── useAvailability.test.jsx
+            ├── useAvailability.test.js
             ├── useIsWide.js
             ├── useIsWide.test.js
             ├── useSections.js
@@ -172,7 +172,7 @@ To edit or delete products, enter the admin password when prompted:
                     └── 📁FilterBottomSheet
                         ├── FilterBottomSheet.jsx
                         ├── FilterBottomSheet.module.css
-                        ── FilterBottomSheet.test.jsx
+                        ├── FilterBottomSheet.test.jsx
                     └── 📁FilterDropdown
                         ├── FilterDropdown.jsx
                         ├── FilterDropdown.module.css
@@ -220,6 +220,11 @@ To edit or delete products, enter the admin password when prompted:
         └── 📁styles
             ├── App.css
             ├── normalize.css
+        └── 📁tests
+            └── 📁integration
+                ├── addProductForm.test.jsx
+                ├── filterProducts.test.jsx
+                ├── searchProducts.test.jsx
         └── 📁utils
             ├── filterUtils.js
             ├── filterUtils.test.js
@@ -229,10 +234,13 @@ To edit or delete products, enter the admin password when prompted:
         ├── constants.js
         ├── contexts.js
         ├── main.jsx
+    ├── .gitignore
     ├── eslint.config.js
     ├── index.html
+    ├── package-lock.json
     ├── package.json
     ├── README.md
+    ├── test-setup.js
     └── vite.config.js
 ```
 
