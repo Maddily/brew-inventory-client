@@ -2,7 +2,7 @@
 
 React frontend for Brew Inventory, a full-stack inventory management app for a specialty tea and coffee store.
 
-> **Work in progress.** Deployment coming soon.
+**Live:** [brew-inventory.pages.dev](https://brew-inventory.pages.dev)
 
 ## Related repository
 
@@ -275,3 +275,23 @@ npm run dev
 The app will be running at `http://localhost:5173`.
 
 > Make sure the API server is running at `http://localhost:3000` before using the app.
+
+## Deployment
+
+Hosted on [Cloudflare Pages](https://pages.dev). `VITE_API_URL` is set as a build-time environment variable pointing to the deployed [brew-inventory-server](https://github.com/Maddily/brew-inventory-server) API on Render.
+
+## Running tests
+
+Unit tests:
+
+```bash
+npm test
+```
+
+Integration tests:
+
+```bash
+npm run test:integration
+```
+
+Unit tests cover components, hooks, and utility functions in isolation using Vitest and React Testing Library, with network requests mocked. Integration tests exercise real component trees together — filling out the actual product form, selecting real filter chips, and typing in the real search bar — to verify the seams between components work end to end, not just each piece in isolation.
