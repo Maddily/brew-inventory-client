@@ -4,6 +4,8 @@ React frontend for Brew Inventory, a full-stack inventory management app for a s
 
 **Live:** [brew-inventory.pages.dev](https://brew-inventory.pages.dev)
 
+> **Note:** The backend is hosted on Render's free tier, which spins down after inactivity. The first request after idle may take 30–50 seconds while the server wakes up. Subsequent requests are fast.
+
 ## Related repository
 
 [brew-inventory-server](https://github.com/Maddily/brew-inventory-server) — Express/PostgreSQL API
