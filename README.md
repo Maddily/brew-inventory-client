@@ -47,6 +47,10 @@ To edit or delete products, enter the admin password when prompted:
 
 - **React** with **Vite**
 - **React Router** for client-side routing
+- **Vitest** and **React Testing Library** for unit and integration testing
+- **use-debounce** for debounced search input
+- **PropTypes** for runtime prop validation
+- **ESLint** for linting
 
 ## Views
 
