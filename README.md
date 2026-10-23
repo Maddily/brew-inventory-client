@@ -240,9 +240,12 @@ To edit or delete products, enter the admin password when prompted:
         ├── constants.js
         ├── contexts.js
         ├── main.jsx
+    ├── .dockerignore
     ├── .gitignore
+    ├── Dockerfile
     ├── eslint.config.js
     ├── index.html
+    ├── nginx.conf
     ├── package-lock.json
     ├── package.json
     ├── README.md
